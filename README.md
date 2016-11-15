@@ -58,6 +58,7 @@ client.query(query).then(result => {
 ### Technical notes
 
 - https://github.com/apollostack/graphql-tools
+- https://github.com/Aweary/json-to-graphql
 - https://developer.spotify.com/web-api/object-model/
 - https://developer.spotify.com/web-api/endpoint-reference/
 
