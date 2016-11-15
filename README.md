@@ -17,7 +17,7 @@ Make schema for following public (with no scopes) endpoints:
 ### "target" DSL examples :
 
 ```typescript
-import { Client } from 'spotify-graphql';
+import { SpotifyApiGraphQL } from 'spotify-graphql';
 
 var query = `
   query Album {
@@ -32,9 +32,9 @@ var query = `
   }
 `;
 
-let client = new Client('<access_token>');
+let client = new SpotifyApiGraphQL('<access_token>');
 
-client.graphql(schema, query).then(result => {
+client.query(query).then(result => {
 
   // Prints
   // {
