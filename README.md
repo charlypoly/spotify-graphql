@@ -53,3 +53,10 @@ client.query(query).then(result => {
 
 });
 ```
+
+
+### Technical notes
+
+- https://developer.spotify.com/web-api/object-model/
+- https://developer.spotify.com/web-api/endpoint-reference/
+
