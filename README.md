@@ -57,6 +57,7 @@ client.query(query).then(result => {
 
 ### Technical notes
 
+- http://graphql.org/graphql-js/
 - https://github.com/apollostack/graphql-tools
 - https://github.com/Aweary/json-to-graphql
 - https://developer.spotify.com/web-api/object-model/
