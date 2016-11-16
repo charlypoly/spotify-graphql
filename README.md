@@ -17,41 +17,44 @@ Make schema for following public (with no scopes) endpoints:
 ### "target" DSL examples :
 
 ```typescript
-import { SpotifyApiGraphQL } from 'spotify-graphql';
 
-var query = `
-  query Album {
-    album(id: 'xxxx') {
-      uri
+import Client from 'spotify-graphql';
+
+const accessToken = 'xxx';
+
+Client(accessToken).query(`
+  {
+    track(id: "3W2ZcrRsInZbjWylOi6KhZ") {
       name
-      artist {
+      artists {
         name
-        uri
       }
     }
   }
-`;
-
-let client = new SpotifyApiGraphQL('<access_token>');
-
-client.query(query).then(result => {
-
-  // Prints
-  // {
-  //   data: {
-  //     album : {
-  //       uri: '...',
-  //       name: '...',
-  //       artist: {
-  //         uri: '...',
-  //         name: '...'
-  //       }
-  //     }
-  //   }
-  // }
-  console.log(result);
-
+`).then(result => {
+  console.log(JSON.stringify(result));
 });
+
+// Print : 
+// {
+//   "data": {
+//     "track": {
+//       "name": "You & Me - Flume Remix",
+//       "artists": [
+//         {
+//           "name": "Disclosure"
+//         },
+//         {
+//           "name": "Eliza Doolittle"
+//         },
+//         {
+//           "name": "Flume"
+//         }
+//       ]
+//     }
+//   }
+// }
+
 ```
 
 
