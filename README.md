@@ -5,17 +5,6 @@ GraphQL schema for Spotify WebAPI (TypeScript)
 
 *Uses [graphql-js](https://github.com/graphql/graphql-js)*
 
-### POC goals:
-
-Make schema for following public (with no scopes) endpoints:
-- Albums
-- Artists
-- Playlists
-- Tracks
-
-
-### "target" DSL examples :
-
 ```typescript
 
 import Client from 'spotify-graphql';
@@ -57,6 +46,7 @@ Client(accessToken).query(`
 
 ```
 
+See https://github.com/thefrenchhouse/spotify-graphql/pull/3 for 0.0.1 Roadmap
 
 ### Technical notes
 
