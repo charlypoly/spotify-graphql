@@ -3,7 +3,8 @@ import config from './config';
 
 SpotifyGraphQLClient.create(config).query(`
   {
-    me(load: false) {
+    me {
+      display_name
       tracks {
         track {
           artists {
@@ -13,6 +14,6 @@ SpotifyGraphQLClient.create(config).query(`
       }
     }
   }
-`).then(result => {
-  console.log(JSON.stringify(result));
+`).then(executionResult => {
+  console.log(JSON.stringify(executionResult.data));
 });

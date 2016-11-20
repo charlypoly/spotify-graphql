@@ -111,7 +111,7 @@ type Playlist {
 # the schema allows the following query:
 type Query {
   track(id: String): Track
-  me(load: Boolean): PrivateUser
+  me: PrivateUser
   user(id: String): PrivateUser
   artist(id: String): Artist
 }
