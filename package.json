@@ -17,12 +17,14 @@
     "immutable": "^3.8.1",
     "jest": "^17.0.3",
     "rimraf": "~2.5.4",
+    "standard-version": "^3.0.0",
     "tslint": "~3.15.1",
     "tslint-microsoft-contrib": "~2.0.13",
     "typescript": "~2.0.6"
   },
-  "scripts" : {
-    "test": "jest"
+  "scripts": {
+    "test": "jest",
+    "release": "standard-version"
   },
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",
