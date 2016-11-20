@@ -13,6 +13,6 @@ SpotifyGraphQLClient.create(config).query(`
       }
     }
   }
-`).then(result => {
-  console.log(JSON.stringify(result));
+`).then(executionResult => {
+  console.log(JSON.stringify(executionResult.data));
 });

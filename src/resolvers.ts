@@ -10,9 +10,15 @@ export default (spotifyApiClient: any): any => {
           }, reject);
         });
       },
+
       me(root, args, context, info) {
-        return [];
+        return new Promise( (resolve, reject) => {
+          spotifyApiClient.getMe().then((response) => {
+            resolve(response.body);
+          }, reject);
+        });
       },
+
       user(root, args, context, info) {
         return new Promise( (resolve, reject) => {
           spotifyApiClient.getUser(args.id).then((response) => {
@@ -20,6 +26,7 @@ export default (spotifyApiClient: any): any => {
           }, reject);
         });
       },
+
       artist(root, args, context, info) {
         return new Promise( (resolve, reject) => {
           spotifyApiClient.getArtist(args.id).then((response) => {
@@ -30,10 +37,13 @@ export default (spotifyApiClient: any): any => {
     },
 
     Track: {
+      // there is no endpoint for tracks/:id/artists
+      //  the artists data is already in the `track` object
       artists(track) {
         return track.artists;
       },
-
+      // there is no endpoint for tracks/:id/album
+      //  the artists data is already in the `track` object
       album(track) {
         return track.album;
       },
@@ -50,6 +60,8 @@ export default (spotifyApiClient: any): any => {
     },
 
     Album: {
+      // there is no endpoint for albums/:id/artists
+      //  the artists data is already in the `album` object
       artists(album) {
         return album.artists;
       },
