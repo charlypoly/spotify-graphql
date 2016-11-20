@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "allowJs": true
+  },
+  "include": [
+    "src/**/*",
+    "examples/**/*",
+    "__tests__/**/*"
+  ]
+}
