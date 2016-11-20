@@ -1,9 +1,10 @@
-import Client from '../src/spotify-graphql';
+import SpotifyGraphQLClient from '../src/spotify-graphql';
+import config from './config';
+
 import SpotifyDecorators from '../src/decorators';
 
-const accessToken = 'xxx';
-
-let { SpotifyQuery } = SpotifyDecorators(Client(accessToken));
+let client = SpotifyGraphQLClient.create(config);
+let { SpotifyQuery } = SpotifyDecorators(client);
 
 class Fetcher {
 
@@ -12,9 +13,6 @@ class Fetcher {
       track(id: $id) {
         name
         artists {
-          name
-        }
-        album {
           name
         }
       }
