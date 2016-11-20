@@ -21,16 +21,6 @@
     "tslint-microsoft-contrib": "~2.0.13",
     "typescript": "~2.0.6"
   },
-  "scripts": {
-    "clean": "rimraf coverage build tmp",
-    "build": "tsc -p tsconfig.release.json",
-    "watch": "tsc -w -p tsconfig.release.json",
-    "lint": "tslint -t stylish '{src,__tests__}/**/*.{ts,tsx}'",
-    "pretest": "npm run lint",
-    "test": "npm run test-only",
-    "test-only": "jest --coverage",
-    "test:watch": "jest --watch"
-  },
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",
   "jest": {
