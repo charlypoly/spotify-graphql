@@ -1,13 +1,17 @@
 var SpotifyWebApi = require('spotify-web-api-node');
 
-export default (token: String): any => {
-  let spotifyApi: any = new SpotifyWebApi({
-    clientId : 'xxx',
-    clientSecret : 'xxx',
-    redirectUri : 'http://expander.dev'
-  });
+// Expose a configured SpotifyWebApi client
+export default {
+  create(configuration): any {
 
-  spotifyApi.setAccessToken(token);
+    let spotifyApi: any = new SpotifyWebApi({
+      clientId : configuration.clientId,
+      clientSecret : configuration.clientSecret,
+      redirectUri : configuration.redirectUri
+    });
 
-  return spotifyApi;
+    spotifyApi.setAccessToken(configuration.accessToken);
+
+    return spotifyApi;
+  }
 };

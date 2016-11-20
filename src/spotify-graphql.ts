@@ -1,23 +1,25 @@
 import schema from './schema'
-import client  from './client'
+import spotifyWebAPIClient  from './client'
 import resolverMapBuilder from './resolvers';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphql, GraphQLSchema } from 'graphql';
 
-export default (token: string): any => {
-  let executableSchema:GraphQLSchema = makeExecutableSchema({
-    typeDefs: schema,
-    resolvers: resolverMapBuilder(
-      client(token)
-    ),
-  });
+export default {
+  create(spotifyClientConfiguration: any): any {
+    let executableSchema:GraphQLSchema = makeExecutableSchema({
+      typeDefs: schema,
+      resolvers: resolverMapBuilder(
+        spotifyWebAPIClient.create(spotifyClientConfiguration)
+      ),
+    });
 
-  return {
-    query(...args) {
-      let graphqlArgs = [executableSchema];
-      graphqlArgs = graphqlArgs.concat(args);
+    return {
+      query(...args): any {
+        let graphqlArgs = [executableSchema];
+        graphqlArgs = graphqlArgs.concat(args);
 
-      return graphql.apply(graphql, graphqlArgs);
+        return graphql.apply(graphql, graphqlArgs);
+      }
     }
   }
 }

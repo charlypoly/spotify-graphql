@@ -11,7 +11,6 @@ export default (spotifyApiClient: any): any => {
         });
       },
       me(root, args, context, info) {
-        // args.load
         return [];
       },
       user(root, args, context, info) {

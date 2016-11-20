@@ -1,8 +1,7 @@
-import Client from '../src/spotify-graphql';
+import SpotifyGraphQLClient from '../src/spotify-graphql';
+import config from './config';
 
-const accessToken = 'xxx';
-
-Client(accessToken).query(`
+SpotifyGraphQLClient.create(config).query(`
   {
     artist(id: "0oSGxfWSnnOXhD2fKuz2Gy") {
       name
