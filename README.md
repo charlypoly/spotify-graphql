@@ -7,11 +7,17 @@ GraphQL schema for Spotify WebAPI (TypeScript)
 
 ```typescript
 
-import Client from 'spotify-graphql';
+import SpotifyGraphQLClient from '../src/spotify-graphql';
+// config is an object like :
+//   {
+//     "clientId" : "",
+//     "clientSecret" : "",
+//     "redirectUri" : "",
+//     "accessToken" : ""
+//   }
+import config from './config';
 
-const accessToken = 'xxx';
-
-Client(accessToken).query(`
+SpotifyGraphQLClient.create(config).query(`
   {
     track(id: "3W2ZcrRsInZbjWylOi6KhZ") {
       name
@@ -46,7 +52,12 @@ Client(accessToken).query(`
 
 ```
 
-See https://github.com/thefrenchhouse/spotify-graphql/pull/3 for 0.0.1 Roadmap
+See `examples` folder for more examples
+
+
+### Roadmap
+
+See [0.0.1 Roadmap](https://github.com/thefrenchhouse/spotify-graphql/pull/3)
 
 ### Technical notes
 
