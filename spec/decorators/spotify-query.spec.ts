@@ -23,7 +23,6 @@ describe('SpotifyQuery Decorator', () => {
           }
         `)
         method(data?): any {
-          console.log('method');
           myMock(data);
         }
       }
