@@ -16,6 +16,7 @@
   },
   "include": [
     "src/**/*",
-    "examples/**/*"
+    "examples/**/*",
+    "spec/**/*"
   ]
 }
