@@ -1,4 +1,4 @@
-# Spotify GraphQL [![Code Climate](https://codeclimate.com/github/thefrenchhouse/spotify-graphql/badges/gpa.svg)](https://codeclimate.com/github/thefrenchhouse/spotify-graphql) [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
+# Spotify GraphQL [![npm version](https://badge.fury.io/js/spotify-graphql.svg)](https://badge.fury.io/js/spotify-graphql) [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 GraphQL schema for Spotify WebAPI (TypeScript)
 
 --------
