@@ -1,4 +1,4 @@
-import SpotifyDecorators from '../../src/decorators';
+import { SpotifyDecorators } from '../../src/decorators';
 
 describe('SpotifyQuery Decorator', () => {
 

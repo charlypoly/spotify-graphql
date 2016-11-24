@@ -1,9 +1,9 @@
 import SpotifyGraphQLClient from '../src/spotify-graphql';
 import config from './config';
 
-import SpotifyDecorators from '../src/decorators';
+import {SpotifyDecorators, SpotifyQueryDecorated} from '../src/decorators';
 
-let client = SpotifyGraphQLClient.create(config);
+let client = SpotifyGraphQLClient.create(config);)
 let { SpotifyQuery } = SpotifyDecorators(client);
 
 class Fetcher {
@@ -18,7 +18,7 @@ class Fetcher {
       }
     }
   `)
-  static getTrack (response?): any {
+  static getTrack (response?): SpotifyQueryDecorated {
     let track = response.track;
     return `the track ${track.name} was played by ${track.artists[0].name}`;
   }
