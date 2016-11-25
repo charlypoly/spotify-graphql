@@ -54,16 +54,66 @@ SpotifyGraphQLClient.create(config).query(`
 
 See `examples` folder for more examples
 
+### Available queries
+**expanded to 3 levels max for readability**
+```
+track(id: String) {
+  artists {
+    topTracks
+  }
+  album {
+    artists {
+      topTracks
+    }
+  }
+}
+
+me {
+  tracks {
+    artists {
+
+    }
+    album {
+      artists {
+        topTracks
+      }
+    }
+  }
+  playlists {
+    tracks {
+      artists
+      album {
+        artists {
+          topTracks
+        }
+      }
+    }
+  }
+}
+
+user(id: String) {
+  tracks {
+    artists
+    album {
+      artists
+    }
+  }
+  playlists {
+    tracks {
+      artists
+      album {
+        artists
+      }
+    }
+  }
+}
+
+artist(id: String) {
+  topTracks
+}
+```
+
 
 ### Roadmap
 
 See [0.0.1 Roadmap](https://github.com/thefrenchhouse/spotify-graphql/pull/3)
-
-### Technical notes
-
-- http://graphql.org/graphql-js/
-- https://github.com/apollostack/graphql-tools
-- https://github.com/Aweary/json-to-graphql
-- https://developer.spotify.com/web-api/object-model/
-- https://developer.spotify.com/web-api/endpoint-reference/
-
