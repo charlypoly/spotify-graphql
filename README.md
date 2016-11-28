@@ -3,7 +3,7 @@ GraphQL schema for Spotify WebAPI (TypeScript)
 
 --------
 
-*Uses [graphql-js](https://github.com/graphql/graphql-js)*
+**Find some examples [here](https://github.com/thefrenchhouse/spotify-graphql-examples)**
 
 ```typescript
 
