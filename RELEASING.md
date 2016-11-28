@@ -1,0 +1,6 @@
+- when you land commits on your master branch, select the Squash and Merge option.
+- add a title and body that follows the conventional-changelog-standard conventions.
+- when you're ready to release to npm:
+- `git checkout master; git pull origin master`
+- `npm run release`
+- `git push --follow-tags origin master; npm publish`
