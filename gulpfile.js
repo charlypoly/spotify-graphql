@@ -3,22 +3,27 @@ const ts = require('gulp-typescript');
 const jasmine = require('gulp-jasmine');
 const clean = require('gulp-clean');
 const runSequence = require('run-sequence');
-const tsProject = ts.createProject('tsconfig.release.json');
 
 gulp.task('build', function() {
+    const merge = require('merge2');
+    const tsProject = ts.createProject('tsconfig.json');
+
     var tsResult = tsProject.src()
         .pipe(tsProject());
- 
-    return tsResult.js.pipe(gulp.dest('build'));
+
+    return merge([
+        tsResult.dts.pipe(gulp.dest('./definitions')),
+        tsResult.js.pipe(gulp.dest(tsProject.config.compilerOptions.outDir))
+    ]);
 });
 
 gulp.task('clean', function () {
-    return gulp.src('build', {read: false})
+    return gulp.src('dist', { read: false })
         .pipe(clean());
 });
 
 gulp.task('test:run', function() {
-    return gulp.src('build/spec/**')
+    return gulp.src('dist/spec/**')
       .pipe(jasmine())
 });
 
@@ -30,4 +35,6 @@ gulp.task('watch', ['default'], function() {
 gulp.task('test', [], function(cb) {
   runSequence('clean', 'build', 'test:run', cb);
 });
-gulp.task('default', ['build']);
+gulp.task('default', [], function(cb) {
+    runSequence('clean', 'build', cb);
+});

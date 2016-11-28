@@ -1,0 +1,10 @@
+*
+!dist/
+!dist/*
+!dist/**/*
+!definitions/
+!definitions/*
+!*.ts
+!lib/*.ts
+!package.json
+!*.md
