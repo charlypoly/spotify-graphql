@@ -49,6 +49,14 @@ export default (spotifyApiClient: any): any => {
       album(track) {
         return track.album;
       },
+
+      audio_features(track) {
+        return new Promise( (resolve, reject) => {
+          spotifyApiClient.getAudioFeaturesForTrack(track.id).then((response) => {
+            resolve(response.body);
+          }, reject);
+        });
+      }
     },
 
     Artist: {
