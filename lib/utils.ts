@@ -5,23 +5,31 @@ const when: any = require('when');
 //
 // Example
 //  wrapCallForPaging(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
-//
-export function wrapCallForPaging (client, method, formatter, ...args): Promise<any> {
-  const offset   = args.offset || 0;
-  const limit  = args.limit || 50;
+
+interface SpotifyWebAPIClientOptions {
+  offset?: string
+  limit?: string
+  [key: string]: string
+}
+
+export function willPaginate (client: any, method: string, formatter: Function, ...args): Promise<any> {
+  const options: SpotifyWebAPIClientOptions = args.length > 1 ? args[args.length - 1] : {};
+  const offset = options.offset || 0;
+  const limit  = options.limit || 50;
 
   return new Promise( (mainResolve, mainReject) => {
     when.iterate((iterator) => {
           return new Promise( (resolve, reject) => {
-            client[method].apply(client, [{ limit: iterator.limit, offset: iterator.limit + iterator.offset }]).then((response) => {
+            const newArgs = Array.from(args).concat([{ limit: iterator.limit, offset: iterator.offset }]);
+            client[method].apply(client, newArgs).then((response) => {
                 iterator.results = iterator.results.concat(formatter(response));
-                iterator.offset = response.body.offset;
+                iterator.offset = response.body.offset + iterator.limit;
                 iterator.total = response.body.total;
                 resolve(iterator);
             }, reject).catch(reject);
           });
         }, (iterator)  => {
-          return !!iterator.total && ((iterator.offset + iterator.limit) >= iterator.total);
+          return !!iterator.total && (iterator.results.length >= iterator.total);
         }, (iterator) => { }, {
         results: [],
         total: null,

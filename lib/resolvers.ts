@@ -1,4 +1,4 @@
-import { wrapCallForPaging } from './utils';
+import { willPaginate } from './utils';
 
 export default (spotifyApiClient: any): any => {
   let resolverMap;
@@ -89,7 +89,7 @@ export default (spotifyApiClient: any): any => {
 
     PrivateUser: {
       tracks(user) {
-        return wrapCallForPaging(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
+        return willPaginate(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
       },
       playlists(user) {
         return new Promise( (resolve, reject) => {
