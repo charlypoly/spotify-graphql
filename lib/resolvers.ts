@@ -1,8 +1,18 @@
+import { willPaginate } from './utils';
+
 export default (spotifyApiClient: any): any => {
   let resolverMap;
 
   return resolverMap = {
     Query: {
+      audio_features(root, args, context, info) {
+        return new Promise( (resolve, reject) => {
+          spotifyApiClient.getAudioFeaturesForTracks(args.trackIds.split(',')).then((response) => {
+            resolve(response.body.audio_features);
+          }, reject);
+        });
+      },
+
       track(root, args, context, info) {
         return new Promise( (resolve, reject) => {
           spotifyApiClient.getTrack(args.id).then((response) => {
@@ -47,6 +57,14 @@ export default (spotifyApiClient: any): any => {
       album(track) {
         return track.album;
       },
+
+      audio_features(track) {
+        return new Promise( (resolve, reject) => {
+          spotifyApiClient.getAudioFeaturesForTrack(track.id).then((response) => {
+            resolve(response.body);
+          }, reject);
+        });
+      }
     },
 
     Artist: {
@@ -79,11 +97,7 @@ export default (spotifyApiClient: any): any => {
 
     PrivateUser: {
       tracks(user) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getMySavedTracks().then((response) => {
-            resolve(response.body.items);
-          }, reject);
-        });
+        return willPaginate(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
       },
       playlists(user) {
         return new Promise( (resolve, reject) => {

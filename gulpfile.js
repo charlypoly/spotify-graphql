@@ -28,7 +28,7 @@ gulp.task('test:run', function() {
 });
 
 gulp.task('watch', ['default'], function() {
-    gulp.watch('src/*.ts', ['default']);
+    gulp.watch('lib/*.ts', ['default']);
     gulp.watch('examples/*.ts', ['default']);
 });
 

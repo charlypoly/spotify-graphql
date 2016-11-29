@@ -4,6 +4,7 @@ type Track {
   album: SimplifiedAlbum
   artists: [SimplifiedArtist]
   available_markets: [String]
+  audio_features: AudioFeatures
   disc_number: Int
   duration_ms: Int
   explicit: Boolean
@@ -107,6 +108,24 @@ type Playlist {
   public: Boolean
 }
 
+type AudioFeatures {
+  acousticness: String
+  analysis_url: String
+  danceability: String
+  duration_ms: String
+  energy: String
+  instrumentalness: String
+  key: String
+  liveness: String
+  loudness: String
+  mode: String
+  speechiness: String
+  tempo: String
+  time_signature: String
+  track_href: String
+  valence: String
+}
+
 
 # the schema allows the following query:
 type Query {
@@ -114,6 +133,7 @@ type Query {
   me: PrivateUser
   user(id: String): PrivateUser
   artist(id: String): Artist
+  audio_features(trackIds: String): [AudioFeatures]
 }
 
 # we need to tell the server which types represent the root query
