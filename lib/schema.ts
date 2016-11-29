@@ -109,6 +109,7 @@ type Playlist {
 }
 
 type AudioFeatures {
+  id: String
   acousticness: String
   analysis_url: String
   danceability: String
