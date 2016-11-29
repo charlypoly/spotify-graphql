@@ -5,6 +5,14 @@ export default (spotifyApiClient: any): any => {
 
   return resolverMap = {
     Query: {
+      audio_features(root, args, context, info) {
+        return new Promise( (resolve, reject) => {
+          spotifyApiClient.getAudioFeaturesForTracks(args.trackIds.split(',')).then((response) => {
+            resolve(response.body.audio_features);
+          }, reject);
+        });
+      },
+
       track(root, args, context, info) {
         return new Promise( (resolve, reject) => {
           spotifyApiClient.getTrack(args.id).then((response) => {

@@ -133,6 +133,7 @@ type Query {
   me: PrivateUser
   user(id: String): PrivateUser
   artist(id: String): Artist
+  audio_features(trackIds: String): [AudioFeatures]
 }
 
 # we need to tell the server which types represent the root query
