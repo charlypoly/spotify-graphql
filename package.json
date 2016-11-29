@@ -31,8 +31,8 @@
   },
   "scripts": {
     "test": "gulp test",
-    "compile": "gulp build:es6",
-    "release": "standard-version"
+    "compile": "gulp",
+    "release": "npm run compile; standard-version"
   },
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",
