@@ -1,9 +1,9 @@
 # Spotify GraphQL [![npm version](https://badge.fury.io/js/spotify-graphql.svg)](https://badge.fury.io/js/spotify-graphql) [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
-GraphQL schema for Spotify WebAPI (TypeScript)
+GraphQL schema for Spotify Web API — TypeScript / Node.js (v6)
 
 --------
 
-**Find some examples [here](https://github.com/thefrenchhouse/spotify-graphql-examples)**
+See [spotify-graphql-examples](https://github.com/thefrenchhouse/spotify-graphql-examples) for more examples
 
 ```typescript
 
@@ -51,8 +51,6 @@ SpotifyGraphQLClient(config).query(`
 // }
 
 ```
-
-See [spotify-graphql-examples](https://github.com/thefrenchhouse/spotify-graphql-examples) for more examples
 
 ### Available types ([object models](https://developer.spotify.com/web-api/object-model/))
 
