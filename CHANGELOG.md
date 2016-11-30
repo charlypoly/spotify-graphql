@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](http://thefrenchhouse/spotify-graphql/compare/v0.1.2...v0.2.0) (2016-11-30)
+
+
+### Features
+
+* **playlist/tracks:** add polling to avoid making "too many requests" issue when there is a lot of playlists (#18) ([0373d03](http://thefrenchhouse/spotify-graphql/commits/0373d03))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](http://thefrenchhouse/spotify-graphql/compare/v0.1.1...v0.1.2) (2016-11-30)
 
