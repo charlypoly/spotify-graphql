@@ -38,3 +38,14 @@ export function willPaginate (client: any, method: string, formatter: Function, 
       }).then(result => mainResolve(result.results), mainReject).catch(mainReject);
   });
 }
+
+export function safeApiCall(client, method, formatter?: Function, ...args) {
+  return new Promise( (resolve, reject) => {
+    client[method].apply(client, args).
+        then( (response) => {
+          resolve(!!formatter ? formatter(response) : response.body);
+        }, (error) => {
+          reject(error);
+        });
+  });
+}

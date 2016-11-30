@@ -13,8 +13,7 @@
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
-    "experimentalDecorators": true,
-    "types" : ["node", "jasmine"]
+    "experimentalDecorators": true
   },
   "include": [
     "index.ts",

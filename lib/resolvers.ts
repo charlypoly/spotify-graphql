@@ -1,4 +1,4 @@
-import { willPaginate } from './utils';
+import { willPaginate, safeApiCall } from './utils';
 
 export default (spotifyApiClient: any): any => {
   let resolverMap;
@@ -6,43 +6,46 @@ export default (spotifyApiClient: any): any => {
   return resolverMap = {
     Query: {
       audio_features(root, args, context, info) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getAudioFeaturesForTracks(args.trackIds.split(',')).then((response) => {
-            resolve(response.body.audio_features);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getAudioFeaturesForTracks',
+          response => response.body.audio_features,
+          args.trackIds.split(',')
+        );
       },
 
       track(root, args, context, info) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getTrack(args.id).then((response) => {
-            resolve(response.body);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getTrack',
+          null,
+          args.id
+        );
       },
 
       me(root, args, context, info) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getMe().then((response) => {
-            resolve(response.body);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getMe',
+        );
       },
 
       user(root, args, context, info) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getUser(args.id).then((response) => {
-            resolve(response.body);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getUser',
+          null,
+          args.id
+        );
       },
 
       artist(root, args, context, info) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getArtist(args.id).then((response) => {
-            resolve(response.body);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getArtist',
+          null,
+          args.id
+        );
       }
     },
 
@@ -59,21 +62,24 @@ export default (spotifyApiClient: any): any => {
       },
 
       audio_features(track) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getAudioFeaturesForTrack(track.id).then((response) => {
-            resolve(response.body);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getAudioFeaturesForTrack',
+          null,
+          track.id
+        );
       }
     },
 
     Artist: {
       topTracks(artist) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getArtistTopTracks(artist.id, 'FR').then((response) => {
-            resolve(response.body.tracks);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getArtistTopTracks',
+          response => response.body.tracks,
+          artist.id,
+          'FR' // to fix...
+        );
       }
     },
 
@@ -87,12 +93,14 @@ export default (spotifyApiClient: any): any => {
 
     Playlist: {
       tracks(playlist) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getPlaylistTracks(playlist.owner.id, playlist.id).then((response) => {
-            resolve(response.body.items);
-          }, reject);
-        });
-      },
+        return safeApiCall(
+          spotifyApiClient,
+          'getPlaylistTracks',
+          response => response.body.items,
+          playlist.owner.id,
+          playlist.id
+        );
+      }
     },
 
     PrivateUser: {
@@ -100,11 +108,12 @@ export default (spotifyApiClient: any): any => {
         return willPaginate(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
       },
       playlists(user) {
-        return new Promise( (resolve, reject) => {
-          spotifyApiClient.getUserPlaylists(user.id).then((response) => {
-            resolve(response.body.items);
-          }, reject);
-        });
+        return safeApiCall(
+          spotifyApiClient,
+          'getUserPlaylists',
+          response => response.body.items,
+          user.id
+        );
       }
     }
   };

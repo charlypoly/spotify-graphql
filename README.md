@@ -52,68 +52,79 @@ SpotifyGraphQLClient(config).query(`
 
 ```
 
-See `examples` folder for more examples
+See [spotify-graphql-examples](https://github.com/thefrenchhouse/spotify-graphql-examples) for more examples
+
+### Available types ([object models](https://developer.spotify.com/web-api/object-model/))
+
+<table>
+  <tr>
+    <td>
+      Track
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Artist
+    </td>
+  </tr>
+  <tr>
+    <td>
+      SimplifiedArtist
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Album
+    </td>
+  </tr>
+  <tr>
+    <td>
+      SimplifiedAlbum
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PrivateUser
+    </td>
+  </tr>
+  <tr>
+    <td>
+      SavedTrack
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PlaylistTrack
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PublicUser
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Playlist
+    </td>
+  </tr>
+  <tr>
+    <td>
+      AudioFeatures
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Query
+    </td>
+  </tr>
+</table>
 
 ### Available queries
-**expanded to 3 levels max for readability**
+
 ```
-track(id: String) {
-  artists {
-    topTracks
-  }
-  album {
-    artists {
-      topTracks
-    }
-  }
-}
-
-me {
-  tracks {
-    artists {
-
-    }
-    album {
-      artists {
-        topTracks
-      }
-    }
-  }
-  playlists {
-    tracks {
-      artists
-      album {
-        artists {
-          topTracks
-        }
-      }
-    }
-  }
-}
-
-user(id: String) {
-  tracks {
-    artists
-    album {
-      artists
-    }
-  }
-  playlists {
-    tracks {
-      artists
-      album {
-        artists
-      }
-    }
-  }
-}
-
-artist(id: String) {
-  topTracks
-}
+track(id: String): Track
+me: PrivateUser
+user(id: String): PrivateUser
+artist(id: String): Artist
+audio_features(trackIds: String): [AudioFeatures]
 ```
-
-
-### Roadmap
-
-See [0.0.1 Roadmap](https://github.com/thefrenchhouse/spotify-graphql/pull/3)
