@@ -1,7 +1,10 @@
 import { willPaginate, safeApiCall } from './utils';
+const poll: (promises: any[]) => any = require('when/poll');
 
 export default (spotifyApiClient: any): any => {
   let resolverMap;
+
+  let playlistPollingLock = false;
 
   return resolverMap = {
     Query: {
@@ -92,26 +95,38 @@ export default (spotifyApiClient: any): any => {
     },
 
     Playlist: {
+      // When too many playlists, use a polling strategy to avoid
+      //  making to many requests at once !
       tracks(playlist) {
-        return safeApiCall(
-          spotifyApiClient,
-          'getPlaylistTracks',
-          response => response.body.items,
-          playlist.owner.id,
-          playlist.id
-        );
+        let executed = false;
+        return poll(() => {
+          if (!playlistPollingLock) {
+            playlistPollingLock = true;
+            return willPaginate(
+              spotifyApiClient,
+              'getPlaylistTracks',
+              response => response.body.items,
+              playlist.owner.id,
+              playlist.id
+            ).then( (tracks) => { playlistPollingLock = false; executed = true; return tracks; })
+          }
+        }, 2, () => executed);
       }
     },
 
     PrivateUser: {
       tracks(user) {
-        return willPaginate(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
+        return willPaginate(
+          spotifyApiClient,
+          'getMySavedTracks',
+          (response) => response.body.items
+        );
       },
       playlists(user) {
-        return safeApiCall(
+        return willPaginate(
           spotifyApiClient,
           'getUserPlaylists',
-          response => response.body.items,
+          (response) => response.body.items,
           user.id
         );
       }

@@ -30,7 +30,7 @@ export function willPaginate (client: any, method: string, formatter: Function, 
           });
         }, (iterator)  => {
           return !!iterator.total && (iterator.results.length >= iterator.total);
-        }, (iterator) => { }, {
+        }, (iterator) => {}, {
         results: [],
         total: null,
         offset: offset,
