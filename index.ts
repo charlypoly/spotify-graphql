@@ -1,5 +1,5 @@
 import schema from './lib/schema'
-import spotifyWebAPIClient  from './lib/client'
+import { spotifyWebAPIClient }  from './lib/client'
 import resolverMapBuilder from './lib/resolvers';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphql, GraphQLSchema } from 'graphql';
@@ -11,7 +11,7 @@ export function SpotifyGraphQLClient(spotifyClientConfiguration: any): any {
   let executableSchema:GraphQLSchema = makeExecutableSchema({
     typeDefs: schema,
     resolvers: resolverMapBuilder(
-      spotifyWebAPIClient.create(spotifyClientConfiguration)
+      spotifyWebAPIClient(spotifyClientConfiguration)
     ),
   });
 
