@@ -1,5 +1,5 @@
-import { willPaginate, safeApiCall } from './utils';
-const poll: (promises: any[]) => any = require('when/poll');
+import { willPaginateFactory, safeApiCall } from './utils';
+const poll: (callback: Function, delay: number, predicate: Function) => any = require('when/poll');
 
 export default (spotifyApiClient: any): any => {
   let resolverMap;
@@ -97,12 +97,12 @@ export default (spotifyApiClient: any): any => {
     Playlist: {
       // When too many playlists, use a polling strategy to avoid
       //  making to many requests at once !
-      tracks(playlist) {
+      tracks(playlist, variables) {
         let executed = false;
         return poll(() => {
           if (!playlistPollingLock) {
             playlistPollingLock = true;
-            return willPaginate(
+            return willPaginateFactory({ throttleDelay: variables.throttle, debug: variables.debug == 1 })(
               spotifyApiClient,
               'getPlaylistTracks',
               response => response.body.items,
@@ -116,14 +116,14 @@ export default (spotifyApiClient: any): any => {
 
     PrivateUser: {
       tracks(user) {
-        return willPaginate(
+        return willPaginateFactory({})(
           spotifyApiClient,
           'getMySavedTracks',
           (response) => response.body.items
         );
       },
       playlists(user) {
-        return willPaginate(
+        return willPaginateFactory({})(
           spotifyApiClient,
           'getUserPlaylists',
           (response) => response.body.items,
