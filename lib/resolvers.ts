@@ -102,7 +102,7 @@ export default (spotifyApiClient: any): any => {
         return poll(() => {
           if (!playlistPollingLock) {
             playlistPollingLock = true;
-            return willPaginateFactory({ throttleDelay: variables.throttle, debug: variables.debug == 1 })(
+            return willPaginateFactory({ throttleDelay: variables.throttle, debug: variables.debug == 1 , continueOnError: variables.continueOnError == 1 })(
               spotifyApiClient,
               'getPlaylistTracks',
               response => response.body.items,

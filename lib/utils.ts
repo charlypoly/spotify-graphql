@@ -12,7 +12,7 @@ interface SpotifyWebAPIClientOptions {
   [key: string]: string
 }
 
-export function willPaginateFactory({ throttleDelay = 0, maxResults = Infinity, debug = false }) {
+export function willPaginateFactory({ throttleDelay = 0, debug = false, continueOnError = false }) {
   return function willPaginate (client: any, method: string, formatter: Function, ...args): Promise<any> {
     const options: SpotifyWebAPIClientOptions = args.length > 1 ? args[args.length - 1] : {};
     const offset = options.offset || 0;
@@ -24,17 +24,26 @@ export function willPaginateFactory({ throttleDelay = 0, maxResults = Infinity, 
               const newArgs = Array.from(args).concat([{ limit: iterator.limit, offset: iterator.offset }]);
               client[method].apply(client, newArgs).then((response) => {
                   iterator.results = iterator.results.concat(formatter(response));
+                  // move cursor
                   iterator.offset = response.body.offset + iterator.limit;
                   iterator.total = response.body.total;
                   resolve(iterator);
-              }).catch(mainReject);
+              }).catch(error => {
+                if(continueOnError) {
+                  // move cursor
+                  iterator.offset = iterator.offset + iterator.limit;
+                  resolve(iterator);
+                } else {
+                  reject(error);
+                }
+              });
             });
           }, (iterator)  => {
             if(debug && iterator.total != null) {
-              console.log('iterate', iterator.results.length, iterator.total)
+              console.log('iterate', `${iterator.offset} >= ${iterator.total}`);
             }
             // TODO: add `maxResults` in condition
-            return !!iterator.total && (iterator.results.length >= iterator.total);
+            return !!iterator.total && (iterator.offset >= iterator.total);
           }, (iterator) => {
             return new Promise( (resolve, reject) => {
               setTimeout(resolve, throttleDelay);
@@ -44,7 +53,7 @@ export function willPaginateFactory({ throttleDelay = 0, maxResults = Infinity, 
           total: null,
           offset: offset,
           limit: limit
-        }).then(result => mainResolve(result.results), mainReject).catch(mainReject);
+        }).then(result => mainResolve(result.results)).catch(mainReject);
     });
   };
 }

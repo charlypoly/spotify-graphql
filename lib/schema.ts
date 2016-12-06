@@ -104,7 +104,7 @@ type Playlist {
   name: String
   owner: PublicUser
   uri: String
-  tracks(throttle: Int, debug: Int): [PlaylistTrack]
+  tracks(throttle: Int, debug: Int, continueOnError: Int): [PlaylistTrack]
   public: Boolean
 }
 

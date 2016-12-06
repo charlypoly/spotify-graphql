@@ -20,6 +20,7 @@
     "immutable": "^3.8.1",
     "jasmine": "^2.5.2",
     "merge2": "^1.0.2",
+    "nock": "^9.0.2",
     "rimraf": "~2.5.4",
     "run-sequence": "^1.2.2",
     "standard-version": "^3.0.0",
@@ -35,8 +36,9 @@
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "~6.0.46",
     "@types/jasmine": "^2.5.38",
+    "@types/nock": "^8.2.0",
+    "@types/node": "~6.0.46",
     "graphql": "^0.7.2",
     "graphql-tools": "^0.8.1",
     "spotify-web-api-node": "^2.3.6",
