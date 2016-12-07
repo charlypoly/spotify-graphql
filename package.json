@@ -40,7 +40,7 @@
     "@types/nock": "^8.2.0",
     "@types/node": "~6.0.46",
     "graphql": "^0.7.2",
-    "graphql-tools": "^0.8.1",
+    "graphql-tools": "0.8.3",
     "spotify-web-api-node": "^2.3.6",
     "when": "^3.7.7"
   }
