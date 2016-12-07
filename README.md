@@ -5,6 +5,10 @@ GraphQL schema for Spotify Web API — TypeScript / Node.js (v6)
 
 See [spotify-graphql-examples](https://github.com/thefrenchhouse/spotify-graphql-examples) for more examples
 
+API documentation : http://thefrench.house/spotify-graphql/docs/index.html
+
+-------
+
 ```typescript
 
 import SpotifyGraphQLClient from '../src/spotify-graphql';
