@@ -130,6 +130,6 @@ audio_features(trackIds: String): [AudioFeatures]
 
 ### Roadmap
 
-A stable `1.0.°` major release is planned for the end of December.
+A stable `1.0.0` major release is planned for the end of December.
 
 see [Milestones](https://github.com/thefrenchhouse/spotify-graphql/milestones)
