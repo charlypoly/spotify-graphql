@@ -3,6 +3,7 @@ const ts = require('gulp-typescript');
 const jasmine = require('gulp-jasmine');
 const clean = require('gulp-clean');
 const runSequence = require('run-sequence');
+const typedoc = require("gulp-typedoc");
 
 gulp.task('build', function() {
     const merge = require('merge2');
@@ -20,6 +21,21 @@ gulp.task('build', function() {
 gulp.task('clean', function () {
     return gulp.src('dist', { read: false })
         .pipe(clean());
+});
+
+gulp.task("typedoc", function() {
+    return gulp
+        .src(["lib/**/*.ts", "index.ts"])
+        .pipe(typedoc({
+            module: "commonjs",
+            target: "es5",
+            theme: "minimal",
+            out: "docs/",
+            ignoreCompilerErrors: true,
+            name: "Spotify GraphQL",
+            version: true
+        }))
+    ;
 });
 
 gulp.task('test:run', function() {

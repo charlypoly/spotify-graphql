@@ -8,3 +8,4 @@
 !lib/*.ts
 !package.json
 !*.md
+docs/
