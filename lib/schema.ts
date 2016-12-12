@@ -74,8 +74,8 @@ type PrivateUser {
   href: String
   product: String
   uri: String
-  tracks: [SavedTrack]
-  playlists: [Playlist]
+  tracks(throttle: Int, debug: Int, continueOnError: Int): [SavedTrack]
+  playlists(throttle: Int, debug: Int, continueOnError: Int): [Playlist]
 }
 
 type SavedTrack {
