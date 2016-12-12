@@ -115,15 +115,15 @@ export default (spotifyApiClient: any): any => {
     },
 
     PrivateUser: {
-      tracks(user) {
-        return willPaginateFactory({})(
+      tracks(user, variables) {
+        return willPaginateFactory({ throttleDelay: variables.throttle, debug: variables.debug == 1 , continueOnError: variables.continueOnError == 1 })(
           spotifyApiClient,
           'getMySavedTracks',
           (response) => response.body.items
         );
       },
-      playlists(user) {
-        return willPaginateFactory({})(
+      playlists(user, variables) {
+        return willPaginateFactory({ throttleDelay: variables.throttle, debug: variables.debug == 1 , continueOnError: variables.continueOnError == 1 })(
           spotifyApiClient,
           'getUserPlaylists',
           (response) => response.body.items,
