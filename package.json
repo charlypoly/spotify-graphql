@@ -13,6 +13,7 @@
   "description": "GraphQL schema for Spotify WebAPI",
   "engineStrict": true,
   "devDependencies": {
+    "@types/graphql": "^0.8.6",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-jasmine": "^2.4.2",
@@ -39,8 +40,8 @@
     "@types/jasmine": "^2.5.38",
     "@types/nock": "^8.2.0",
     "@types/node": "~6.0.46",
-    "graphql": "^0.7.2",
-    "graphql-tools": "0.8.3",
+    "graphql": "^0.8.2",
+    "graphql-tools": "0.9.1",
     "spotify-web-api-node": "^2.3.6",
     "when": "^3.7.7"
   }
