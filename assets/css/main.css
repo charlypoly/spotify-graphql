@@ -52,3 +52,8 @@ ul {
 .footer, footer {
   text-align: center;
 }
+
+pre {
+  border-left: #F0F0F0 3px solid;
+  padding-left: 5px;
+}
