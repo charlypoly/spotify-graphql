@@ -1,5 +1,19 @@
 export type SpotifyQueryDecorated = any;
 
+// Allow to decoration class methods using the following pattern :
+//    const SpotifyQuery = SpotifyDecorators(client);
+//    class A {
+//       @SpotifyQuery(`
+//          query {
+//             me {
+//                tracks { name }
+//             }
+//          }
+//       `)
+//       public myMethod(tracks): SpotifyQueryDecorated {
+//          // ...
+//       }
+//    }
 export function SpotifyDecorators (client): any {
    return {
       SpotifyQuery(query: string) {

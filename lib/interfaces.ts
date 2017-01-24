@@ -1,3 +1,4 @@
+// interface for the main methods exposed by the library
 export interface SpotifyGraphQLInterface {
   query(requestString: string,
         rootValue?: any,
@@ -6,6 +7,8 @@ export interface SpotifyGraphQLInterface {
         operationName?: string): any
 }
 
+// interface for the mandatory configuration Object used
+//  by the library
 export interface SpotifyClientConfiguration {
   clientId: string
   clientSecret: string
