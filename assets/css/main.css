@@ -1,0 +1,54 @@
+body {
+/*  font-family:'Univers Next W01 Medium';
+  font-family:'UniversNW01-430TwRegula';
+  font-family:'UniversNW01-630TwBold';
+  font-family:'Univers Next W01 Medium';
+  font-family:'UniversNW01-430TwRegula';
+  font-family:'UniversNW01-630TwBold';*/
+  font-family:'UniversNW01-430TwRegula';
+  font-size: 12px;
+}
+
+.blank {
+  background-color: #DDD;
+}
+
+.container {
+  padding: 150px 0;
+}
+
+h1, h2 {
+  font-size: 100%;
+}
+
+h1 {
+  font-size: 110%;
+  font-family:'UniversNW01-630TwBold';
+}
+
+h2 {
+  font-family:'Univers Next W01 Medium';
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.row + .row {
+  margin-top: 70px;
+  padding-top: 70px;
+}
+
+.row p span {
+  border-bottom: dashed 1px #000;
+  cursor: help;
+}
+
+.separator + .separator {
+  border-top: #F0F0F0 3px solid;
+}
+
+.footer, footer {
+  text-align: center;
+}

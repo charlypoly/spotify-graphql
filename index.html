@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico" />
+  <title>Spotify GraphQL</title>
+  <script type="text/javascript" src="http://fast.fonts.net/jsapi/8ee6c7a6-1fa7-42fe-b7cb-22edbc1a40b7.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row separator">
+      <div class="col-lg-2 col-lg-push-2">
+        <h1>
+          #spotify-graphql <span class="blank">&nbsp;</span>
+        </h1>
+      </div>
+      <div class="col-lg-6 col-lg-push-2">
+        <p>
+          Spotify GraphQL allow to query <a href="https://developer.spotify.com/web-api/" target='_blank'>Spotify Web API</a> using GraphQL.
+        </p>
+        <p>
+          It make easier to fetch a lot of data and make joins.
+        </p>
+        <p>
+          <pre>
+import SpotifyGraphQLClient from '../src/spotify-graphql';
+import config from './config';
+
+SpotifyGraphQLClient(config).query(`
+  {
+    track(id: "3W2ZcrRsInZbjWylOi6KhZ") {
+      name
+      artists {
+        name
+      }
+    }
+  }
+`).then(result => {
+  console.log(JSON.stringify(result));
+});
+
+// Print : 
+// {
+//   "data": {
+//     "track": {
+//       "name": "You & Me - Flume Remix",
+//       "artists": [
+//         {
+//           "name": "Disclosure"
+//         },
+//         {
+//           "name": "Eliza Doolittle"
+//         },
+//         {
+//           "name": "Flume"
+//         }
+//       ]
+//     }
+//   }
+// }
+          </pre>
+        </p>
+      </div>
+    </div>
+
+    <div class="row separator">
+      <div class="col-lg-2 col-lg-push-2">
+        <h2>
+          Install
+        </h2>
+      </div>
+      <div class="col-lg-6 col-lg-push-2">
+        <p>
+          <pre>
+            npm i --save spotify-graphql
+          </pre>
+        </p>
+      </div>
+    </div>
+
+  <div class="row separator">
+    <div class="col-lg-2 col-lg-push-2">
+      <h2>
+        Available queries
+      </h2>
+    </div>
+    <div class="col-lg-6 col-lg-push-2">
+      <p>
+        <pre>
+          track(id: String): Track
+          me: PrivateUser
+          user(id: String): PrivateUser
+          artist(id: String): Artist
+          audio_features(trackIds: String): [AudioFeatures]
+        </pre>
+      </p>
+    </div>
+  </div>
+
+    <div class="row separator">
+      <div class="col-lg-2 col-lg-push-2">
+        <h2>
+          Contact
+        </h2>
+      </div>
+      <div class="col-lg-8 col-lg-push-2">
+        <a href="mailto:hello@charlypoly.com">
+          hello@charlypoly.com
+        </a>
+      </div>
+    </div>
+
+    <div class="row footer">
+      <div class="col-lg-6 col-lg-push-3">
+        <a href="http://thefrench.house">
+          <img src="assets/images/icon_TFH_FR.png" width="102" alt="" title="The French House.">
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- <footer>
+    <p>
+      <a href="#">
+        This is kept up-to-date by robots.
+      </a>
+    </p>
+  </footer> -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-26723958-7', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>
