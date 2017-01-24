@@ -1,11 +1,5 @@
 body {
-/*  font-family:'Univers Next W01 Medium';
-  font-family:'UniversNW01-430TwRegula';
-  font-family:'UniversNW01-630TwBold';
-  font-family:'Univers Next W01 Medium';
-  font-family:'UniversNW01-430TwRegula';
-  font-family:'UniversNW01-630TwBold';*/
-  font-family:'UniversNW01-430TwRegula';
+  font-family: 'Roboto', sans-serif;
   font-size: 12px;
 }
 
@@ -23,11 +17,11 @@ h1, h2 {
 
 h1 {
   font-size: 110%;
-  font-family:'UniversNW01-630TwBold';
+  font-weight: bolder;
 }
 
 h2 {
-  font-family:'Univers Next W01 Medium';
+  font-weight: bold;
 }
 
 ul {
@@ -55,5 +49,5 @@ ul {
 
 pre {
   border-left: #F0F0F0 3px solid;
-  padding-left: 5px;
+  padding-left: 15px;
 }

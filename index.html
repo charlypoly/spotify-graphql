@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <link rel="icon" href="favicon.ico" />
   <title>Spotify GraphQL</title>
-  <script type="text/javascript" src="http://fast.fonts.net/jsapi/8ee6c7a6-1fa7-42fe-b7cb-22edbc1a40b7.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -21,7 +21,8 @@
           Spotify GraphQL allow to query <a href="https://developer.spotify.com/web-api/" target='_blank'>Spotify Web API</a> using GraphQL.
         </p>
         <p>
-          It make easier to fetch a lot of data and make joins.
+          It make easier to fetch a lot of data and make joins. <br>
+          Work with TypeScript and Node v6+ environnements.
         </p>
         <br>
         <p>
@@ -74,7 +75,7 @@ SpotifyGraphQLClient(config).query(`
       </div>
       <div class="col-lg-6 col-lg-push-2">
         <pre>
-          npm i --save spotify-graphql
+npm i --save spotify-graphql
         </pre>
       </div>
     </div>
@@ -87,11 +88,11 @@ SpotifyGraphQLClient(config).query(`
     </div>
     <div class="col-lg-6 col-lg-push-2">
       <pre>
-        track(id: String): Track
-        me: PrivateUser
-        user(id: String): PrivateUser
-        artist(id: String): Artist
-        audio_features(trackIds: String): [AudioFeatures]
+track(id: String): Track
+me: PrivateUser
+user(id: String): PrivateUser
+artist(id: String): Artist
+audio_features(trackIds: String): [AudioFeatures]
       </pre>
     </div>
   </div>
