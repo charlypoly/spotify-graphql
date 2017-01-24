@@ -3,11 +3,12 @@ import { spotifyWebAPIClient }  from './lib/client'
 import resolverMapBuilder from './lib/resolvers';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphql, GraphQLSchema } from 'graphql';
+import { SpotifyClientConfiguration, SpotifyGraphQLInterface } from './lib/interfaces';
 
 // Export the main entry function for the library
 //  This factory takes a `spotifyClientConfiguration` object
 //  as parameter and return a `query` method
-export function SpotifyGraphQLClient(spotifyClientConfiguration: any): any {
+export function SpotifyGraphQLClient(spotifyClientConfiguration: SpotifyClientConfiguration): SpotifyGraphQLInterface {
   let executableSchema:GraphQLSchema = makeExecutableSchema({
     typeDefs: schema,
     resolvers: resolverMapBuilder(
@@ -46,3 +47,4 @@ export function SpotifyGraphQLClient(spotifyClientConfiguration: any): any {
   }
 }
 export * from './lib/decorators';
+export * from './lib/interfaces';
