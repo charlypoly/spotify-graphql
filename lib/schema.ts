@@ -1,7 +1,7 @@
 const schema = `
 type Track {
   id: String
-  album: SimplifiedAlbum
+  album(full: Int): Album
   artists: [SimplifiedArtist]
   available_markets: [String]
   audio_features: AudioFeatures
@@ -26,7 +26,7 @@ type Artist {
   popularity: Int
   type: String
   uri: String,
-  topTracks: [Track]
+  topTracks(country: String): [Track]
 }
 
 type SimplifiedArtist {

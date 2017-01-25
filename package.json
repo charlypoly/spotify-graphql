@@ -13,6 +13,9 @@
   "description": "GraphQL schema for Spotify WebAPI",
   "engineStrict": true,
   "devDependencies": {
+    "@types/jasmine": "^2.5.38",
+    "@types/nock": "^8.2.0",
+    "@types/node": "~6.0.46",
     "@types/graphql": "^0.8.6",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
@@ -37,9 +40,6 @@
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/jasmine": "^2.5.38",
-    "@types/nock": "^8.2.0",
-    "@types/node": "~6.0.46",
     "graphql": "^0.8.2",
     "graphql-tools": "0.9.1",
     "spotify-web-api-node": "^2.3.6",
