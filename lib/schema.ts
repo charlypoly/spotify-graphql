@@ -134,7 +134,7 @@ type AudioFeatures {
 # the schema allows the following query:
 type Query {
   me: PrivateUser
-  user(id: String): PrivateUser
+  user(id: String): PublicUser
   track(id: String): Track
   tracks(ids: String): [Track]
   audio_features(trackIds: String): [AudioFeatures]
