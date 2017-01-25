@@ -106,6 +106,7 @@ type PublicUser {
   display_name: String
   href: String
   uri: String
+  playlists: [Playlist]
 }
 
 type Playlist {
