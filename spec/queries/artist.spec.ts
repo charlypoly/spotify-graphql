@@ -15,7 +15,7 @@ describe('Query : artist(id: String): Artist', () => {
   });
 
 
-  describe('when fetching a existing Artist', () => {
+  describe('when fetching an existing Artist', () => {
     let request;
     beforeEach(() => {
       request = nock('https://api.spotify.com:443')

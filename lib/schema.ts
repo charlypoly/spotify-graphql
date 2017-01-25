@@ -26,7 +26,9 @@ type Artist {
   popularity: Int
   type: String
   uri: String,
-  topTracks(country: String): [Track]
+  top_tracks(country: String): [Track]
+  albums(throttle: Int, debug: Int, continueOnError: Int): [Album]
+  related_artists(throttle: Int, debug: Int, continueOnError: Int): [Artist]
 }
 
 type SimplifiedArtist {
@@ -51,7 +53,7 @@ type Album {
   release_date_precision: String
   type: String
   uri: String
-  tracks: [Track]
+  tracks(throttle: Int, debug: Int, continueOnError: Int): [Track]
 }
 
 type SimplifiedAlbum {
