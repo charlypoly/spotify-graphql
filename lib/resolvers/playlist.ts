@@ -4,7 +4,7 @@ const poll: (callback: Function, delay: number, predicate: Function) => any = re
 export function playlistResolvers(spotifyApiClient) {
   let limitConcurencyPlaylistTracks = limitConcurency('Playlist.tracks');
   return {
-    // an playst can have a large amount of tracks,
+    // a playlist can have a large amount of tracks,
     //   so we use `limitConcurency()` helper to avoid
     //   massive API calls at once
     tracks(playlist, variables) {
