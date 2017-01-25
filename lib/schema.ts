@@ -79,7 +79,7 @@ type PrivateUser {
   uri: String
   tracks: [SavedTrack]
   playlists: [Playlist]
-  albums: [Album]
+  albums: [SavedAlbum]
   top_artists: [Artist]
   top_tracks: [Track]
 }
@@ -87,6 +87,11 @@ type PrivateUser {
 type SavedTrack {
   added_at: String
   track: Track
+}
+
+type SavedAlbum {
+  added_at: String
+  album: Album
 }
 
 type PlaylistTrack {
