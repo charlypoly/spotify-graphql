@@ -15,7 +15,7 @@ describe('Query : albums(ids: String): [Album]', () => {
   });
 
 
-  describe('when fetching a existing Albums', () => {
+  describe('when fetching existing Albums', () => {
     let request;
     beforeEach(() => {
       request = nock('https://api.spotify.com:443')
