@@ -1,17 +1,16 @@
 const when: any = require('when');
 
-// Given a method on 'spotify-web-api-node', use Spotify Web API `offset`, `limit` and `total`
-//  fields in response to make a promised-based iteration
-//
-// Example
-//  willPaginateFactory({})(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
-
 interface SpotifyWebAPIClientOptions {
   offset?: string
   limit?: string
   [key: string]: string
 }
 
+// Given a method on 'spotify-web-api-node', use Spotify Web API `offset`, `limit` and `total`
+//  fields in response to make a promised-based iteration
+//
+// Example
+//  willPaginateFactory({})(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
 export function willPaginateFactory({ throttleDelay = 0, debug = false, continueOnError = false }) {
   return function willPaginate (client: any, method: string, formatter: Function, ...args): Promise<any> {
     const options: SpotifyWebAPIClientOptions = args.length > 1 ? args[args.length - 1] : {};
@@ -58,8 +57,20 @@ export function willPaginateFactory({ throttleDelay = 0, debug = false, continue
   };
 }
 
+// Allow to build a paginator using options directly from GraphQL variables
+export function willPaginateFactoryFromVariables(variables) {
+  return willPaginateFactory({
+    throttleDelay: !!variables.throttle ? variables.throttle : 0,
+    debug: variables.debug == 1,
+    continueOnError: variables.continueOnError == 1
+  });
+}
+
+// Wrapper around 'spotify-web-api-node' methods to enable simpler DSL
+// and better error management (promise-way)
+//   Example :
+//     safeApiCall(myClient, 'geMe', (results) => results.me.name).then()
 export function safeApiCall(client, method, formatter?: Function, ...args) {
-  console.log('safeApiCall', method);
   return new Promise( (resolve, reject) => {
     client[method].apply(client, args).
         then( (response) => {
@@ -70,6 +81,7 @@ export function safeApiCall(client, method, formatter?: Function, ...args) {
   });
 }
 
+// Partial Application pattern to create a concurency lambda
 export function limitConcurency(name: string) {
   let locks = {};
   locks[name] = false;

@@ -26,7 +26,7 @@ type Artist {
   popularity: Int
   type: String
   uri: String,
-  topTracks: [Track]
+  topTracks(country: String): [Track]
 }
 
 type SimplifiedArtist {
