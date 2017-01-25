@@ -1,4 +1,4 @@
-import { safeApiCall, willPaginateFactory, limitConcurency } from '../utils';
+import { safeApiCall, willPaginateFactoryFromVariables, limitConcurency } from '../utils';
 const poll: (callback: Function, delay: number, predicate: Function) => any = require('when/poll');
 
 export function playlistResolvers(spotifyApiClient) {

@@ -1,15 +1,15 @@
-import { safeApiCall, willPaginateFactory } from '../utils';
+import { safeApiCall, willPaginateFactoryFromVariables } from '../utils';
 
 export function privateUserResolvers(spotifyApiClient) {
   return {
-    tracks(user) {
+    tracks(user, variables) {
       return willPaginateFactoryFromVariables(variables)(
         spotifyApiClient,
         'getMySavedTracks',
         (response) => response.body.items
       );
     },
-    playlists(user) {
+    playlists(user, variables) {
       return willPaginateFactoryFromVariables(variables)(
         spotifyApiClient,
         'getUserPlaylists',
