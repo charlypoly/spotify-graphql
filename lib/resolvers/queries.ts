@@ -36,6 +36,7 @@ export function queries(spotifyApiClient) {
       );
     },
 
+    // Artist queries
     artist(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,
@@ -45,6 +46,16 @@ export function queries(spotifyApiClient) {
       );
     },
 
+    artists(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getArtists',
+        (response) => response.body.artists,
+        args.ids.split(',')
+      );
+    },
+
+    // Album queries
     album(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,
@@ -59,7 +70,7 @@ export function queries(spotifyApiClient) {
         spotifyApiClient,
         'getAlbums',
         (response) => response.body.albums,
-        args.ids.split(', ')
+        args.ids.split(',')
       );
     }
    };

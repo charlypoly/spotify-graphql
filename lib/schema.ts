@@ -134,8 +134,9 @@ type Query {
   track(id: String): Track
   me: PrivateUser
   user(id: String): PrivateUser
-  artist(id: String): Artist
   audio_features(trackIds: String): [AudioFeatures]
+  artist(id: String): Artist
+  artists(ids: String): [Artist]
   album(id: String): Album
   albums(ids: String): [Album]
 }
