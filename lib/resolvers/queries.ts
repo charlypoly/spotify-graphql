@@ -2,6 +2,18 @@ import { safeApiCall } from '../utils';
 
 export function queries(spotifyApiClient) {
   return {
+
+    playlist(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getPlaylist',
+        null,
+        args.userId,
+        args.id
+      );
+    },
+
+    // User queries
     me(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,

@@ -146,6 +146,7 @@ type Query {
   artists(ids: String): [Artist]
   album(id: String): Album
   albums(ids: String): [Album]
+  playlist(id: String, userId: String): Playlist
 }
 
 # we need to tell the server which types represent the root query
