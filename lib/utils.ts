@@ -40,7 +40,7 @@ export function willPaginateFactory({ throttleDelay = 0, debug = false, continue
             });
           }, (iterator)  => {
             if(debug && iterator.total != null) {
-              console.log('iterate', `${iterator.offset} >= ${iterator.total}`);
+              console.log(`iterate: ${method}`, `${iterator.offset} >= ${iterator.total}`);
             }
             // TODO: add `maxResults` in condition
             return !!iterator.total && (iterator.offset >= iterator.total);
@@ -59,6 +59,7 @@ export function willPaginateFactory({ throttleDelay = 0, debug = false, continue
 }
 
 export function safeApiCall(client, method, formatter?: Function, ...args) {
+  console.log('safeApiCall', method);
   return new Promise( (resolve, reject) => {
     client[method].apply(client, args).
         then( (response) => {
@@ -67,4 +68,19 @@ export function safeApiCall(client, method, formatter?: Function, ...args) {
           reject(error);
         });
   });
+}
+
+export function limitConcurency(name: string) {
+  let locks = {};
+  locks[name] = false;
+  return (context: Function) => {
+    function lockGetterSetter(lock?: boolean) {
+      if(typeof lock !== 'undefined') {
+        locks[name] = lock;
+      } else {
+        return locks[name];
+      }
+    }
+    return context(lockGetterSetter);
+  };
 }

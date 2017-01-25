@@ -1,10 +1,11 @@
-import { willPaginateFactory, safeApiCall } from './utils';
+import { willPaginateFactory, safeApiCall, limitConcurency } from './utils';
 const poll: (callback: Function, delay: number, predicate: Function) => any = require('when/poll');
 
 export default (spotifyApiClient: any): any => {
   let resolverMap;
 
-  let playlistPollingLock = false;
+  let limitConcurencyTrackAlbum = limitConcurency('Track.album');
+  let limitConcurencyPlaylistTracks = limitConcurency('Playlist.tracks');
 
   return resolverMap = {
     Query: {
@@ -60,8 +61,25 @@ export default (spotifyApiClient: any): any => {
       },
       // there is no endpoint for tracks/:id/album
       //  the artists data is already in the `track` object
-      album(track) {
-        return track.album;
+      album(track, variables) {
+        if(!!variables.full) {
+          let executed = false;
+          return limitConcurencyTrackAlbum((lock) => {
+            return poll(() => {
+              if (!lock()) {
+                lock(true);
+                return safeApiCall(
+                  spotifyApiClient,
+                  'getAlbum',
+                  null,
+                  track.album.id
+                ).then( (album) => { lock(false); executed = true; return album; })
+              }
+            }, 2, () => executed);
+          });
+        } else {
+          return Promise.resolve(track.album);
+        }
       },
 
       audio_features(track) {
@@ -99,24 +117,26 @@ export default (spotifyApiClient: any): any => {
       //  making to many requests at once !
       tracks(playlist, variables) {
         let executed = false;
-        return poll(() => {
-          if (!playlistPollingLock) {
-            playlistPollingLock = true;
-            return willPaginateFactory({ throttleDelay: variables.throttle, debug: variables.debug == 1 , continueOnError: variables.continueOnError == 1 })(
-              spotifyApiClient,
-              'getPlaylistTracks',
-              response => response.body.items,
-              playlist.owner.id,
-              playlist.id
-            ).then( (tracks) => { playlistPollingLock = false; executed = true; return tracks; })
-          }
-        }, 2, () => executed);
+        return limitConcurencyPlaylistTracks((lock) => {
+          return poll(() => {
+            if (!lock()) {
+              lock(true);
+              return willPaginateFactory({ throttleDelay: variables.throttle, debug: variables.debug == 1 , continueOnError: variables.continueOnError == 1 })(
+                spotifyApiClient,
+                'getPlaylistTracks',
+                response => response.body.items,
+                playlist.owner.id,
+                playlist.id
+              ).then( (tracks) => { lock(false); executed = true; return tracks; })
+            }
+          }, 2, () => executed);
+        });
       }
     },
 
     PrivateUser: {
       tracks(user) {
-        return willPaginateFactory({})(
+        return willPaginateFactory({debug : true})(
           spotifyApiClient,
           'getMySavedTracks',
           (response) => response.body.items

@@ -17,6 +17,7 @@
   },
   "include": [
     "index.ts",
+    "test.ts",
     "lib/**/*",
     "spec/**/*"
   ]
