@@ -79,6 +79,9 @@ type PrivateUser {
   uri: String
   tracks: [SavedTrack]
   playlists: [Playlist]
+  albums: [Album]
+  top_artists: [Artist]
+  top_tracks: [Track]
 }
 
 type SavedTrack {

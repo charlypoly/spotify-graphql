@@ -16,6 +16,28 @@ export function privateUserResolvers(spotifyApiClient) {
         (response) => response.body.items,
         user.id
       );
+    },
+    albums(user, variables) {
+      return willPaginateFactoryFromVariables(variables)(
+        spotifyApiClient,
+        'getMySavedAlbums',
+        (response) => response.body.items
+      );
+    },
+    top_tracks(user, variables) {
+      return willPaginateFactoryFromVariables(variables)(
+        spotifyApiClient,
+        'getMyTopTracks',
+        (response) => response.body.items
+      );
+    },
+
+    top_artists(user, variables) {
+      return willPaginateFactoryFromVariables(variables)(
+        spotifyApiClient,
+        'getMyTopArtists',
+        (response) => response.body.items
+      );
     }
   };
 }
