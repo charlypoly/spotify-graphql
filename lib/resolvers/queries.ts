@@ -43,6 +43,24 @@ export function queries(spotifyApiClient) {
         null,
         args.id
       );
+    },
+
+    album(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getAlbum',
+        null,
+        args.id
+      );
+    },
+
+    albums(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getAlbums',
+        (response) => response.body.albums,
+        args.ids.split(', ')
+      );
     }
    };
 }

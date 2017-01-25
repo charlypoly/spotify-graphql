@@ -51,6 +51,7 @@ type Album {
   release_date_precision: String
   type: String
   uri: String
+  tracks: [Track]
 }
 
 type SimplifiedAlbum {
@@ -135,6 +136,8 @@ type Query {
   user(id: String): PrivateUser
   artist(id: String): Artist
   audio_features(trackIds: String): [AudioFeatures]
+  album(id: String): Album
+  albums(ids: String): [Album]
 }
 
 # we need to tell the server which types represent the root query
