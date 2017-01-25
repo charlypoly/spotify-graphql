@@ -133,10 +133,12 @@ type AudioFeatures {
 
 # the schema allows the following query:
 type Query {
-  track(id: String): Track
   me: PrivateUser
   user(id: String): PrivateUser
+  track(id: String): Track
+  tracks(ids: String): [Track]
   audio_features(trackIds: String): [AudioFeatures]
+  audio_feature(trackId: String): AudioFeatures
   artist(id: String): Artist
   artists(ids: String): [Artist]
   album(id: String): Album

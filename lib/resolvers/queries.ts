@@ -2,24 +2,6 @@ import { safeApiCall } from '../utils';
 
 export function queries(spotifyApiClient) {
   return {
-    audio_features(root, args, context, info) {
-      return safeApiCall(
-        spotifyApiClient,
-        'getAudioFeaturesForTracks',
-        response => response.body.audio_features,
-        args.trackIds.split(',')
-      );
-    },
-
-    track(root, args, context, info) {
-      return safeApiCall(
-        spotifyApiClient,
-        'getTrack',
-        null,
-        args.id
-      );
-    },
-
     me(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,
@@ -33,6 +15,43 @@ export function queries(spotifyApiClient) {
         'getUser',
         null,
         args.id
+      );
+    },
+
+    // Track queries
+    track(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getTrack',
+        null,
+        args.id
+      );
+    },
+
+    tracks(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getTracks',
+        (response) => response.body.tracks,
+        args.ids.split(',')
+      );
+    },
+
+    audio_features(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getAudioFeaturesForTracks',
+        response => response.body.audio_features,
+        args.trackIds.split(',')
+      );
+    },
+
+    audio_feature(root, args, context, info) {
+      return safeApiCall(
+        spotifyApiClient,
+        'getAudioFeaturesForTrack',
+        null,
+        args.trackId
       );
     },
 
