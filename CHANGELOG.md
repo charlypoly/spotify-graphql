@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](http://thefrenchhouse/spotify-graphql/compare/v0.2.2...v2.0.0) (2017-01-26)
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](http://thefrenchhouse/spotify-graphql/compare/v0.2.2...v1.0.0) (2017-01-26)
 
