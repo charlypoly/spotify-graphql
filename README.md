@@ -5,7 +5,7 @@ GraphQL schema for Spotify Web API — TypeScript / Node.js (v6)
 
 See [spotify-graphql-examples](https://github.com/thefrenchhouse/spotify-graphql-examples) for more examples
 
-API documentation : http://thefrench.house/spotify-graphql/docs/index.html
+API documentation : http://thefrench.house/spotify-graphql/
 
 -------
 
@@ -56,84 +56,49 @@ SpotifyGraphQLClient(config).query(`
 
 ```
 
-### Available types ([object models](https://developer.spotify.com/web-api/object-model/))
+### Available endpoints
 
-<table>
-  <tr>
-    <td>
-      Track
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Artist
-    </td>
-  </tr>
-  <tr>
-    <td>
-      SimplifiedArtist
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Album
-    </td>
-  </tr>
-  <tr>
-    <td>
-      SimplifiedAlbum
-    </td>
-  </tr>
-  <tr>
-    <td>
-      PrivateUser
-    </td>
-  </tr>
-  <tr>
-    <td>
-      SavedTrack
-    </td>
-  </tr>
-  <tr>
-    <td>
-      PlaylistTrack
-    </td>
-  </tr>
-  <tr>
-    <td>
-      PublicUser
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Playlist
-    </td>
-  </tr>
-  <tr>
-    <td>
-      AudioFeatures
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Query
-    </td>
-  </tr>
-</table>
+## Albums
+#### Get an Album
+#### Get Several Albums
+#### Get an Album's Tracks
+## Artists
+#### Get an Artist
+#### Get Several Artists
+#### Get an Artist's Albums
+#### Get an Artist's Top Tracks
+#### Get an Artist's Related Artists
+## Tracks
+#### Get a Track
+#### Get Several Tracks
+#### Get Audio Features for a Track
+#### Get Audio Features for Several Tracks
+## Playlists
+#### Get a List of a User's Playlists
+#### Get a List of Current User's Playlists
+#### Get a Playlist
+#### Get a Playlist's Tracks
+## User Profiles
+#### Get a User's Profile
+#### Get Current User's Profile
+## User Library
+#### Get Current User's Saved Tracks
+#### Get Current User's Saved Albums
+## Personalization
+#### Get User's Top Artists and Tracks
 
 ### Available queries
 
 ```
-track(id: String): Track
 me: PrivateUser
-user(id: String): PrivateUser
-artist(id: String): Artist
-audio_features(trackIds: String): [AudioFeatures]
+user(id: String!): PublicUser
+track(id: String!): Track
+tracks(ids: String!): [Track]
+audio_features(trackIds: String!): [AudioFeatures]
+audio_feature(trackId: String!): AudioFeatures
+artist(id: String!): Artist
+artists(ids: String!): [Artist]
+album(id: String!): Album
+albums(ids: String!): [Album]
+playlist(id: String!, userId: String!): Playlist
 ```
-
-
-### Roadmap
-
-A stable `1.0.0` major release is planned for the end of December.
-
-see [Milestones](https://github.com/thefrenchhouse/spotify-graphql/milestones)
