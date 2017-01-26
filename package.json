@@ -1,6 +1,6 @@
 {
   "name": "spotify-graphql",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git://thefrenchhouse/spotify-graphql.git"
