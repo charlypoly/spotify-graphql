@@ -1,7 +1,7 @@
 const schema = `
 type Track {
   id: String
-  album: SimplifiedAlbum
+  album(full: Int): Album
   artists: [SimplifiedArtist]
   available_markets: [String]
   audio_features: AudioFeatures
@@ -26,7 +26,9 @@ type Artist {
   popularity: Int
   type: String
   uri: String,
-  topTracks: [Track]
+  top_tracks(country: String): [Track]
+  albums(throttle: Int, debug: Int, continueOnError: Int): [Album]
+  related_artists(throttle: Int, debug: Int, continueOnError: Int): [Artist]
 }
 
 type SimplifiedArtist {
@@ -51,6 +53,7 @@ type Album {
   release_date_precision: String
   type: String
   uri: String
+  tracks(throttle: Int, debug: Int, continueOnError: Int): [Track]
 }
 
 type SimplifiedAlbum {
@@ -76,11 +79,19 @@ type PrivateUser {
   uri: String
   tracks: [SavedTrack]
   playlists: [Playlist]
+  albums: [SavedAlbum]
+  top_artists: [Artist]
+  top_tracks: [Track]
 }
 
 type SavedTrack {
   added_at: String
   track: Track
+}
+
+type SavedAlbum {
+  added_at: String
+  album: Album
 }
 
 type PlaylistTrack {
@@ -95,6 +106,7 @@ type PublicUser {
   display_name: String
   href: String
   uri: String
+  playlists: [Playlist]
 }
 
 type Playlist {
@@ -130,11 +142,17 @@ type AudioFeatures {
 
 # the schema allows the following query:
 type Query {
-  track(id: String): Track
   me: PrivateUser
-  user(id: String): PrivateUser
-  artist(id: String): Artist
-  audio_features(trackIds: String): [AudioFeatures]
+  user(id: String!): PublicUser
+  track(id: String!): Track
+  tracks(ids: String!): [Track]
+  audio_features(trackIds: String!): [AudioFeatures]
+  audio_feature(trackId: String!): AudioFeatures
+  artist(id: String!): Artist
+  artists(ids: String!): [Artist]
+  album(id: String!): Album
+  albums(ids: String!): [Album]
+  playlist(id: String!, userId: String!): Playlist
 }
 
 # we need to tell the server which types represent the root query
