@@ -62,28 +62,34 @@ SpotifyGraphQLClient(config).query(`
 - Get an Album
 - Get Several Albums
 - Get an Album's Tracks
+
 #### Artists
 - Get an Artist
 - Get Several Artists
 - Get an Artist's Albums
 - Get an Artist's Top Tracks
 - Get an Artist's Related Artists
+
 #### Tracks
 - Get a Track
 - Get Several Tracks
 - Get Audio Features for a Track
 - Get Audio Features for Several Tracks
+
 #### Playlists
 - Get a List of a User's Playlists
 - Get a List of Current User's Playlists
 - Get a Playlist
 - Get a Playlist's Tracks
+
 #### User Profiles
 - Get a User's Profile
 - Get Current User's Profile
+
 #### User Library
 - Get Current User's Saved Tracks
 - Get Current User's Saved Albums
+
 #### Personalization
 - Get User's Top Artists and Tracks
 
