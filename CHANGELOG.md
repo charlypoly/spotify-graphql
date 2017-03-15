@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](http://thefrenchhouse/spotify-graphql/compare/v1.0.0...v1.1.0) (2017-03-15)
+
+
+### Features
+
+* **schema:** add supports for Image type on Artist, Playlist, Album and User (#32) ([62cde50](http://thefrenchhouse/spotify-graphql/commits/62cde50))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](http://thefrenchhouse/spotify-graphql/compare/v0.2.2...v1.0.0) (2017-01-26)
 
