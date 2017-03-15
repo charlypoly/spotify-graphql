@@ -25,7 +25,8 @@ type Artist {
   name: String
   popularity: Int
   type: String
-  uri: String,
+  uri: String
+  images: [Image]
   top_tracks(country: String): [Track]
   albums(throttle: Int, debug: Int, continueOnError: Int): [Album]
   related_artists(throttle: Int, debug: Int, continueOnError: Int): [Artist]
@@ -42,7 +43,7 @@ type SimplifiedArtist {
 type Album {
   id: String
   album_type: String
-  artists: [Artist],
+  artists: [Artist]
   available_markets: [String]
   genres: [String]
   href: String
@@ -53,13 +54,14 @@ type Album {
   release_date_precision: String
   type: String
   uri: String
+  images: [Image]
   tracks(throttle: Int, debug: Int, continueOnError: Int): [Track]
 }
 
 type SimplifiedAlbum {
   id: String
   album_type: String
-  artists: [Artist],
+  artists: [Artist]
   available_markets: [String]
   href: String
   label: String
@@ -82,6 +84,7 @@ type PrivateUser {
   albums: [SavedAlbum]
   top_artists: [Artist]
   top_tracks: [Track]
+  images: [Image]
 }
 
 type SavedTrack {
@@ -107,6 +110,7 @@ type PublicUser {
   href: String
   uri: String
   playlists: [Playlist]
+  images: [Image]
 }
 
 type Playlist {
@@ -118,6 +122,7 @@ type Playlist {
   uri: String
   tracks(throttle: Int, debug: Int, continueOnError: Int): [PlaylistTrack]
   public: Boolean
+  images: [Image]
 }
 
 type AudioFeatures {
@@ -139,6 +144,11 @@ type AudioFeatures {
   valence: String
 }
 
+type Image {
+  height: Int
+  url: String
+  width: Int
+}
 
 # the schema allows the following query:
 type Query {

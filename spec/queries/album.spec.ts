@@ -31,18 +31,24 @@ describe('Query : album(id: String): Album', () => {
         let data = executionResult.data;
         expect(data.album.name).toBe('Global Warming')
         expect(data.album.id).toBe('4aawyAB9vmqN3uQ7FjRGTy')
+        
+        expect(data.album.images[0].url).toBe("https://i.scdn.co/image/3edb3f970f4a3af9ef922efd18cdb4dabaf85ced");
+
         expect(!!executionResult.errors).toBeFalsy();
         expect(request.isDone()).toBeTruthy();
         done();
       }
 
-      let onError = () => { throw 'should not be called' };
+      let onError = (e) => { throw e; };
 
       client.query(`
         query {
           album(id: "4aawyAB9vmqN3uQ7FjRGTy") {
             id
             name
+            images {
+              url
+            }
           }
         }
        `).then(onSuccess).catch(onError);
