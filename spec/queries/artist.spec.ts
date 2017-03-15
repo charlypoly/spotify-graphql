@@ -31,6 +31,7 @@ describe('Query : artist(id: String): Artist', () => {
         let data = executionResult.data;
         expect(data.artist.name).toBe('Pitbull')
         expect(data.artist.id).toBe('0TnOYISbd1XYRBk9myaseg')
+        expect(data.artist.images[0].url).toBe('https://i.scdn.co/image/d6955bc790b818df4efb719a863e4d26f0c2522b')
         expect(!!executionResult.errors).toBeFalsy();
         expect(request.isDone()).toBeTruthy();
         done();
@@ -43,6 +44,9 @@ describe('Query : artist(id: String): Artist', () => {
           artist(id: "0TnOYISbd1XYRBk9myaseg") {
             id
             name
+            images {
+              url
+            }
           }
         }
        `).then(onSuccess).catch(onError);
