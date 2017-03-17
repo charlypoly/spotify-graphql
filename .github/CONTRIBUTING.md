@@ -7,6 +7,7 @@
 ### field `X` is missing
 
 Adding missing fields is pretty simple, you just have to make a Pull Request to update [`lib/schema.ts`](https://github.com/thefrenchhouse/spotify-graphql/blob/master/lib/schema.ts)
+
 You can take a look to [this pull request](https://github.com/thefrenchhouse/spotify-graphql/pull/32) to see how to add proper tests.
 
 ### query `X` is missing
