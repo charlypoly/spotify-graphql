@@ -13,7 +13,8 @@
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "skipLibCheck": true
   },
   "include": [
     "index.ts",
