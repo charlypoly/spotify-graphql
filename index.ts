@@ -1,20 +1,23 @@
 import schema from './lib/schema'
-import { spotifyWebAPIClient }  from './lib/client'
-import resolverMapBuilder from './lib/resolvers';
-import { makeExecutableSchema } from 'graphql-tools';
 import { graphql, GraphQLSchema } from 'graphql';
+import { makeExecutableSchema } from 'graphql-tools';
+import resolverMapBuilder from './lib/resolvers';
+import { spotifyWebAPIClient }  from './lib/client';
 import { SpotifyClientConfiguration, SpotifyGraphQLInterface } from './lib/interfaces';
 
-// Export the main entry function for the library
-//  This factory takes a `spotifyClientConfiguration` object
-//  as parameter and return a `query` method
-export function SpotifyGraphQLClient(spotifyClientConfiguration: SpotifyClientConfiguration): SpotifyGraphQLInterface {
-  let executableSchema:GraphQLSchema = makeExecutableSchema({
+export function getSchema(spotifyClientConfiguration: SpotifyClientConfiguration): GraphQLSchema {
+  return makeExecutableSchema({
     typeDefs: schema,
     resolvers: resolverMapBuilder(
       spotifyWebAPIClient(spotifyClientConfiguration)
     ),
   });
+}
+
+// Export the main entry function for the library
+//  This factory takes a `spotifyClientConfiguration` object as parameter and return a `query` method
+export function SpotifyGraphQLClient(spotifyClientConfiguration: SpotifyClientConfiguration): SpotifyGraphQLInterface {
+  let executableSchema:GraphQLSchema = getSchema(spotifyClientConfiguration);
 
   return {
     // This public method wrap the `graphql-js` method

@@ -1,10 +1,10 @@
-import { queries } from './resolvers/queries';
-import { trackResolvers } from './resolvers/track';
+import { albumResolvers } from './resolvers/album';
 import { artistResolvers } from './resolvers/artist';
 import { playlistResolvers } from './resolvers/playlist';
-import { albumResolvers } from './resolvers/album';
 import { privateUserResolvers } from './resolvers/privateUser';
 import { publicUserResolvers } from './resolvers/publicUser';
+import { queries } from './resolvers/queries';
+import { trackResolvers } from './resolvers/track';
 
 export default (spotifyApiClient: any): any => {
   return  {
