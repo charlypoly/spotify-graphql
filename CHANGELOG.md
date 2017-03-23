@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](http://thefrenchhouse/spotify-graphql/compare/v1.1.2...v1.2.0) (2017-03-23)
+
+
+### Features
+
+* **artist:** add album_type to Artist.albums (#46) ([7d10f0b](http://thefrenchhouse/spotify-graphql/commits/7d10f0b))
+* **queries:** add search capabilities for track and artist queries (#45) ([b1f125a](http://thefrenchhouse/spotify-graphql/commits/b1f125a))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](http://thefrenchhouse/spotify-graphql/compare/v1.1.1...v1.1.2) (2017-03-22)
 
