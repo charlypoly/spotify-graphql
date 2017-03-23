@@ -154,11 +154,11 @@ type Image {
 type Query {
   me: PrivateUser
   user(id: String!): PublicUser
-  track(id: String!): Track
+  track(id: String, name: String): Track
   tracks(ids: String!): [Track]
   audio_features(trackIds: String!): [AudioFeatures]
   audio_feature(trackId: String!): AudioFeatures
-  artist(id: String!): Artist
+  artist(id: String, name: String): Artist
   artists(ids: String!): [Artist]
   album(id: String!): Album
   albums(ids: String!): [Album]
