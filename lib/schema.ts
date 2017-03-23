@@ -28,7 +28,7 @@ type Artist {
   uri: String
   images: [Image]
   top_tracks(country: String): [Track]
-  albums(throttle: Int, debug: Int, continueOnError: Int): [Album]
+  albums(album_type: String, throttle: Int, debug: Int, continueOnError: Int): [Album]
   related_artists(throttle: Int, debug: Int, continueOnError: Int): [Artist]
 }
 

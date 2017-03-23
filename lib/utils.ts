@@ -1,4 +1,5 @@
 const when: any = require('when');
+import { isObject } from 'lodash';
 
 interface SpotifyWebAPIClientOptions {
   offset?: string
@@ -16,11 +17,22 @@ export function willPaginateFactory({ throttleDelay = 0, debug = false, continue
     const options: SpotifyWebAPIClientOptions = args.length > 1 ? args[args.length - 1] : {};
     const offset = options.offset || 0;
     const limit  = options.limit || 50;
+    const argsArray = Array.from(args);
+    if (argsArray.length > 1 && isObject(argsArray[ argsArray.length - 1 ])) {
+      let queryStrings = argsArray[ argsArray.length - 1 ];
+      queryStrings.limit = queryStrings.offset = null;
+    } else {
+      argsArray.push({limit: null, offset: null});
+    }
 
     return new Promise( (mainResolve, mainReject) => {
       when.iterate((iterator) => {
             return new Promise( (resolve, reject) => {
-              const newArgs = Array.from(args).concat([{ limit: iterator.limit, offset: iterator.offset }]);
+              const newArgs = Array.from(argsArray);
+              let queryStrings = newArgs[newArgs.length - 1];
+              queryStrings.limit = iterator.limit;
+              queryStrings.offset = iterator.offset;
+
               client[method].apply(client, newArgs).then((response) => {
                   iterator.results = iterator.results.concat(formatter(response));
                   // move cursor
