@@ -13,12 +13,18 @@ export function artistResolvers(spotifyApiClient) {
       );
     },
 
+    // variables.album_type values:
+    // - album
+    // - single
+    // - appears_on
+    // - compilation
     albums(artist, variables) {
       return willPaginateFactoryFromVariables(variables)(
         spotifyApiClient,
         'getArtistAlbums',
         (response) => response.body.items,
-        artist.id
+        artist.id,
+        variables.album_type ? { album_type: variables.album_type } : {}
       );
     },
 
