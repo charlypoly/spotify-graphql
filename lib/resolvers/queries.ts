@@ -32,12 +32,33 @@ export function queries(spotifyApiClient) {
 
     // Track queries
     track(root, args, context, info) {
-      return safeApiCall(
-        spotifyApiClient,
-        'getTrack',
-        null,
-        args.id
-      );
+      if (args.name) {
+        return safeApiCall(
+          spotifyApiClient,
+          'searchTracks',
+          null,
+          args.name
+        ).then( (results: any) => {
+          if (results.tracks && results.tracks.items.length) {
+            let result: any = results.tracks.items[0];
+            return safeApiCall(
+              spotifyApiClient,
+              'getTrack',
+              null,
+              result.id
+            );
+          } else {
+            return null;
+          }
+        });
+      } else {
+        return safeApiCall(
+          spotifyApiClient,
+          'getTrack',
+          null,
+          args.id
+        );
+      }
     },
 
     tracks(root, args, context, info) {
@@ -69,12 +90,33 @@ export function queries(spotifyApiClient) {
 
     // Artist queries
     artist(root, args, context, info) {
-      return safeApiCall(
-        spotifyApiClient,
-        'getArtist',
-        null,
-        args.id
-      );
+      if (args.name) {
+        return safeApiCall(
+          spotifyApiClient,
+          'searchArtists',
+          null,
+          args.name
+        ).then( (results: any) => {
+          if (results.artists && results.artists.items.length) {
+            let result: any = results.artists.items[0];
+            return safeApiCall(
+              spotifyApiClient,
+              'getArtist',
+              null,
+              result.id
+            );
+          } else {
+            return null;
+          }
+        });
+      } else {
+        return safeApiCall(
+          spotifyApiClient,
+          'getArtist',
+          null,
+          args.id
+        );
+      }
     },
 
     artists(root, args, context, info) {
@@ -103,6 +145,6 @@ export function queries(spotifyApiClient) {
         (response) => response.body.albums,
         args.ids.split(',')
       );
-    }
+    },
    };
 }
