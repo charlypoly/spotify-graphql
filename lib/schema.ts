@@ -85,6 +85,7 @@ type PrivateUser {
   top_artists: [Artist]
   top_tracks: [Track]
   images: [Image]
+  artists: [Artist]
 }
 
 type SavedTrack {

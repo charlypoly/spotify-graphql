@@ -38,6 +38,15 @@ export function privateUserResolvers(spotifyApiClient) {
         'getMyTopArtists',
         (response) => response.body.items
       );
-    }
+    },
+
+    artists(user, variables) {
+      return willPaginateFactoryFromVariables(variables)(
+        spotifyApiClient,
+        'getFollowedArtists',
+        (response) => response.body.artists.items
+      );
+    },
+
   };
 }
