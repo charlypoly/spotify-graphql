@@ -91,7 +91,7 @@
     "no-for-in": true,
     "no-function-expression": false,
     "no-inferrable-types": false, // turn no-inferrable-types off in order to make the code consistent in its use of type decorations
-    "no-multiline-string": true, // multiline-strings often introduce unnecessary whitespace into the string literals
+    "no-multiline-string": false, // multiline-strings often introduce unnecessary whitespace into the string literals
     "no-null-keyword": false, // turn no-null-keyword off and use undefined to mean not initialized and null to mean without a value
     "no-relative-imports": false,
     "no-require-imports": true,

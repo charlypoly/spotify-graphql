@@ -28,8 +28,8 @@ type Artist {
   uri: String
   images: [Image]
   top_tracks(country: String): [Track]
-  albums(album_type: String, throttle: Int, debug: Int, continueOnError: Int): [Album]
-  related_artists(throttle: Int, debug: Int, continueOnError: Int): [Artist]
+  albums(album_type: String, throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Album]
+  related_artists(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Artist]
 }
 
 type SimplifiedArtist {
@@ -55,7 +55,7 @@ type Album {
   type: String
   uri: String
   images: [Image]
-  tracks(throttle: Int, debug: Int, continueOnError: Int): [Track]
+  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Track]
 }
 
 type SimplifiedAlbum {
@@ -120,7 +120,7 @@ type Playlist {
   name: String
   owner: PublicUser
   uri: String
-  tracks(throttle: Int, debug: Int, continueOnError: Int): [PlaylistTrack]
+  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [PlaylistTrack]
   public: Boolean
   images: [Image]
 }
