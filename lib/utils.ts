@@ -12,11 +12,11 @@ interface SpotifyWebAPIClientOptions {
 //
 // Example
 //  willPaginateFactory({})(spotifyApiClient, 'getMySavedTracks', (response) => response.body.items);
-export function willPaginateFactory({ throttleDelay = 0, debug = false, continueOnError = false }) {
+export function willPaginateFactory({ throttleDelay = 0, debug = false, continueOnError = false, limit = 50 }) {
+  let maxResults = limit <= 0 ? Infinity : limit;
   return function willPaginate (client: any, method: string, formatter: Function, ...args): Promise<any> {
     const options: SpotifyWebAPIClientOptions = args.length > 1 ? args[args.length - 1] : {};
     const offset = options.offset || 0;
-    const limit  = options.limit || 50;
     const argsArray = Array.from(args);
     if (argsArray.length > 1 && isObject(argsArray[ argsArray.length - 1 ])) {
       let queryStrings = argsArray[ argsArray.length - 1 ];
@@ -27,54 +27,67 @@ export function willPaginateFactory({ throttleDelay = 0, debug = false, continue
 
     return new Promise( (mainResolve, mainReject) => {
       when.iterate((iterator) => {
-            return new Promise( (resolve, reject) => {
-              const newArgs = Array.from(argsArray);
-              let queryStrings = newArgs[newArgs.length - 1];
-              queryStrings.limit = iterator.limit;
-              queryStrings.offset = iterator.offset;
+                  return new Promise( (resolve, reject) => {
+                    const newArgs: any[] = Array.from(argsArray);
+                    let queryStrings: {limit?: number, offset?: number} = newArgs[newArgs.length - 1];
+                    queryStrings.limit = iterator.limit;
+                    queryStrings.offset = iterator.offset;
 
-              client[method].apply(client, newArgs).then((response) => {
-                  iterator.results = iterator.results.concat(formatter(response));
-                  // move cursor
-                  iterator.offset = response.body.offset + iterator.limit;
-                  iterator.total = response.body.total;
-                  resolve(iterator);
-              }).catch(error => {
-                if(continueOnError) {
-                  // move cursor
-                  iterator.offset = iterator.offset + iterator.limit;
-                  resolve(iterator);
-                } else {
-                  reject(error);
-                }
-              });
-            });
-          }, (iterator)  => {
-            if(debug && iterator.total != null) {
-              console.log(`iterate: ${method}`, `${iterator.offset} >= ${iterator.total}`);
-            }
-            // TODO: add `maxResults` in condition
-            return !!iterator.total && (iterator.offset >= iterator.total);
-          }, (iterator) => {
-            return new Promise( (resolve, reject) => {
-              setTimeout(resolve, throttleDelay);
-            });
-          }, {
-          results: [],
-          total: null,
-          offset: offset,
-          limit: limit
-        }).then(result => mainResolve(result.results)).catch(mainReject);
+                    client[method].apply(client, newArgs).then((response) => {
+                        iterator.results = iterator.results.concat(formatter(response));
+                        // Move cursor
+                        iterator.offset = response.body.offset + iterator.limit;
+                        iterator.total = response.body.total;
+                        resolve(iterator);
+                    }).catch(error => {
+                      if (continueOnError) {
+                        // Move cursor
+                        iterator.offset = iterator.offset + iterator.limit;
+                        resolve(iterator);
+                      } else {
+                        reject(error);
+                      }
+                    });
+                  });
+                }, (iterator)  => {
+                      if (debug && iterator.total != null) {
+                        console.log(`iterate: ${method}`, `${iterator.offset} >= ${iterator.total}`);
+                      }
+                      if (!!iterator.total) {
+                        if (iterator.offset >= iterator.total) {
+                          return true;
+                        } else {
+                          return iterator.offset >= maxResults;
+                        }
+                      } else {
+                        return false;
+                      }
+                }, (iterator) => {
+                  return new Promise( (resolve, reject) => {
+                    setTimeout(resolve, throttleDelay);
+                  });
+                }, {
+                results: [],
+                total: null,
+                offset: offset,
+                limit: isFinite(maxResults) ? maxResults : 50,
+              }).then(result => mainResolve(result.results)).catch(mainReject);
     });
   };
 }
 
 // Allow to build a paginator using options directly from GraphQL variables
-export function willPaginateFactoryFromVariables(variables) {
+export interface WillPaginateFactoryFromVariablesOptions {
+  throttle?: number;
+  debug?: number;
+  continueOnError?: number;
+  limit?: number;
+}
+export function willPaginateFactoryFromVariables(variables: WillPaginateFactoryFromVariablesOptions) {
   return willPaginateFactory({
     throttleDelay: !!variables.throttle ? variables.throttle : 0,
-    debug: variables.debug == 1,
-    continueOnError: variables.continueOnError == 1
+    debug: variables.debug === 1,
+    continueOnError: variables.continueOnError === 1,
   });
 }
 

@@ -15,7 +15,7 @@ describe('Query: user(id: ...): PublicUser', () => {
   });
 
 
-  describe('when fetching an existing Album', () => {
+  describe('when fetching an existing User', () => {
     let request;
     beforeEach(() => {
       request = nock('https://api.spotify.com:443')

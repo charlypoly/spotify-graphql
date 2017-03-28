@@ -7,8 +7,8 @@ describe('willPaginate', () => {
   nock.disableNetConnect();
 
   function buildResponse({ offset = 0, limit = 100, size = 1 }) {
-    let items = [];
-    for (var i = 0; i < size; ++i) {
+    let items: any[] = [];
+    for (let i = 0; i < size; i++) {
       items.push({});
     }
     return {
@@ -44,7 +44,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 1 call', (done) => {
-        let willPaginate = willPaginateFactory({});
+        let willPaginate = willPaginateFactory({ limit: -1 });
 
         let finished = function () {
           expect(request.isDone()).toBeTruthy();
@@ -80,7 +80,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 2 calls', (done) => {
-        let willPaginate = willPaginateFactory({});
+        let willPaginate = willPaginateFactory({ limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -122,7 +122,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 2 calls', (done) => {
-        let willPaginate = willPaginateFactory({});
+        let willPaginate = willPaginateFactory({ limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -170,7 +170,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 3 calls', (done) => {
-        let willPaginate = willPaginateFactory({ continueOnError: true });
+        let willPaginate = willPaginateFactory({ continueOnError: true, limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -188,7 +188,97 @@ describe('willPaginate', () => {
          ).then(finished).catch(finished);
       });
 
-    })
+    });
+
+  });
+
+  describe('limit options', () => {
+
+    describe('when response have 3 pages, and limit set to -1', () => {
+      let firstRequest, secondRequest, thirdRequest;
+      beforeEach(() => {
+        firstRequest = nock('https://api.spotify.com:443')
+          .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
+          .query({ offset: 0, limit: 50 })
+          .reply(200, buildResponse({ size : 150, offset: 0 }));
+
+        secondRequest = nock('https://api.spotify.com:443')
+          .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
+          .query({ offset: 50, limit: 50 })
+          .reply(200, buildResponse({ size : 150, offset: 50 }));
+
+        thirdRequest = nock('https://api.spotify.com:443')
+          .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
+          .query({ offset: 100, limit: 50 })
+          .reply(200, buildResponse({ size : 150, offset: 100 }));
+      });
+      afterEach(() =>  {
+        nock.cleanAll();
+      });
+
+      it('should make 3 calls', (done) => {
+        let willPaginate = willPaginateFactory({ continueOnError: true, limit: -1 });
+
+        let finished = function () {
+          expect(firstRequest.isDone()).toBeTruthy();
+          expect(secondRequest.isDone()).toBeTruthy();
+          expect(thirdRequest.isDone()).toBeTruthy();
+          done();
+        }
+
+        willPaginate(
+          client,
+          'getPlaylistTracks',
+          response => response.body,
+          'playlist_owner_id',
+          'playlist_id'
+         ).then(finished).catch(finished);
+      });
+
+    });
+
+    describe('when response have 3 pages, and limit set to 50', () => {
+      let firstRequest, secondRequest, thirdRequest;
+      beforeEach(() => {
+        firstRequest = nock('https://api.spotify.com:443')
+          .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
+          .query({ offset: 0, limit: 50 })
+          .reply(200, buildResponse({ size : 150, offset: 0 }));
+
+        secondRequest = nock('https://api.spotify.com:443')
+          .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
+          .query({ offset: 50, limit: 50 })
+          .reply(200, buildResponse({ size : 150, offset: 50 }));
+
+        thirdRequest = nock('https://api.spotify.com:443')
+          .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
+          .query({ offset: 100, limit: 50 })
+          .reply(200, buildResponse({ size : 150, offset: 100 }));
+      });
+      afterEach(() =>  {
+        nock.cleanAll();
+      });
+
+      it('should make 1 call', (done) => {
+        let willPaginate = willPaginateFactory({ continueOnError: true, limit: 50 });
+
+        let finished = function () {
+          expect(firstRequest.isDone()).toBeTruthy();
+          expect(secondRequest.isDone()).toBeFalsy();
+          expect(thirdRequest.isDone()).toBeFalsy();
+          done();
+        }
+
+        willPaginate(
+          client,
+          'getPlaylistTracks',
+          response => response.body,
+          'playlist_owner_id',
+          'playlist_id'
+         ).then(finished).catch(finished);
+      });
+
+    });
 
   });
 
