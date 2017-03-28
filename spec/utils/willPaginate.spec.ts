@@ -1,5 +1,5 @@
-import { willPaginateFactory } from '../../lib/utils';
 import { spotifyWebAPIClient } from '../../lib/client';
+import { willPaginateFactory } from '../../lib/utils';
 import * as nock from 'nock';
 
 describe('willPaginate', () => {
@@ -44,7 +44,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 1 call', (done) => {
-        let willPaginate = willPaginateFactory({ limit: -1 });
+        let willPaginate = willPaginateFactory('OffsetPaging', { limit: -1 });
 
         let finished = function () {
           expect(request.isDone()).toBeTruthy();
@@ -60,7 +60,7 @@ describe('willPaginate', () => {
          ).then(finished).catch(finished);
       });
 
-    })
+    });
 
     describe('when response have 2 pages', () => {
       let firstRequest, secondRequest;
@@ -80,7 +80,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 2 calls', (done) => {
-        let willPaginate = willPaginateFactory({ limit: -1 });
+        let willPaginate = willPaginateFactory('OffsetPaging', { limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -122,7 +122,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 2 calls', (done) => {
-        let willPaginate = willPaginateFactory({ limit: -1 });
+        let willPaginate = willPaginateFactory('OffsetPaging', { limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -170,7 +170,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 3 calls', (done) => {
-        let willPaginate = willPaginateFactory({ continueOnError: true, limit: -1 });
+        let willPaginate = willPaginateFactory('OffsetPaging', { continueOnError: true, limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -217,7 +217,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 3 calls', (done) => {
-        let willPaginate = willPaginateFactory({ continueOnError: true, limit: -1 });
+        let willPaginate = willPaginateFactory('OffsetPaging', { continueOnError: true, limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -260,7 +260,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 1 call', (done) => {
-        let willPaginate = willPaginateFactory({ continueOnError: true, limit: 50 });
+        let willPaginate = willPaginateFactory('OffsetPaging', { continueOnError: true, limit: 50 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();

@@ -24,7 +24,7 @@ describe('Resolver : Artist.albums', () => {
           .get('/v1/artists/4Nrd0CtP8txoQhnnlRA6V6')
           .reply(200, artistResponse);
         artistAlbumsRequest = nock('https://api.spotify.com:443')
-          .get('/v1/artists/4Nrd0CtP8txoQhnnlRA6V6/albums?offset=0&limit=50')
+          .get('/v1/artists/4Nrd0CtP8txoQhnnlRA6V6/albums?limit=50&offset=0')
           .reply(200, artistAlbums);
       });
       afterEach(() =>  {
@@ -81,7 +81,7 @@ describe('Resolver : Artist.albums', () => {
           .get('/v1/artists/0hEurMDQu99nJRq8pTxO14')
           .reply(200, artistResponse);
         artistAlbumsRequest = nock('https://api.spotify.com:443')
-          .get('/v1/artists/0hEurMDQu99nJRq8pTxO14/albums?album_type=album&offset=0&limit=50')
+          .get('/v1/artists/0hEurMDQu99nJRq8pTxO14/albums?album_type=album&limit=50&offset=0')
           .reply(200, artistAlbums);
       });
       afterEach(() =>  {

@@ -19,7 +19,7 @@ export function albumResolvers(spotifyApiClient) {
         return poll(() => {
           if (!lock()) {
             lock(true);
-            return willPaginateFactoryFromVariables(variables)(
+            return willPaginateFactoryFromVariables('OffsetPaging', variables)(
               spotifyApiClient,
               'getAlbumTracks',
               response => response.body.items,

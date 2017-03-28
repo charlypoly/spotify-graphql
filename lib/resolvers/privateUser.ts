@@ -3,14 +3,14 @@ import { safeApiCall, willPaginateFactoryFromVariables } from '../utils';
 export function privateUserResolvers(spotifyApiClient) {
   return {
     tracks(user, variables) {
-      return willPaginateFactoryFromVariables(variables)(
+      return willPaginateFactoryFromVariables('OffsetPaging', variables)(
         spotifyApiClient,
         'getMySavedTracks',
         (response) => response.body.items
       );
     },
     playlists(user, variables) {
-      return willPaginateFactoryFromVariables(variables)(
+      return willPaginateFactoryFromVariables('OffsetPaging', variables)(
         spotifyApiClient,
         'getUserPlaylists',
         (response) => response.body.items,
@@ -18,14 +18,14 @@ export function privateUserResolvers(spotifyApiClient) {
       );
     },
     albums(user, variables) {
-      return willPaginateFactoryFromVariables(variables)(
+      return willPaginateFactoryFromVariables('OffsetPaging', variables)(
         spotifyApiClient,
         'getMySavedAlbums',
         (response) => response.body.items
       );
     },
     top_tracks(user, variables) {
-      return willPaginateFactoryFromVariables(variables)(
+      return willPaginateFactoryFromVariables('OffsetPaging', variables)(
         spotifyApiClient,
         'getMyTopTracks',
         (response) => response.body.items
@@ -33,7 +33,7 @@ export function privateUserResolvers(spotifyApiClient) {
     },
 
     top_artists(user, variables) {
-      return willPaginateFactoryFromVariables(variables)(
+      return willPaginateFactoryFromVariables('OffsetPaging', variables)(
         spotifyApiClient,
         'getMyTopArtists',
         (response) => response.body.items
@@ -41,7 +41,7 @@ export function privateUserResolvers(spotifyApiClient) {
     },
 
     artists(user, variables) {
-      return willPaginateFactoryFromVariables(variables)(
+      return willPaginateFactoryFromVariables('CursorPaging', variables)(
         spotifyApiClient,
         'getFollowedArtists',
         (response) => response.body.artists.items

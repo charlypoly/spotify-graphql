@@ -19,7 +19,7 @@ export function artistResolvers(spotifyApiClient) {
     // - appears_on
     // - compilation
     albums(artist, variables) {
-      return willPaginateFactoryFromVariables(variables)(
+      return willPaginateFactoryFromVariables('OffsetPaging', variables)(
         spotifyApiClient,
         'getArtistAlbums',
         (response) => response.body.items,

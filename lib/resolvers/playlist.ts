@@ -13,7 +13,7 @@ export function playlistResolvers(spotifyApiClient) {
         return poll(() => {
           if (!lock()) {
             lock(true);
-            return willPaginateFactoryFromVariables(variables)(
+            return willPaginateFactoryFromVariables('OffsetPaging', variables)(
               spotifyApiClient,
               'getPlaylistTracks',
               response => response.body.items,
