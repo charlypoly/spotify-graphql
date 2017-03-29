@@ -1,8 +1,8 @@
 import { spotifyWebAPIClient } from '../../lib/client';
-import { willPaginateFactory } from '../../lib/utils';
+import { paginatorFactory } from '../../lib/utils';
 import * as nock from 'nock';
 
-describe('willPaginate', () => {
+describe('paginator', () => {
 
   nock.disableNetConnect();
 
@@ -44,14 +44,14 @@ describe('willPaginate', () => {
       });
 
       it('should make 1 call', (done) => {
-        let willPaginate = willPaginateFactory('OffsetPaging', { limit: -1 });
+        let paginator = paginatorFactory('OffsetPaging', { limit: -1 });
 
         let finished = function () {
           expect(request.isDone()).toBeTruthy();
           done();
         }
 
-        willPaginate(
+        paginator(
           client,
           'getPlaylistTracks',
           response => response.body,
@@ -80,7 +80,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 2 calls', (done) => {
-        let willPaginate = willPaginateFactory('OffsetPaging', { limit: -1 });
+        let paginator = paginatorFactory('OffsetPaging', { limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -88,7 +88,7 @@ describe('willPaginate', () => {
           done();
         }
 
-        willPaginate(
+        paginator(
           client,
           'getPlaylistTracks',
           response => response.body,
@@ -122,7 +122,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 2 calls', (done) => {
-        let willPaginate = willPaginateFactory('OffsetPaging', { limit: -1 });
+        let paginator = paginatorFactory('OffsetPaging', { limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -131,7 +131,7 @@ describe('willPaginate', () => {
           done();
         }
 
-        willPaginate(
+        paginator(
           client,
           'getPlaylistTracks',
           response => response.body,
@@ -170,7 +170,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 3 calls', (done) => {
-        let willPaginate = willPaginateFactory('OffsetPaging', { continueOnError: true, limit: -1 });
+        let paginator = paginatorFactory('OffsetPaging', { continueOnError: true, limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -179,7 +179,7 @@ describe('willPaginate', () => {
           done();
         }
 
-        willPaginate(
+        paginator(
           client,
           'getPlaylistTracks',
           response => response.body,
@@ -217,7 +217,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 3 calls', (done) => {
-        let willPaginate = willPaginateFactory('OffsetPaging', { continueOnError: true, limit: -1 });
+        let paginator = paginatorFactory('OffsetPaging', { continueOnError: true, limit: -1 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -226,7 +226,7 @@ describe('willPaginate', () => {
           done();
         }
 
-        willPaginate(
+        paginator(
           client,
           'getPlaylistTracks',
           response => response.body,
@@ -260,7 +260,7 @@ describe('willPaginate', () => {
       });
 
       it('should make 1 call', (done) => {
-        let willPaginate = willPaginateFactory('OffsetPaging', { continueOnError: true, limit: 50 });
+        let paginator = paginatorFactory('OffsetPaging', { continueOnError: true, limit: 50 });
 
         let finished = function () {
           expect(firstRequest.isDone()).toBeTruthy();
@@ -269,7 +269,7 @@ describe('willPaginate', () => {
           done();
         }
 
-        willPaginate(
+        paginator(
           client,
           'getPlaylistTracks',
           response => response.body,

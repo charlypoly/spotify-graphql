@@ -1,4 +1,4 @@
-import { willPaginateFactoryFromVariables } from '../utils';
+import { paginatorFromVariables } from '../utils';
 import { safeApiCall } from '../utils';
 
 export function artistResolvers(spotifyApiClient) {
@@ -19,7 +19,7 @@ export function artistResolvers(spotifyApiClient) {
     // - appears_on
     // - compilation
     albums(artist, variables) {
-      return willPaginateFactoryFromVariables('OffsetPaging', variables)(
+      return paginatorFromVariables('OffsetPaging', variables)(
         spotifyApiClient,
         'getArtistAlbums',
         (response) => response.body.items,

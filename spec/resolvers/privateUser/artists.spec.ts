@@ -20,7 +20,7 @@ describe('Resolver : me.artists', () => {
   });
 
 
-  fdescribe('when fetching', () => {
+  describe('when fetching', () => {
     let meRequest, meTopArtistsRequest;
     beforeEach(() => {
       meRequest = nock('https://api.spotify.com:443')
@@ -36,7 +36,6 @@ describe('Resolver : me.artists', () => {
 
     it('should call promise success callback', (done) => {
       let onSuccess = function (executionResult: any) {
-        console.log(JSON.stringify(executionResult));
         let data = executionResult.data;
         expect(data.me.artists[0].id).toBe('04gDigrS5kc9YWfZHwBETP');
         expect(!!executionResult.errors).toBeFalsy();
