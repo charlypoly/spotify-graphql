@@ -13,13 +13,6 @@ API documentation : http://thefrench.house/spotify-graphql/
 ```typescript
 
 import SpotifyGraphQLClient from '../src/spotify-graphql';
-// config is an object like :
-//   {
-//     "clientId" : "",
-//     "clientSecret" : "",
-//     "redirectUri" : "",
-//     "accessToken" : ""
-//   }
 import config from './config';
 
 SpotifyGraphQLClient(config).query(`
@@ -90,20 +83,26 @@ SpotifyGraphQLClient(config).query(`
 #### User Library
 - Get Current User's Saved Tracks
 - Get Current User's Saved Albums
+- Get Current User's Following artists **(new)**
 
 #### Personalization
 - Get User's Top Artists and Tracks
+
+#### Player
+- Get a User’s Available Devices **(new)**
+- Get Information About The User’s Current Playback **(new)**
+
 
 ### Available queries
 
 ```
 me: PrivateUser
 user(id: String!): PublicUser
-track(id: String!): Track
+track(id: String, name: String): Track
 tracks(ids: String!): [Track]
 audio_features(trackIds: String!): [AudioFeatures]
 audio_feature(trackId: String!): AudioFeatures
-artist(id: String!): Artist
+artist(id: String, name: String): Artist
 artists(ids: String!): [Artist]
 album(id: String!): Album
 albums(ids: String!): [Album]
