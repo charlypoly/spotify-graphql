@@ -16,7 +16,7 @@
     "no-eval": true,
     "no-exec-script": true,
     "no-function-constructor-with-string-args": true,
-    "no-http-string": [true, "http://www.example.com/?.*", "http://www.examples.com/?.*"],
+    "no-http-string": [false],
     "no-octal-literal": true,
     "no-reserved-keywords": true,
     "no-string-based-set-immediate": true,
@@ -42,7 +42,7 @@
     "no-duplicate-case": true,
     "no-duplicate-variable": true,
     "no-empty": true,
-    "no-increment-decrement": true,
+    "no-increment-decrement": false,
     "no-invalid-regexp": true,
     "no-invalid-this": true,
     "no-regex-spaces": true,
@@ -131,7 +131,7 @@
     "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-whitespace"],
     "quotemark": [true, "single"],
     "semicolon": [true, "always"],
-    "trailing-comma": [true, {"singleline": "never", "multiline": "always"}], // forcing trailing commas for multi-line
+    "trailing-comma": [false], // forcing trailing commas for multi-line
                 // lists results in lists that are easier to reorder and version control diffs that are more clear.
                 // Many teams like to have multiline be 'always'. There is no clear consensus on this rule but the
     "typedef-whitespace": [true, { // forces a space before the colon in a type specifier

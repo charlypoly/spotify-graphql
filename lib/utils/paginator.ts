@@ -73,7 +73,8 @@ function shouldStopIterate(iterator: anyPagingIterator, maxResults: number): boo
   switch (iterator._type) {
     case 'cursor':
       if (!!iterator.total) {
-        return iterator.results.length >= iterator.total || !iterator.after;
+        return iterator.results.length >= maxResults ||
+          iterator.results.length >= iterator.total || !iterator.after;
       } else {
         return false;
       }
