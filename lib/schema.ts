@@ -28,8 +28,8 @@ type Artist {
   uri: String
   images: [Image]
   top_tracks(country: String): [Track]
-  albums(album_type: String, throttle: Int, debug: Int, continueOnError: Int): [Album]
-  related_artists(throttle: Int, debug: Int, continueOnError: Int): [Artist]
+  albums(album_type: String, throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Album]
+  related_artists(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Artist]
 }
 
 type SimplifiedArtist {
@@ -55,7 +55,7 @@ type Album {
   type: String
   uri: String
   images: [Image]
-  tracks(throttle: Int, debug: Int, continueOnError: Int): [Track]
+  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Track]
 }
 
 type SimplifiedAlbum {
@@ -85,6 +85,9 @@ type PrivateUser {
   top_artists: [Artist]
   top_tracks: [Track]
   images: [Image]
+  artists: [Artist]
+  devices: [Device]
+  player: Player
 }
 
 type SavedTrack {
@@ -120,7 +123,7 @@ type Playlist {
   name: String
   owner: PublicUser
   uri: String
-  tracks(throttle: Int, debug: Int, continueOnError: Int): [PlaylistTrack]
+  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [PlaylistTrack]
   public: Boolean
   images: [Image]
 }
@@ -148,6 +151,32 @@ type Image {
   height: Int
   url: String
   width: Int
+}
+
+type Device {
+  id: String
+  is_active: Boolean
+  is_restricted: Boolean
+  name: String
+  type: String
+  volume_percent: Int
+}
+
+type PlayerContext {
+  href: String
+  type: String
+  uri: String
+}
+
+type Player {
+  timestamp: String
+  device: Device
+  progress_ms: String
+  is_playing: Boolean
+  shuffle_state: Boolean
+  repeat_state: String
+  item: Track
+  context: PlayerContext
 }
 
 # the schema allows the following query:

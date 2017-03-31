@@ -1,4 +1,4 @@
-import { safeApiCall, willPaginateFactoryFromVariables, limitConcurency } from '../utils';
+import { safeApiCall, paginatorFromVariables, limitConcurency } from '../utils';
 const poll: (callback: Function, delay: number, predicate: Function) => any = require('when/poll');
 
 export function playlistResolvers(spotifyApiClient) {
@@ -13,7 +13,7 @@ export function playlistResolvers(spotifyApiClient) {
         return poll(() => {
           if (!lock()) {
             lock(true);
-            return willPaginateFactoryFromVariables(variables)(
+            return paginatorFromVariables('OffsetPaging', variables)(
               spotifyApiClient,
               'getPlaylistTracks',
               response => response.body.items,
