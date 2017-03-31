@@ -86,6 +86,8 @@ type PrivateUser {
   top_tracks: [Track]
   images: [Image]
   artists: [Artist]
+  devices: [Device]
+  player: Player
 }
 
 type SavedTrack {
@@ -149,6 +151,32 @@ type Image {
   height: Int
   url: String
   width: Int
+}
+
+type Device {
+  id: String
+  is_active: Boolean
+  is_restricted: Boolean
+  name: String
+  type: String
+  volume_percent: Int
+}
+
+type PlayerContext {
+  href: String
+  type: String
+  uri: String
+}
+
+type Player {
+  timestamp: String
+  device: Device
+  progress_ms: String
+  is_playing: Boolean
+  shuffle_state: Boolean
+  repeat_state: String
+  item: Track
+  context: PlayerContext
 }
 
 # the schema allows the following query:

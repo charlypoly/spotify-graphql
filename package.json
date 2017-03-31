@@ -18,6 +18,7 @@
     "@types/lodash": "^4.14.57",
     "@types/nock": "^8.2.0",
     "@types/node": "~7.0.8",
+    "@types/request": "0.0.42",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-jasmine": "^2.4.2",
@@ -44,6 +45,7 @@
     "graphql": "^0.9.1",
     "graphql-tools": "0.10.1",
     "lodash": "^4.17.4",
+    "request": "^2.81.0",
     "spotify-web-api-node": "^2.3.6",
     "when": "^3.7.7"
   }

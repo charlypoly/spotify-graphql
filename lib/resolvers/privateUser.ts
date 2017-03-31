@@ -1,4 +1,4 @@
-import { safeApiCall, paginatorFromVariables } from '../utils';
+import { safeApiCall, paginatorFromVariables, apiRequest } from '../utils';
 
 export function privateUserResolvers(spotifyApiClient) {
   return {
@@ -45,6 +45,20 @@ export function privateUserResolvers(spotifyApiClient) {
         spotifyApiClient,
         'getFollowedArtists',
         (response) => response.body.artists.items
+      );
+    },
+
+    devices(user, variables) {
+      return apiRequest(spotifyApiClient)(
+        'https://api.spotify.com/v1/me/player/devices',
+        {},
+        (response) => response.devices,
+      );
+    },
+
+    player(user, variables) {
+      return apiRequest(spotifyApiClient)(
+        'https://api.spotify.com/v1/me/player'
       );
     },
 
