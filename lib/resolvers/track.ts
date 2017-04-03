@@ -1,13 +1,37 @@
-import { safeApiCall, limitConcurency } from '../utils';
+import { limitConcurency, safeApiCall } from '../utils';
+import * as _ from 'lodash';
 const poll: (callback: Function, delay: number, predicate: Function) => any = require('when/poll');
+const sequence: any = require('when/sequence');
 
 export function trackResolvers(spotifyApiClient) {
-  let limitConcurencyTrackAlbum = limitConcurency('Track.album');
+  let limitConcurencyTrackAlbum: Function = limitConcurency('Track.album');
   return {
-    // there is no endpoint for tracks/:id/artists
-    //  the artists data is already in the `track` object
-    artists(track) {
-      return track.artists;
+    artists(track: any, variables: any) {
+      if (!!variables.full) {
+        // This part is hacky.
+        //  Since Spotify Web API do not provide album
+        //  /track/:id/artists, we need to call
+        //  /artists?ids=... by chunk of 50 ids.
+        return new Promise((resolve, reject) => {
+          let queries: any = _(track.artists).map('id').
+                                              chunk(50).
+                                              map((idsToQuery: any[]) => {
+                                                return (): Promise<any> => {
+                                                  return safeApiCall(
+                                                    spotifyApiClient,
+                                                    'getArtists',
+                                                    (response) => response.body.artists,
+                                                    idsToQuery
+                                                  );
+                                                };
+                                              });
+          sequence(Array.from(queries)).then((results) => {
+            resolve(_(results).flatten());
+          }).catch(reject);
+        });
+      } else {
+        return track.artists;
+      }
     },
     // an artist can have a large amount of albums,
     //   so we use `limitConcurency()` helper to avoid

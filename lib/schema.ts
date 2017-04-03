@@ -1,8 +1,8 @@
-const schema = `
+const schema: string = `
 type Track {
   id: String
   album(full: Int): Album
-  artists: [SimplifiedArtist]
+  artists(full: Int): [Artist]
   available_markets: [String]
   audio_features: AudioFeatures
   disc_number: Int
@@ -55,7 +55,7 @@ type Album {
   type: String
   uri: String
   images: [Image]
-  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Track]
+  tracks(throttle: Int, continueOnError: Int, limit: Int): [Track]
 }
 
 type SimplifiedAlbum {
@@ -79,11 +79,11 @@ type PrivateUser {
   href: String
   product: String
   uri: String
-  tracks: [SavedTrack]
-  playlists: [Playlist]
+  tracks(throttle: Int, continueOnError: Int, limit: Int): [SavedTrack]
+  playlists(throttle: Int, continueOnError: Int, limit: Int): [Playlist]
   albums: [SavedAlbum]
-  top_artists: [Artist]
-  top_tracks: [Track]
+  top_artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
+  top_tracks(throttle: Int, continueOnError: Int, limit: Int): [Track]
   images: [Image]
   artists: [Artist]
   devices: [Device]
