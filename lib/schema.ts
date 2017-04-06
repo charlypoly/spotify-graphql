@@ -2,7 +2,7 @@ const schema: string = `
 type Track {
   id: String
   album(full: Int): Album
-  artists(full: Int): [Artist]
+  artists(full: Int, throttle: Int): [Artist]
   available_markets: [String]
   audio_features: AudioFeatures
   disc_number: Int
@@ -28,8 +28,8 @@ type Artist {
   uri: String
   images: [Image]
   top_tracks(country: String): [Track]
-  albums(album_type: String, throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Album]
-  related_artists(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Artist]
+  albums(album_type: String, throttle: Int, continueOnError: Int, limit: Int): [Album]
+  related_artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
 }
 
 type SimplifiedArtist {
@@ -85,7 +85,7 @@ type PrivateUser {
   top_artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
   top_tracks(throttle: Int, continueOnError: Int, limit: Int): [Track]
   images: [Image]
-  artists: [Artist]
+  artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
   devices: [Device]
   player: Player
 }
@@ -123,7 +123,7 @@ type Playlist {
   name: String
   owner: PublicUser
   uri: String
-  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [PlaylistTrack]
+  tracks(throttle: Int, continueOnError: Int, limit: Int): [PlaylistTrack]
   public: Boolean
   images: [Image]
 }

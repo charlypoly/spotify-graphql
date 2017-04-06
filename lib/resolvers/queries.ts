@@ -1,8 +1,8 @@
 import { safeApiCall } from '../utils';
 
+// tslint:disable-next-line:max-func-body-length
 export function queries(spotifyApiClient) {
   return {
-
     playlist(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,
@@ -12,7 +12,6 @@ export function queries(spotifyApiClient) {
         args.id
       );
     },
-
     // User queries
     me(root, args, context, info) {
       return safeApiCall(
@@ -29,7 +28,6 @@ export function queries(spotifyApiClient) {
         args.id
       );
     },
-
     // Track queries
     track(root, args, context, info) {
       if (args.name) {
@@ -60,7 +58,6 @@ export function queries(spotifyApiClient) {
         );
       }
     },
-
     tracks(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,
@@ -78,7 +75,6 @@ export function queries(spotifyApiClient) {
         args.trackIds.split(',')
       );
     },
-
     audio_feature(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,
@@ -87,7 +83,6 @@ export function queries(spotifyApiClient) {
         args.trackId
       );
     },
-
     // Artist queries
     artist(root, args, context, info) {
       if (args.name) {
@@ -118,7 +113,6 @@ export function queries(spotifyApiClient) {
         );
       }
     },
-
     artists(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,
@@ -127,7 +121,6 @@ export function queries(spotifyApiClient) {
         args.ids.split(',')
       );
     },
-
     // Album queries
     album(root, args, context, info) {
       return safeApiCall(
@@ -137,7 +130,6 @@ export function queries(spotifyApiClient) {
         args.id
       );
     },
-
     albums(root, args, context, info) {
       return safeApiCall(
         spotifyApiClient,

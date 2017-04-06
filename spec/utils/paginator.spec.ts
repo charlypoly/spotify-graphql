@@ -1,8 +1,11 @@
 import { spotifyWebAPIClient } from '../../lib/client';
-import { paginatorFactory } from '../../lib/utils';
+import { clearCache, paginatorFactory } from '../../lib/utils';
 import * as nock from 'nock';
 
 describe('paginator', () => {
+  beforeEach(() => {
+    clearCache();
+  });
 
   nock.disableNetConnect();
 
@@ -261,17 +264,17 @@ describe('paginator', () => {
           firstRequest = nock('https://api.spotify.com:443')
             .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
             .query({ offset: 0, limit: 50 })
-            .reply(200, buildOffsetResponse({ size : 150, offset: 0 }));
+            .reply(200, buildOffsetResponse({ size : 50, offset: 0 }));
 
           secondRequest = nock('https://api.spotify.com:443')
             .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
             .query({ offset: 50, limit: 50 })
-            .reply(200, buildOffsetResponse({ size : 150, offset: 50 }));
+            .reply(200, buildOffsetResponse({ size : 50, offset: 50 }));
 
           thirdRequest = nock('https://api.spotify.com:443')
             .get('/v1/users/playlist_owner_id/playlists/playlist_id/tracks')
             .query({ offset: 100, limit: 50 })
-            .reply(200, buildOffsetResponse({ size : 150, offset: 100 }));
+            .reply(200, buildOffsetResponse({ size : 50, offset: 100 }));
         });
         afterEach(() =>  {
           nock.cleanAll();
