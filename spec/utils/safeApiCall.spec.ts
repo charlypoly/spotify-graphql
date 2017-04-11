@@ -1,8 +1,12 @@
-import { safeApiCall } from '../../lib/utils';
+import { clearCache, safeApiCall } from '../../lib/utils';
 import { spotifyWebAPIClient } from '../../lib/client';
 import * as nock from 'nock';
 
 describe('safeApiCall', () => {
+
+  beforeEach(() => {
+    clearCache();
+  });
 
   nock.disableNetConnect();
 

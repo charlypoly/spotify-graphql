@@ -1,8 +1,8 @@
-const schema = `
+const schema: string = `
 type Track {
   id: String
   album(full: Int): Album
-  artists: [SimplifiedArtist]
+  artists(full: Int, throttle: Int): [Artist]
   available_markets: [String]
   audio_features: AudioFeatures
   disc_number: Int
@@ -28,8 +28,8 @@ type Artist {
   uri: String
   images: [Image]
   top_tracks(country: String): [Track]
-  albums(album_type: String, throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Album]
-  related_artists(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Artist]
+  albums(album_type: String, throttle: Int, continueOnError: Int, limit: Int): [Album]
+  related_artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
 }
 
 type SimplifiedArtist {
@@ -55,7 +55,7 @@ type Album {
   type: String
   uri: String
   images: [Image]
-  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [Track]
+  tracks(throttle: Int, continueOnError: Int, limit: Int): [Track]
 }
 
 type SimplifiedAlbum {
@@ -79,13 +79,13 @@ type PrivateUser {
   href: String
   product: String
   uri: String
-  tracks: [SavedTrack]
-  playlists: [Playlist]
+  tracks(throttle: Int, continueOnError: Int, limit: Int): [SavedTrack]
+  playlists(throttle: Int, continueOnError: Int, limit: Int): [Playlist]
   albums: [SavedAlbum]
-  top_artists: [Artist]
-  top_tracks: [Track]
+  top_artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
+  top_tracks(throttle: Int, continueOnError: Int, limit: Int): [Track]
   images: [Image]
-  artists: [Artist]
+  artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
   devices: [Device]
   player: Player
 }
@@ -123,7 +123,7 @@ type Playlist {
   name: String
   owner: PublicUser
   uri: String
-  tracks(throttle: Int, debug: Int, continueOnError: Int, limit: Int): [PlaylistTrack]
+  tracks(throttle: Int, continueOnError: Int, limit: Int): [PlaylistTrack]
   public: Boolean
   images: [Image]
 }

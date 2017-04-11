@@ -24,7 +24,12 @@ gulp.task('clean', function () {
 
 gulp.task('test:run', function() {
     return gulp.src('dist/spec/**')
-      .pipe(jasmine())
+      .pipe(jasmine());
+});
+
+gulp.task('test:copy_fixtures', () => {
+    return gulp.src('./spec/fixtures/*')
+               .pipe(gulp.dest('./dist/spec/fixtures/'));
 });
 
 gulp.task('watch', ['default'], function() {
@@ -33,7 +38,7 @@ gulp.task('watch', ['default'], function() {
 });
 
 gulp.task('test', [], function(cb) {
-  runSequence('clean', 'build', 'test:run', cb);
+  runSequence('clean', 'build', 'test:copy_fixtures', 'test:run', cb);
 });
 gulp.task('default', [], function(cb) {
     runSequence('clean', 'build', cb);

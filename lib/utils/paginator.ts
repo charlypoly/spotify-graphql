@@ -80,11 +80,13 @@ function shouldStopIterate(iterator: anyPagingIterator, maxResults: number): boo
       }
 
     case 'offset':
+      // tslint:disable-next-line:comment-format
+      // console.log('shouldStopIterate', `${iterator.results.length} >= ${maxResults}`);
       if (!!iterator.total) {
         if (iterator.offset >= iterator.total) {
           return true;
         } else {
-          return iterator.offset >= maxResults;
+          return iterator.results.length >= maxResults;
         }
       } else {
         return false;
@@ -150,16 +152,18 @@ export function paginatorFactory(strategy: PagingStrategyType, { throttleDelay =
             let queryStrings: {[k: string]: string} = newArgs[newArgs.length - 1];
             merge(queryStrings, iteratorToQueryString(iterator));
             // tslint:disable-next-line:comment-format
-            // console.log('queryStrings', queryStrings);
-
+            // console.log('call ', method, newArgs);
             client[method].apply(client, newArgs).then((response) => {
                 iterator.results = iterator.results.concat(formatter(response));
+                // tslint:disable-next-line:comment-format
+                // console.log('response', response);
                 // Move cursor
                 iterator = updateIterator(iterator, response.body);
                 // tslint:disable-next-line:comment-format
-                // console.log('updateIterator', iterator);
                 resolve(iterator);
             }).catch(error => {
+              // tslint:disable-next-line:comment-format
+              // console.error(error);
               if (continueOnError) {
                 // Move cursor
                 iterator = updateIterator(iterator, null);
@@ -172,7 +176,7 @@ export function paginatorFactory(strategy: PagingStrategyType, { throttleDelay =
         },
         (iterator: anyPagingIterator)  => {
           // tslint:disable-next-line:comment-format
-          // console.log('stopIterate?', stopIterate(iterator, maxResults));
+          // console.log('stopIterate?', shouldStopIterate(iterator, maxResults));
           return shouldStopIterate(iterator, maxResults);
         },
         (iterator) => {
@@ -190,7 +194,6 @@ export function paginatorFactory(strategy: PagingStrategyType, { throttleDelay =
 // Allow to build a paginator using options directly from GraphQL variables
 export interface IPaginatorFromVariablesOptions {
   throttle?: number;
-  debug?: number;
   continueOnError?: number;
   limit?: number;
 }
@@ -198,5 +201,6 @@ export function paginatorFromVariables(strategy: PagingStrategyType, variables: 
   return paginatorFactory(strategy, {
     throttleDelay: !!variables.throttle ? variables.throttle : 0,
     continueOnError: variables.continueOnError === 1,
+    limit: variables.limit,
   });
 }
