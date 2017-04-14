@@ -50,61 +50,77 @@ SpotifyGraphQLClient(config).query(`
 
 ```
 
-### Available endpoints
+### Queries
 
-#### Albums
-- Get an Album
-- Get Several Albums
-- Get an Album's Tracks
-
-#### Artists
-- Get an Artist
-- Get Several Artists
-- Get an Artist's Albums
-- Get an Artist's Top Tracks
-- Get an Artist's Related Artists
-
-#### Tracks
-- Get a Track
-- Get Several Tracks
-- Get Audio Features for a Track
-- Get Audio Features for Several Tracks
-
-#### Playlists
-- Get a List of a User's Playlists
-- Get a List of Current User's Playlists
-- Get a Playlist
-- Get a Playlist's Tracks
-
-#### User Profiles
-- Get a User's Profile
-- Get Current User's Profile
-
-#### User Library
-- Get Current User's Saved Tracks
-- Get Current User's Saved Albums
-- Get Current User's Following artists **(new)**
-
-#### Personalization
-- Get User's Top Artists and Tracks
-
-#### Player
-- Get a User’s Available Devices **(new)**
-- Get Information About The User’s Current Playback **(new)**
-
-
-### Available queries
-
-```
-me: PrivateUser
-user(id: String!): PublicUser
-track(id: String, name: String): Track
-tracks(ids: String!): [Track]
-audio_features(trackIds: String!): [AudioFeatures]
-audio_feature(trackId: String!): AudioFeatures
-artist(id: String, name: String): Artist
-artists(ids: String!): [Artist]
-album(id: String!): Album
-albums(ids: String!): [Album]
-playlist(id: String!, userId: String!): Playlist
-```
+### Albums
+- Get an Album :white_check_mark:
+- Get Several Albums :white_check_mark:
+- Get an Album's Tracks :white_check_mark:
+### Artists
+- Get an Artist :white_check_mark:
+- Get Several Artists :white_check_mark:
+- Get an Artist's Albums :white_check_mark:
+- Get an Artist's Top Tracks :white_check_mark:
+- Get an Artist's Related Artists :white_check_mark:
+### Tracks
+- Get a Track :white_check_mark:
+- Get Several Tracks :white_check_mark:
+- Get Audio Features for a Track :white_check_mark:
+- Get Audio Features for Several Tracks :white_check_mark:
+- Get Audio Analysis for a Track :x:
+### Search
+- Search for an Item :white_check_mark:
+### Playlists
+- Get a List of a User's Playlists :white_check_mark:
+- Get a List of Current User's Playlists :white_check_mark:
+- Get a Playlist :white_check_mark:
+- Get a Playlist's Tracks :white_check_mark:
+### Create a Playlist
+- Add Tracks to a Playlist
+- Remove Tracks from a Playlist
+- Reorder or replace a Playlist's Tracks
+- Change a Playlist's Details
+### User Profiles
+- Get a User's Profile :white_check_mark:
+- Get Current User's Profile :white_check_mark:
+### User Library
+- Get Current User's Saved Tracks :white_check_mark:
+- Check Current User's Saved Tracks :x:
+- Save Tracks for Current User :x:
+- Remove Tracks for Current User :x:
+- Get Current User's Saved Albums :white_check_mark: :x:
+- Check Current User's Saved Albums :x:
+- Save Albums for Current User :x:
+- Remove Albums for Current User :x:
+### Personalization
+- Get User's Top Artists and Tracks :white_check_mark:
+### Browse
+- Get a List of New Releases :x:
+- Get a List of Featured Playlists :x:
+- Get a List of Browse Categories :x:
+- Get a Single Browse Category :x:
+- Get a Category's playlists :x:
+- Get Recommendations Based on Seeds :x:
+- Get Available Genre Seeds :x:
+### Follow
+- Get Followed Artists :x:
+- Check if Current User Follows Artists or Users :x:
+- Follow Artists or Users :x:
+- Unfollow Artists or Users :x:
+- Check if Users Follow a Playlist :x:
+- Follow a Playlist :x:
+- Unfollow a Playlist :x:
+### Player
+- Get the Current User's Recently Played Tracks :white_check_mark:
+- Get Information About The User's Current Playback :white_check_mark:
+- Transfer a User's Playback :x:
+- Get a User's Available Devices :x:
+- Get the User's Currently Playing Track :x:
+- Start/Resume a User's Playback :x:
+- Pause a User's Playback :x:
+- Skip User's Playback To Next Track :x:
+- Skip User's Playback To Previous Track :x:
+- Seek To Position In Currently Playing Track :x:
+- Set Repeat Mode On User's Playback :x:
+- Set Volume For User's Playback :x:
+- Toggle Shuffle For User's Playback :x:
