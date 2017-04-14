@@ -76,10 +76,10 @@ SpotifyGraphQLClient(config).query(`
 - Get a Playlist :white_check_mark:
 - Get a Playlist's Tracks :white_check_mark:
 ### Create a Playlist
-- Add Tracks to a Playlist
-- Remove Tracks from a Playlist
-- Reorder or replace a Playlist's Tracks
-- Change a Playlist's Details
+- Add Tracks to a Playlist :x:
+- Remove Tracks from a Playlist :x:
+- Reorder or replace a Playlist's Tracks :x:
+- Change a Playlist's Details :x:
 ### User Profiles
 - Get a User's Profile :white_check_mark:
 - Get Current User's Profile :white_check_mark:
