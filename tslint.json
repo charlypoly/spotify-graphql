@@ -71,7 +71,7 @@
       */
     "arrow-parens": false, // for simple functions the parens on arrow functions are not needed
     "class-name": true,
-    "comment-format": [true, "check-space", "check-uppercase"],
+    "comment-format": [true, "check-space"],
     "export-name": false,
     "function-name": true,
     "import-name": false,

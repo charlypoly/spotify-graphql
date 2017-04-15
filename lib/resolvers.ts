@@ -1,5 +1,6 @@
 import { albumResolvers } from './resolvers/album';
 import { artistResolvers } from './resolvers/artist';
+import { categoryResolvers } from './resolvers/category';
 import { playerResolvers } from './resolvers/player';
 import { playlistResolvers } from './resolvers/playlist';
 import { privateUserResolvers } from './resolvers/privateUser';
@@ -18,6 +19,6 @@ export default (spotifyApiClient: any): any => {
     PrivateUser: privateUserResolvers(spotifyApiClient),
     PublicUser: publicUserResolvers(spotifyApiClient),
     Player: playerResolvers(spotifyApiClient),
+    Category: categoryResolvers(spotifyApiClient),
   };
-
 };

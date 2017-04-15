@@ -50,7 +50,7 @@ SpotifyGraphQLClient(config).query(`
 
 ```
 
-### Queries
+### Queries (only support read-only endpoints)
 
 ### Albums
 - Get an Album :white_check_mark:
@@ -95,15 +95,15 @@ SpotifyGraphQLClient(config).query(`
 ### Personalization
 - Get User's Top Artists and Tracks :white_check_mark:
 ### Browse
-- Get a List of New Releases :x:
-- Get a List of Featured Playlists :x:
-- Get a List of Browse Categories :x:
-- Get a Single Browse Category :x:
+- Get a List of New Releases :white_check_mark:
+- Get a List of Featured Playlists :white_check_mark:
+- Get a List of Browse Categories :white_check_mark:
+- Get a Single Browse Category :white_check_mark:
 - Get a Category's playlists :x:
 - Get Recommendations Based on Seeds :x:
-- Get Available Genre Seeds :x:
+- Get Available Genre Seeds :white_check_mark:
 ### Follow
-- Get Followed Artists :x:
+- Get Followed Artists :white_check_mark:
 - Check if Current User Follows Artists or Users :x:
 - Follow Artists or Users :x:
 - Unfollow Artists or Users :x:

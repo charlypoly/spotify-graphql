@@ -168,6 +168,12 @@ type PlayerContext {
   uri: String
 }
 
+type PlayHistory {
+  track: Track
+  played_at: String
+  context: PlayerContext
+}
+
 type Player {
   timestamp: String
   device: Device
@@ -177,6 +183,15 @@ type Player {
   repeat_state: String
   item: Track
   context: PlayerContext
+  recently_played: [PlayHistory]
+}
+
+type Category {
+  href: String
+  icons: [Image]
+  id: String
+  name: String
+  playlists(throttle: Int, continueOnError: Int, limit: Int): [Playlist]
 }
 
 # the schema allows the following query:
@@ -192,6 +207,11 @@ type Query {
   album(id: String!): Album
   albums(ids: String!): [Album]
   playlist(id: String!, userId: String!): Playlist
+  featured_playlists: [Playlist]
+  new_releases: [Album]
+  categories: [Category]
+  category(id: String!): Category
+  genres: [String]
 }
 
 # we need to tell the server which types represent the root query
