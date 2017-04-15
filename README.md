@@ -114,8 +114,8 @@ SpotifyGraphQLClient(config).query(`
 - Get the Current User's Recently Played Tracks :white_check_mark:
 - Get Information About The User's Current Playback :white_check_mark:
 - Transfer a User's Playback :x:
-- Get a User's Available Devices :x:
-- Get the User's Currently Playing Track :x:
+- Get a User's Available Devices :white_check_mark:
+- Get the User's Currently Playing Track :white_check_mark:
 - Start/Resume a User's Playback :x:
 - Pause a User's Playback :x:
 - Skip User's Playback To Next Track :x:
