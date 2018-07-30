@@ -1,4 +1,5 @@
-import { safeApiCall } from '../utils';
+import { safeApiCall, apiRequest } from '../utils';
+import { escape } from 'lodash';
 
 // tslint:disable-next-line:max-func-body-length
 export function queries(spotifyApiClient) {
@@ -136,6 +137,47 @@ export function queries(spotifyApiClient) {
         'getAlbums',
         (response) => response.body.albums,
         args.ids.split(',')
+      );
+    },
+
+    // TODO: add support for paginator
+    featured_playlists(root, args, context, info) {
+      return apiRequest(spotifyApiClient)(
+        'https://api.spotify.com/v1/browse/featured-playlists',
+        {},
+        (response) => response.playlists.items,
+      );
+    },
+
+    // TODO: add support for paginator and full album object
+    new_releases(root, args, context, info) {
+      return apiRequest(spotifyApiClient)(
+        'https://api.spotify.com/v1/browse/new-releases',
+        {},
+        (response) => response.albums.items,
+      );
+    },
+
+    // TODO: add support for paginator
+    categories(root, args, context, info) {
+      return apiRequest(spotifyApiClient)(
+        'https://api.spotify.com/v1/browse/categories',
+        {},
+        (response) => response.categories.items,
+      );
+    },
+
+    category(root, args, context, info) {
+      return apiRequest(spotifyApiClient)(
+        `https://api.spotify.com/v1/browse/categories/${escape(args.id)}`
+      );
+    },
+
+    genres(root, args, context, info) {
+      return apiRequest(spotifyApiClient)(
+        'https://api.spotify.com/v1/recommendations/available-genre-seeds',
+        {},
+        (response) => response.genres,
       );
     },
    };
