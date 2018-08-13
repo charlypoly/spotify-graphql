@@ -68,5 +68,6 @@ export function trackResolvers(spotifyApiClient) {
         track.id
       );
     }
+
   };
 }

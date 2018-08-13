@@ -3,7 +3,7 @@
   "version": "1.4.0",
   "repository": {
     "type": "git",
-    "url": "git://thefrenchhouse/spotify-graphql.git"
+    "url": "git://wittydeveloper/spotify-graphql.git"
   },
   "main": "dist/index.js",
   "typings": "definitions/spotify-graphql",
@@ -33,7 +33,7 @@
     "standard-version": "^4.0.0",
     "tslint": "~3.15.1",
     "tslint-microsoft-contrib": "~2.0.13",
-    "typescript": "^2.2.1"
+    "typescript": "^3"
   },
   "scripts": {
     "test": "gulp test",
@@ -43,12 +43,12 @@
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",
   "dependencies": {
-    "graphql": "^0.9.1",
-    "graphql-tools": "0.10.1",
-    "lodash": "^4.17.4",
+    "graphql": "^0",
+    "graphql-tools": "3.x^",
+    "lodash": "^4.x",
     "lru_map": "^0.3.3",
     "request": "^2.81.0",
-    "spotify-web-api-node": "^2.3.6",
-    "when": "^3.7.7"
+    "spotify-web-api-node": "^3.x",
+    "when": "^3.x"
   }
 }
