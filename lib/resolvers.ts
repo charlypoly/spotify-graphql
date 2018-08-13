@@ -6,6 +6,7 @@ import { privateUserResolvers } from './resolvers/privateUser';
 import { publicUserResolvers } from './resolvers/publicUser';
 import { queries } from './resolvers/queries';
 import { trackResolvers } from './resolvers/track';
+import { browseResolvers } from './resolvers/browse';
 
 export default (spotifyApiClient: any): any => {
   return  {
@@ -18,6 +19,7 @@ export default (spotifyApiClient: any): any => {
     PrivateUser: privateUserResolvers(spotifyApiClient),
     PublicUser: publicUserResolvers(spotifyApiClient),
     Player: playerResolvers(spotifyApiClient),
+    Browse: browseResolvers(spotifyApiClient),
   };
 
 };

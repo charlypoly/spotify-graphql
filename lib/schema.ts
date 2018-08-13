@@ -86,8 +86,8 @@ type PrivateUser {
   top_tracks(throttle: Int, continueOnError: Int, limit: Int): [Track]
   images: [Image]
   artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
+  recently_played(throttle: Int, continueOnError: Int, limit: Int): [Track]
   devices: [Device]
-  recently_played: [Track]
   player: Player
 }
 
@@ -180,6 +180,29 @@ type Player {
   context: PlayerContext
 }
 
+type CategoryIcon {
+  height: String
+  width: String
+  url: String
+}
+
+type Category {
+  playlists: [Playlist]
+  href: String
+  icons: [CategoryIcon]
+  id: String
+  name: String
+}
+
+type Browse {
+  genres: [String]
+  new_releases(country: String, throttle: Int, continueOnError: Int, limit: Int): [Album]
+  featured_playlists(country: String, locale: String, timestamp: String, throttle: Int, continueOnError: Int, limit: Int): [Playlist]
+  recommendations: [Track]
+  categories(country: String, locale: String, throttle: Int, continueOnError: Int, limit: Int): [Category]
+  category(id: String!, country: String, locale: String): Category
+}
+
 # the schema allows the following query:
 type Query {
   me: PrivateUser
@@ -193,6 +216,7 @@ type Query {
   album(id: String!): Album
   albums(ids: String!): [Album]
   playlist(id: String!, userId: String!): Playlist
+  browse: Browse
 }
 
 # we need to tell the server which types represent the root query

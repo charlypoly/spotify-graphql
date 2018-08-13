@@ -138,5 +138,8 @@ export function queries(spotifyApiClient) {
         args.ids.split(',')
       );
     },
+
+    browse() { return {}; }
+
    };
 }
