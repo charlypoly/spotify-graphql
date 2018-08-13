@@ -87,6 +87,7 @@ type PrivateUser {
   images: [Image]
   artists(throttle: Int, continueOnError: Int, limit: Int): [Artist]
   devices: [Device]
+  recently_played: [Track]
   player: Player
 }
 

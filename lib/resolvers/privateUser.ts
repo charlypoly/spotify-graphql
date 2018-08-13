@@ -62,5 +62,13 @@ export function privateUserResolvers(spotifyApiClient) {
       );
     },
 
+    recently_played(user, variables) {
+      return paginatorFromVariables('CursorPaging', variables)(
+        spotifyApiClient,
+        'getMyRecentlyPlayed',
+        (response) => response.body.items
+      );
+    },
+
   };
 }
