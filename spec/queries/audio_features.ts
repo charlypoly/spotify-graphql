@@ -7,7 +7,7 @@ describe('Query: audio_features(trackIds: String): [AudioFeatures]', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.audio_features').then((data) => response = data).then(done);
+    loadFixture('queries.audio_features').then((data) => response = data).then(() => done());
   });
 
   nock.disableNetConnect();

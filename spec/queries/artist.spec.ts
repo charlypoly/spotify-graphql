@@ -7,7 +7,7 @@ describe('Query : artist(id: String): Artist', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.artist.response').then((data) => response = data).then(done);
+    loadFixture('queries.artist.response').then((data) => response = data).then(() => done());
   });
 
   nock.disableNetConnect();
@@ -64,7 +64,7 @@ describe('Query : artist(id: String): Artist', () => {
     beforeEach((done) => {
       clearCache();
       loadFixture('queries.artist.searchResults').then((data) => searchResults = data).then(() => {
-        loadFixture('queries.artist.johnMayerArtist').then((data) => johnMayerArtist = data).then(done);
+        loadFixture('queries.artist.johnMayerArtist').then((data) => johnMayerArtist = data).then(() => done());
       });
     });
     let requestArtistById;

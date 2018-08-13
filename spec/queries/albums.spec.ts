@@ -7,7 +7,7 @@ describe('Query : albums(ids: String): [Album]', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.albums').then((data) => response = data).then(done);
+    loadFixture('queries.albums').then((data) => response = data).then(() => done());
   });
 
   nock.disableNetConnect();

@@ -400,9 +400,9 @@ describe('paginator', () => {
           let paginator = paginatorFactory('CursorPaging', { limit: 20 });
 
           let finished = () => {
-            expect(firstRequest.isDone()).toBeTruthy('first request should be done');
-            expect(secondRequest.isDone()).toBeTruthy('second request should be done');
-            expect(thirdRequest.isDone()).toBeFalsy('third request should NOT be done');
+            expect(firstRequest.isDone()).toBeTruthy();
+            expect(secondRequest.isDone()).toBeTruthy();
+            expect(thirdRequest.isDone()).toBeFalsy();
             done();
           };
 

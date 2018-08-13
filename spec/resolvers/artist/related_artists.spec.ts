@@ -9,7 +9,7 @@ describe('Resolver : Artist.related_artists', () => {
     clearCache();
     loadFixture('resolvers.artist.related_artists.artist').then((data) => {
       artistResponse = data;
-      loadFixture('resolvers.artist.related_artists.related_artists').then((data2) => artistRelatedArtists = data2).then(done);
+      loadFixture('resolvers.artist.related_artists.related_artists').then((data2) => artistRelatedArtists = data2).then(() => done());
     });
   });
 

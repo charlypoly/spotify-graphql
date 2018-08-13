@@ -7,7 +7,7 @@ describe('Query : artists(ids: String): [Artist]', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.artists').then((data) => response = data).then(done);
+    loadFixture('queries.artists').then((data) => response = data).then(() => done());
   });
 
 

@@ -7,7 +7,7 @@ describe('Query: me(): PrivateUser', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.me').then((data) => response = data).then(done);
+    loadFixture('queries.me').then((data) => response = data).then(() => done());
   });
 
 

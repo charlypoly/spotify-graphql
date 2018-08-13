@@ -11,7 +11,7 @@ describe('Resolver : user.playlists', () => {
     clearCache();
     loadFixture('resolvers.publicUser.playlists.user').then((data) => {
       userResponse = data;
-      loadFixture('resolvers.publicUser.playlists.userPlaylists').then((data2) => userPlaylistsResponse = data2).then(done);
+      loadFixture('resolvers.publicUser.playlists.userPlaylists').then((data2) => userPlaylistsResponse = data2).then(() => done());
     });
   });
 

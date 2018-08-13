@@ -10,7 +10,7 @@ describe('Resolver : me.albums', () => {
     clearCache();
     loadFixture('resolvers.privateUser.me').then((data) => {
       meResponse = data;
-      loadFixture('resolvers.privateUser.albums.albums').then((data2) => meAlbumsResponse = data2).then(done);
+      loadFixture('resolvers.privateUser.albums.albums').then((data2) => meAlbumsResponse = data2).then(() => done());
     });
   });
 

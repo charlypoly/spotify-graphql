@@ -7,7 +7,7 @@ describe('Query : playlist(id: String): Playlist', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.playlist').then((data) => response = data).then(done);
+    loadFixture('queries.playlist').then((data) => response = data).then(() => done());
   });
 
   nock.disableNetConnect();

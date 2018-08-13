@@ -10,7 +10,7 @@ describe('Resolver : me.top_artists', () => {
     clearCache();
     loadFixture('resolvers.privateUser.me').then((data) => {
       meResponse = data;
-      loadFixture('resolvers.privateUser.top_artists.artists').then((data2) => meTopArtistsResponse = data2).then(done);
+      loadFixture('resolvers.privateUser.top_artists.artists').then((data2) => meTopArtistsResponse = data2).then(() => done());
     });
   });
 

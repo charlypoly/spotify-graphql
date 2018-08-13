@@ -8,7 +8,7 @@ describe('Query : album(id: String): Album', () => {
 
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.album').then((data) => response = data).then(done);
+    loadFixture('queries.album').then((data) => response = data).then(() => done());
   });
 
   nock.disableNetConnect();
@@ -32,7 +32,7 @@ describe('Query : album(id: String): Album', () => {
       nock.cleanAll();
     });
 
-    it('should call promise success callback', (done) => {
+    test('should call promise success callback', (done) => {
       let onSuccess = function (executionResult: any) {
         let data = executionResult.data;
         expect(data.album.name).toBe('Global Warming')
@@ -45,7 +45,9 @@ describe('Query : album(id: String): Album', () => {
         done();
       }
 
-      let onError = (e) => { throw e; };
+      let onError = (e) => {
+        throw e;
+      };
 
       client.query(`
         query {

@@ -7,7 +7,7 @@ describe('Query: track(id: String, name: String): Track', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.track').then((data) => response = data).then(done);
+    loadFixture('queries.track').then((data) => response = data).then(() => done());
   });
 
   nock.disableNetConnect();

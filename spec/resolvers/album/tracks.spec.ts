@@ -10,7 +10,7 @@ describe('Resolver : Album.tracks', () => {
     clearCache();
     loadFixture('resolvers.album.tracks.album').then((data) => {
       albumResponse = data;
-      loadFixture('resolvers.album.tracks.albumTracks').then((data2) => albumTracksResponse = data2).then(done);
+      loadFixture('resolvers.album.tracks.albumTracks').then((data2) => albumTracksResponse = data2).then(() => done());
     });
   });
 

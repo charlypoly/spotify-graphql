@@ -7,7 +7,7 @@ describe('Query: user(id: ...): PublicUser', () => {
   let response;
   beforeEach((done) => {
     clearCache();
-    loadFixture('queries.user').then((data) => response = data).then(done);
+    loadFixture('queries.user').then((data) => response = data).then(() => done());
   });
 
   nock.disableNetConnect();

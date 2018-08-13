@@ -10,7 +10,7 @@ describe('Resolver : Artist.top_tracks', () => {
     clearCache();
     loadFixture('resolvers.artist.top_tracks.artist').then((data) => {
       artistResponse = data;
-      loadFixture('resolvers.artist.top_tracks.top_tracks').then((data2) => artistTopTracksResponse = data2).then(done);
+      loadFixture('resolvers.artist.top_tracks.top_tracks').then((data2) => artistTopTracksResponse = data2).then(() => done());
     });
   });
 

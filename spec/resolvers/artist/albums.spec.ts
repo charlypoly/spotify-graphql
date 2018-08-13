@@ -14,7 +14,7 @@ describe('Resolver : Artist.albums', () => {
     beforeEach((done) => {
       loadFixture('resolvers.artist.albums.artist').then((data) => {
         artistResponse = data;
-        loadFixture('resolvers.artist.albums.albums').then((data2) => artistAlbums = data2).then(done);
+        loadFixture('resolvers.artist.albums.albums').then((data2) => artistAlbums = data2).then(() => done());
       });
     });
 
@@ -76,7 +76,7 @@ describe('Resolver : Artist.albums', () => {
     beforeEach((done) => {
       loadFixture('resolvers.artist.albums.album_type.artist').then((data) => {
         artistResponse = data;
-        loadFixture('resolvers.artist.albums.album_type.albums').then((data2) => artistAlbums = data2).then(done);
+        loadFixture('resolvers.artist.albums.album_type.albums').then((data2) => artistAlbums = data2).then(() => done());
       });
     });
 
