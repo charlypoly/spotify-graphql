@@ -1,12 +1,11 @@
-# Spotify GraphQL [![npm version](https://badge.fury.io/js/spotify-graphql.svg)](https://badge.fury.io/js/spotify-graphql) [![https://david-dm.org/thefrenchhouse/spotify-graphql](https://david-dm.org/thefrenchhouse/spotify-graphql.svg)](https://david-dm.org/thefrenchhouse/spotify-graphql) [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
+# Spotify GraphQL [![npm version](https://badge.fury.io/js/spotify-graphql.svg)](https://badge.fury.io/js/spotify-graphql) [![https://david-dm.org/wittydeveloper/spotify-graphql](https://david-dm.org/wittydeveloper/spotify-graphql.svg)](https://david-dm.org/wittydeveloper/spotify-graphql) [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 GraphQL schema for Spotify Web API — TypeScript / Node.js (v6)
 
 --------
 **[Try with the interactive console !](https://spotify-api-graphql-console.herokuapp.com/)**
 
-See [spotify-graphql-examples](https://github.com/thefrenchhouse/spotify-graphql-examples) for more examples
+See [spotify-graphql-examples](https://github.com/wittydeveloper/spotify-graphql-examples) for more examples
 
-API documentation : http://thefrench.house/spotify-graphql/
 
 -------
 
