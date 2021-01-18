@@ -34,7 +34,12 @@
           "type": "string"
         },
         "type": {
-          "enum": ["artist", "playlist", "album", "show"]
+          "enum": [
+            "artist",
+            "playlist",
+            "album",
+            "show"
+          ]
         },
         "url": {
           "type": "string"
@@ -85,7 +90,11 @@
       "required": [],
       "properties": {
         "reason": {
-          "enum": ["market", "product", "explicit"]
+          "enum": [
+            "market",
+            "product",
+            "explicit"
+          ]
         }
       }
     },

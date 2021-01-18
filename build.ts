@@ -1,7 +1,7 @@
-import { YamlConfig } from '@graphql-mesh/types'
 import * as fs from 'fs'
-import { JSONSchema6 } from 'json-schema'
 import * as yaml from 'js-yaml'
+import { YamlConfig } from '@graphql-mesh/types'
+import { JSONSchema6 } from 'json-schema'
 
 const glob = require('glob')
 

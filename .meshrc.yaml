@@ -4,10 +4,6 @@ sources:
       jsonSchema:
         baseSchema: ./json-schemas/baseSchema.json
         baseUrl: https://api.spotify.com/v1/
-        operationHeaders:
-          Authorization: >-
-            Bearer
-            BQBQGpADOBflMquin3martdVVhMYGPei0Ecuh5fYLOP1qPgSXRNtSSfuJqEMyS9ZToK83jP1611VDr0qAVDN8hehaTYCkyKavVHJYwvuMh11MIS-rFvRfWkAyRg-kvQQSp2M4NqLB81zKVXdpm9Uyc4M5yLcnEwwHOZJ48w4QAnpTmjcSeuhfqz3X_d7DJOdIkjHfkteUUGXRUAJ0WN6Lj4oY3TXKkkDxx1B8jCAIxZRlbdENHxjKP1F1wjLh6FtgMODdulC9Ykwkg--
         operations:
           - type: Query
             field: playerRecentlyPlayed
