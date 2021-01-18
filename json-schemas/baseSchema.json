@@ -1,0 +1,150 @@
+{
+  "type": "object",
+  "properties": {},
+  "definitions": {
+    "CursorObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "after": {
+          "type": "string"
+        },
+        "before": {
+          "type": "string"
+        }
+      }
+    },
+    "ExternalUrlObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "spotify": {
+          "type": "string"
+        }
+      }
+    },
+    "ContextObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["artist", "playlist", "album", "show"]
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "PlayHistoryObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "played_at": {
+          "type": "string"
+        },
+        "context": {
+          "$ref": "#/definitions/ContextObject"
+        },
+        "track": {
+          "$ref": "#/definitions/SimplifiedTrackObject"
+        }
+      }
+    },
+    "SimplifiedArtistObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "TrackRestrictionObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "reason": {
+          "enum": ["market", "product", "explicit"]
+        }
+      }
+    },
+    "SimplifiedTrackObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "artists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedArtistObject"
+          }
+        },
+        "available_markets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disc_number": {
+          "type": "number"
+        },
+        "duration_ms": {
+          "type": "number"
+        },
+        "explicit": {
+          "type": "boolean"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_playable": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "preview_url": {
+          "type": "string"
+        },
+        "restrictions": {
+          "$ref": "#/definitions/TrackRestrictionObject"
+        },
+        "track_number": {
+          "type": "number"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

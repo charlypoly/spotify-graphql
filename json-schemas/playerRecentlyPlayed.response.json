@@ -1,0 +1,35 @@
+{
+  "$ref": "#/definitions/PlayerRecentlyPlayed",
+  "definitions": {
+    "PlayerRecentlyPlayed": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlayHistoryObject"
+          }
+        },
+        "cursors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CursorObject"
+          }
+        }
+      }
+    }
+  }
+}

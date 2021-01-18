@@ -16,10 +16,5 @@
     "experimentalDecorators": true,
     "skipLibCheck": true
   },
-  "include": [
-    "index.ts",
-    "test.ts",
-    "lib/**/*",
-    "spec/**/*"
-  ]
+  "include": ["index.ts"]
 }

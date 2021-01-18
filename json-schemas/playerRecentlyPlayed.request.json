@@ -1,0 +1,20 @@
+{
+  "$ref": "#/definitions/PlayerRecentlyPlayedInput",
+  "definitions": {
+    "PlayerRecentlyPlayedInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "after": {
+          "type": "number"
+        },
+        "before": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}
