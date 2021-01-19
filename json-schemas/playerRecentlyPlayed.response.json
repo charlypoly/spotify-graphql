@@ -11,6 +11,9 @@
         "next": {
           "type": "string"
         },
+        "previous": {
+          "type": "string"
+        },
         "limit": {
           "type": "number"
         },
