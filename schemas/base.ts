@@ -114,7 +114,7 @@ const base = schema.schema(
       currently_playing_type: schema.types.type('string'),
       device: schema.types.definition('DeviceObject'),
       is_playing: schema.types.type('boolean'),
-      item: schema.types.anyOf(
+      item: schema.types.oneOf(
         schema.types.definition('TrackObject'),
         schema.types.definition('EpisodeObject')
       ),
@@ -127,7 +127,7 @@ const base = schema.schema(
       context: schema.types.definition('ContextObject'),
       currently_playing_type: schema.types.type('string'),
       is_playing: schema.types.type('boolean'),
-      item: schema.types.anyOf(
+      item: schema.types.oneOf(
         schema.types.definition('TrackObject'),
         schema.types.definition('EpisodeObject')
       ),
@@ -158,7 +158,27 @@ const base = schema.schema(
       toggling_shuffle: schema.types.type('boolean'),
       transferring_playback: schema.types.type('boolean'),
     },
-    EpisodeObject: {},
+    EpisodeObject: {
+      audio_preview_url: schema.types.type('string'),
+      description: schema.types.type('string'),
+      duration_ms: schema.types.type('number'),
+      explicit: schema.types.type('boolean'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      is_externally_hosted: schema.types.type('boolean'),
+      is_playable: schema.types.type('boolean'),
+      language: schema.types.type('string'),
+      languages: schema.types.arrayOf(schema.types.type('string')),
+      name: schema.types.type('string'),
+      release_date: schema.types.type('string'),
+      release_date_precision: schema.types.enumOf('year', 'month', 'day'),
+      resume_point: schema.types.definition('ResumePointObject'),
+      show: schema.types.definition('SimplifiedShowObject'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
     ErrorObject: {
       message: schema.types.type('string'),
       status: schema.types.type('number'),
@@ -198,8 +218,194 @@ const base = schema.schema(
       reason: schema.types.type('string'),
       status: schema.types.type('number'),
     },
-    PlaylistObject: {},
-
+    PlaylistObject: {
+      collaborative: schema.types.type('boolean'),
+      description: schema.types.type('string'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      followers: schema.types.arrayOf(
+        schema.types.definition('FollowersObject')
+      ),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      name: schema.types.type('string'),
+      owner: schema.types.definition('PublicUserObject'),
+      public: schema.types.type('boolean'),
+      snapshot_id: schema.types.type('string'),
+      tracks: schema.types.arrayOf(
+        schema.types.definition('PlaylistTrackObject')
+      ),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    PlaylistTrackObject: {
+      added_at: schema.types.type('string'), // timestamp date string
+      added_by: schema.types.definition('PublicUserObject'),
+      is_local: schema.types.type('boolean'),
+      track: schema.types.oneOf(
+        schema.types.definition('TrackObject'),
+        schema.types.definition('EpisodeObject')
+      ),
+    },
+    PlaylistTracksRefObject: {
+      href: schema.types.type('string'),
+      total: schema.types.type('number'),
+    },
+    PrivateUserObject: {
+      country: schema.types.type('string'),
+      display_name: schema.types.type('string'),
+      email: schema.types.type('string'),
+      explicit_content: schema.types.definition(
+        'ExplicitContentSettingsObject'
+      ),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      followers: schema.types.arrayOf(
+        schema.types.definition('FollowersObject')
+      ),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      product: schema.types.type('string'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    PublicUserObject: {
+      display_name: schema.types.type('string'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      followers: schema.types.arrayOf(
+        schema.types.definition('FollowersObject')
+      ),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    RecommendationSeedObject: {
+      afterFilteringSize: schema.types.type('number'),
+      afterRelinkingSize: schema.types.type('number'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      initialPoolSize: schema.types.type('number'),
+      type: schema.types.type('string'),
+    },
+    RecommendationsObject: {
+      seeds: schema.types.arrayOf(
+        schema.types.definition('RecommendationSeedObject')
+      ),
+      tracks: schema.types.arrayOf(
+        schema.types.definition('SimplifiedTrackObject')
+      ),
+    },
+    ResumePointObject: {
+      fully_played: schema.types.type('boolean'),
+      resume_position_ms: schema.types.type('number'),
+    },
+    SavedAlbumObject: {
+      added_at: schema.types.type('string'), // timestamp date string
+      album: schema.types.definition('AlbumObject'),
+    },
+    SavedShowObject: {
+      added_at: schema.types.type('string'), // timestamp date string
+      album: schema.types.definition('SimplifiedShowObject'),
+    },
+    SavedTrackObject: {
+      added_at: schema.types.type('string'), // timestamp date string
+      album: schema.types.definition('TrackObject'),
+    },
+    ShowObject: {
+      available_markets: schema.types.arrayOf(schema.types.type('string')),
+      copyrights: schema.types.arrayOf(
+        schema.types.definition('CopyrightObject')
+      ),
+      description: schema.types.type('string'),
+      episodes: schema.types.arrayOf(
+        schema.types.definition('SimplifiedEpisodeObject')
+      ),
+      explicit: schema.types.type('boolean'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      is_externally_hosted: schema.types.type('boolean'),
+      languages: schema.types.arrayOf(schema.types.type('string')),
+      media_type: schema.types.type('string'),
+      name: schema.types.type('string'),
+      publisher: schema.types.type('string'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    SimplifiedAlbumObject: {
+      album_group: schema.types.type('string'),
+      album_type: schema.types.type('string'),
+      artists: schema.types.arrayOf(
+        schema.types.definition('SimplifiedArtistObject')
+      ),
+      available_markets: schema.types.arrayOf(schema.types.type('string')),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      name: schema.types.type('string'),
+      release_date: schema.types.type('string'),
+      release_date_precision: schema.types.enumOf('year', 'month', 'day'),
+      restrictions: schema.types.definition('AlbumRestrictionObject'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    SimplifiedEpisodeObject: {
+      audio_preview_url: schema.types.type('string'),
+      description: schema.types.type('string'),
+      duration_ms: schema.types.type('number'),
+      explicit: schema.types.type('boolean'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      is_externally_hosted: schema.types.type('boolean'),
+      is_playable: schema.types.type('boolean'),
+      language: schema.types.type('string'),
+      languages: schema.types.arrayOf(schema.types.type('string')),
+      name: schema.types.type('string'),
+      release_date: schema.types.type('string'),
+      release_date_precision: schema.types.enumOf('year', 'month', 'day'),
+      resume_point: schema.types.definition('ResumePointObject'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    SimplifiedPlaylistObject: {
+      collaborative: schema.types.type('boolean'),
+      description: schema.types.type('string'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      name: schema.types.type('string'),
+      owner: schema.types.definition('PublicUserObject'),
+      public: schema.types.type('boolean'),
+      snapshot_id: schema.types.type('string'),
+      tracks: schema.types.definition('PlaylistTracksRefObject'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    SimplifiedShowObject: {
+      available_markets: schema.types.arrayOf(schema.types.type('string')),
+      copyrights: schema.types.arrayOf(
+        schema.types.definition('CopyrightObject')
+      ),
+      description: schema.types.type('string'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      images: schema.types.arrayOf(schema.types.definition('ImageObject')),
+      is_externally_hosted: schema.types.type('boolean'),
+      languages: schema.types.arrayOf(schema.types.type('string')),
+      media_type: schema.types.type('string'),
+      name: schema.types.type('string'),
+      publisher: schema.types.type('string'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
     SimplifiedArtistObject: {
       external_urls: schema.types.definition('ExternalUrlObject'),
       href: schema.types.type('string'),
@@ -222,6 +428,7 @@ const base = schema.schema(
       external_urls: schema.types.definition('ExternalUrlObject'),
       href: schema.types.type('string'),
       id: schema.types.type('string'),
+      is_local: schema.types.type('boolean'),
       is_playable: schema.types.type('boolean'),
       // documented but not-found..
       // linked_from: schema.types.definition('LinkedTrackObject'),
@@ -231,6 +438,44 @@ const base = schema.schema(
       track_number: schema.types.type('number'),
       type: schema.types.type('string'),
       uri: schema.types.type('string'),
+    },
+    TrackObject: {
+      album: schema.types.definition('SimplifiedAlbumObject'),
+      artists: schema.types.arrayOf(schema.types.definition('ArtistObject')),
+      available_markets: schema.types.arrayOf(schema.types.type('string')),
+      disc_number: schema.types.type('number'),
+      duration_ms: schema.types.type('number'),
+      explicit: schema.types.type('boolean'),
+      external_ids: schema.types.definition('ExternalIdObject'),
+      external_urls: schema.types.definition('ExternalUrlObject'),
+      href: schema.types.type('string'),
+      id: schema.types.type('string'),
+      is_playable: schema.types.type('boolean'),
+      // documented but not-found..
+      // linked_from: schema.types.definition('LinkedTrackObject'),
+      name: schema.types.type('string'),
+      popularity: schema.types.type('number'),
+      preview_url: schema.types.type('string'),
+      restrictions: schema.types.definition('TrackRestrictionObject'),
+      track_number: schema.types.type('number'),
+      type: schema.types.type('string'),
+      uri: schema.types.type('string'),
+    },
+    TuneableTrackObject: {
+      acousticness: schema.types.type('number'),
+      danceability: schema.types.type('number'),
+      duration_ms: schema.types.type('number'),
+      energy: schema.types.type('number'),
+      instrumentalness: schema.types.type('number'),
+      key: schema.types.type('number'),
+      liveness: schema.types.type('number'),
+      loudness: schema.types.type('number'),
+      mode: schema.types.type('number'),
+      popularity: schema.types.type('number'),
+      speechiness: schema.types.type('number'),
+      tempo: schema.types.type('number'),
+      time_signature: schema.types.type('number'),
+      valence: schema.types.type('number'),
     },
   }
 )

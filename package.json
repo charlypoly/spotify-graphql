@@ -22,7 +22,8 @@
   "scripts": {
     "prettier:check": "prettier -c \"**/*.ts\"",
     "prettier:format": "prettier -w \"**/*.ts\"",
-    "build": "ts-node build.ts"
+    "build": "ts-node build.ts",
+    "serve": "mesh serve"
   },
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",

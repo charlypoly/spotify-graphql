@@ -309,7 +309,7 @@
           "type": "boolean"
         },
         "item": {
-          "anyOf": [
+          "oneOf": [
             {
               "$ref": "#/definitions/TrackObject"
             },
@@ -346,7 +346,7 @@
           "type": "boolean"
         },
         "item": {
-          "anyOf": [
+          "oneOf": [
             {
               "$ref": "#/definitions/TrackObject"
             },
@@ -441,7 +441,75 @@
     "EpisodeObject": {
       "type": "object",
       "required": [],
-      "properties": {}
+      "properties": {
+        "audio_preview_url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration_ms": {
+          "type": "number"
+        },
+        "explicit": {
+          "type": "boolean"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "is_externally_hosted": {
+          "type": "boolean"
+        },
+        "is_playable": {
+          "type": "boolean"
+        },
+        "language": {
+          "type": "string"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "release_date_precision": {
+          "enum": [
+            "year",
+            "month",
+            "day"
+          ]
+        },
+        "resume_point": {
+          "$ref": "#/definitions/ResumePointObject"
+        },
+        "show": {
+          "$ref": "#/definitions/SimplifiedShowObject"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
     },
     "ErrorObject": {
       "type": "object",
@@ -563,7 +631,578 @@
     "PlaylistObject": {
       "type": "object",
       "required": [],
-      "properties": {}
+      "properties": {
+        "collaborative": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "followers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FollowersObject"
+          }
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/PublicUserObject"
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlaylistTrackObject"
+          }
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "PlaylistTrackObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "added_at": {
+          "type": "string"
+        },
+        "added_by": {
+          "$ref": "#/definitions/PublicUserObject"
+        },
+        "is_local": {
+          "type": "boolean"
+        },
+        "track": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TrackObject"
+            },
+            {
+              "$ref": "#/definitions/EpisodeObject"
+            }
+          ]
+        }
+      }
+    },
+    "PlaylistTracksRefObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "total": {
+          "type": "number"
+        }
+      }
+    },
+    "PrivateUserObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "explicit_content": {
+          "$ref": "#/definitions/ExplicitContentSettingsObject"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "followers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FollowersObject"
+          }
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "product": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "PublicUserObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "display_name": {
+          "type": "string"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "followers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FollowersObject"
+          }
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "RecommendationSeedObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "afterFilteringSize": {
+          "type": "number"
+        },
+        "afterRelinkingSize": {
+          "type": "number"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "initialPoolSize": {
+          "type": "number"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "RecommendationsObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "seeds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RecommendationSeedObject"
+          }
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedTrackObject"
+          }
+        }
+      }
+    },
+    "ResumePointObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "fully_played": {
+          "type": "boolean"
+        },
+        "resume_position_ms": {
+          "type": "number"
+        }
+      }
+    },
+    "SavedAlbumObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "added_at": {
+          "type": "string"
+        },
+        "album": {
+          "$ref": "#/definitions/AlbumObject"
+        }
+      }
+    },
+    "SavedShowObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "added_at": {
+          "type": "string"
+        },
+        "album": {
+          "$ref": "#/definitions/SimplifiedShowObject"
+        }
+      }
+    },
+    "SavedTrackObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "added_at": {
+          "type": "string"
+        },
+        "album": {
+          "$ref": "#/definitions/TrackObject"
+        }
+      }
+    },
+    "ShowObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "available_markets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "copyrights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CopyrightObject"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "episodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedEpisodeObject"
+          }
+        },
+        "explicit": {
+          "type": "boolean"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "is_externally_hosted": {
+          "type": "boolean"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "media_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "SimplifiedAlbumObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "album_group": {
+          "type": "string"
+        },
+        "album_type": {
+          "type": "string"
+        },
+        "artists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedArtistObject"
+          }
+        },
+        "available_markets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "release_date_precision": {
+          "enum": [
+            "year",
+            "month",
+            "day"
+          ]
+        },
+        "restrictions": {
+          "$ref": "#/definitions/AlbumRestrictionObject"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "SimplifiedEpisodeObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "audio_preview_url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration_ms": {
+          "type": "number"
+        },
+        "explicit": {
+          "type": "boolean"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "is_externally_hosted": {
+          "type": "boolean"
+        },
+        "is_playable": {
+          "type": "boolean"
+        },
+        "language": {
+          "type": "string"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "release_date_precision": {
+          "enum": [
+            "year",
+            "month",
+            "day"
+          ]
+        },
+        "resume_point": {
+          "$ref": "#/definitions/ResumePointObject"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "SimplifiedPlaylistObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "collaborative": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/PublicUserObject"
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "tracks": {
+          "$ref": "#/definitions/PlaylistTracksRefObject"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "SimplifiedShowObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "available_markets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "copyrights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CopyrightObject"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObject"
+          }
+        },
+        "is_externally_hosted": {
+          "type": "boolean"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "media_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
     },
     "SimplifiedArtistObject": {
       "type": "object",
@@ -636,6 +1275,9 @@
         "id": {
           "type": "string"
         },
+        "is_local": {
+          "type": "boolean"
+        },
         "is_playable": {
           "type": "boolean"
         },
@@ -656,6 +1298,120 @@
         },
         "uri": {
           "type": "string"
+        }
+      }
+    },
+    "TrackObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "album": {
+          "$ref": "#/definitions/SimplifiedAlbumObject"
+        },
+        "artists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArtistObject"
+          }
+        },
+        "available_markets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disc_number": {
+          "type": "number"
+        },
+        "duration_ms": {
+          "type": "number"
+        },
+        "explicit": {
+          "type": "boolean"
+        },
+        "external_ids": {
+          "$ref": "#/definitions/ExternalIdObject"
+        },
+        "external_urls": {
+          "$ref": "#/definitions/ExternalUrlObject"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_playable": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "popularity": {
+          "type": "number"
+        },
+        "preview_url": {
+          "type": "string"
+        },
+        "restrictions": {
+          "$ref": "#/definitions/TrackRestrictionObject"
+        },
+        "track_number": {
+          "type": "number"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "TuneableTrackObject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "acousticness": {
+          "type": "number"
+        },
+        "danceability": {
+          "type": "number"
+        },
+        "duration_ms": {
+          "type": "number"
+        },
+        "energy": {
+          "type": "number"
+        },
+        "instrumentalness": {
+          "type": "number"
+        },
+        "key": {
+          "type": "number"
+        },
+        "liveness": {
+          "type": "number"
+        },
+        "loudness": {
+          "type": "number"
+        },
+        "mode": {
+          "type": "number"
+        },
+        "popularity": {
+          "type": "number"
+        },
+        "speechiness": {
+          "type": "number"
+        },
+        "tempo": {
+          "type": "number"
+        },
+        "time_signature": {
+          "type": "number"
+        },
+        "valence": {
+          "type": "number"
         }
       }
     }
