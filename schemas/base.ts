@@ -477,6 +477,11 @@ const base = schema.schema(
       time_signature: schema.types.type('number'),
       valence: schema.types.type('number'),
     },
+    SearchResultsArtists: offsetPagingObjectOf('ArtistObject'),
+    SearchResultsAlbums: offsetPagingObjectOf('SimplifiedAlbumObject'),
+    SearchResultsShows: offsetPagingObjectOf('SimplifiedShowObject'),
+    SearchResultsTracks: offsetPagingObjectOf('TrackObject'),
+    SearchResultsEpisodes: offsetPagingObjectOf('SimplifiedEpisodeObject'),
   }
 )
 

@@ -6,7 +6,6 @@ import { JSONSchema6 } from 'json-schema'
 const glob = require('glob')
 
 import baseSchema from './schemas/base'
-import operation from './schemas/operations/player'
 
 const schemaToFilePath = (schema: JSONSchema6, filename: string) => {
   const path = `./json-schemas/${filename}.json`
@@ -14,7 +13,7 @@ const schemaToFilePath = (schema: JSONSchema6, filename: string) => {
   return path
 }
 
-const processOperationDefinition = (file) => {
+const processOperationDefinition = (file): YamlConfig.JsonSchemaOperation => {
   const operation: YamlConfig.JsonSchemaOperation = require(file).default
   return {
     ...operation,
@@ -43,15 +42,19 @@ glob('./schemas/operations/*.ts', (err, files) => {
     process.exit(-1)
   }
   Promise.all(files.map(processOperationDefinition)).then((operations) => {
-    const configuration = {
+    const configuration: YamlConfig.Config = {
       sources: [
         {
           name: 'Spotify',
           handler: {
             jsonSchema: {
+              operationHeaders: {
+                Authorization:
+                  'Bearer BQDJo99kYrXaXoMPKL1DBoYpvbbmaeylDKkMD-wlQulFp30H-v1pI92rsL16e1x37LUZrGpmtDYuvNYF_63SezN6S3MveVk9NewTD4bRFmubTxkejPw651Tis3MfnEz9lVYaHIoChVXqW7MSSBHmUI75v0pws15BHgBUfT6fX0Q5ZzFz_BnxlUypOAcWaKCbnbs4kjhFu8lTvP-XjSUEfuAwqSctZo7WL_mgjh_M5WJl7UymbmFfYjoMikH0ayGt4uMc1nwRSw55e5le',
+              },
               baseSchema: schemaToFilePath(baseSchema, 'baseSchema'),
               baseUrl: 'https://api.spotify.com/v1/',
-              operations,
+              operations: operations as YamlConfig.JsonSchemaOperation[],
             },
           },
         },

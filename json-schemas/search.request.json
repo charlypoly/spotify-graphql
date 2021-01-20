@@ -1,0 +1,31 @@
+{
+  "$ref": "#/definitions/Search",
+  "definitions": {
+    "Search": {
+      "type": "object",
+      "required": [
+        "q",
+        "type"
+      ],
+      "properties": {
+        "q": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "include_external": {
+          "enum": [
+            "audio"
+          ]
+        }
+      }
+    }
+  }
+}

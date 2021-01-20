@@ -2,12 +2,28 @@ sources:
   - name: Spotify
     handler:
       jsonSchema:
+        operationHeaders:
+          Authorization: >-
+            Bearer
+            BQDJo99kYrXaXoMPKL1DBoYpvbbmaeylDKkMD-wlQulFp30H-v1pI92rsL16e1x37LUZrGpmtDYuvNYF_63SezN6S3MveVk9NewTD4bRFmubTxkejPw651Tis3MfnEz9lVYaHIoChVXqW7MSSBHmUI75v0pws15BHgBUfT6fX0Q5ZzFz_BnxlUypOAcWaKCbnbs4kjhFu8lTvP-XjSUEfuAwqSctZo7WL_mgjh_M5WJl7UymbmFfYjoMikH0ayGt4uMc1nwRSw55e5le
         baseSchema: ./json-schemas/baseSchema.json
         baseUrl: https://api.spotify.com/v1/
         operations:
           - type: Query
             field: playerRecentlyPlayed
-            description: ''
+            description: >-
+              Get Current User's Recently Played Tracks: Get tracks from the
+              current user’s recently played tracks. Note: Currently doesn’t
+              support podcast episodes.
             path: /me/player/recently-played
             requestSchema: ./json-schemas/playerRecentlyPlayed.request.json
             responseSchema: ./json-schemas/playerRecentlyPlayed.response.json
+          - type: Query
+            field: search
+            description: >-
+              Search for an Item: Get Spotify Catalog information about albums,
+              artists, playlists, tracks, shows or episodes that match a keyword
+              string.
+            path: /search
+            requestSchema: ./json-schemas/search.request.json
+            responseSchema: ./json-schemas/search.response.json

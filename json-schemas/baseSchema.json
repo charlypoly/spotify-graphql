@@ -1414,6 +1414,156 @@
           "type": "number"
         }
       }
+    },
+    "SearchResultsArtists": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArtistObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    },
+    "SearchResultsAlbums": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedAlbumObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    },
+    "SearchResultsShows": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedShowObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    },
+    "SearchResultsTracks": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TrackObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    },
+    "SearchResultsEpisodes": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedEpisodeObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
     }
   }
 }
