@@ -48,7 +48,7 @@
     "lodash": "^4.17.4",
     "lru_map": "^0.3.3",
     "request": "^2.81.0",
-    "spotify-web-api-node": "^2.3.6",
+    "spotify-web-api-node": "^4.0.0",
     "when": "^3.7.7"
   }
 }
