@@ -82,7 +82,7 @@ function shouldStopIterate(iterator: anyPagingIterator, maxResults: number): boo
     case 'offset':
       // tslint:disable-next-line:comment-format
       // console.log('shouldStopIterate', `${iterator.results.length} >= ${maxResults}`);
-      if (!!iterator.total) {
+      if (iterator.total !== null) {
         if (iterator.offset >= iterator.total) {
           return true;
         } else {
