@@ -1,7 +1,7 @@
 import { YamlConfig } from '@graphql-mesh/types'
 import * as schema from 'functional-json-schema'
 
-import { cursorPagingObjectOf } from '../base'
+import { cursorPagingObjectOf } from '../../base'
 
 const operation: YamlConfig.JsonSchemaOperation = {
   type: 'Query',
@@ -15,7 +15,7 @@ const operation: YamlConfig.JsonSchemaOperation = {
     before: schema.types.type('number'),
   }),
   responseSchema: schema.definition(
-    'PlayerRecentlyPlayed',
+    'PlayerRecentlyPlayedOutput',
     cursorPagingObjectOf('PlayHistoryObject')
   ),
 }

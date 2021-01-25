@@ -1,7 +1,7 @@
 {
-  "$ref": "#/definitions/PlayerRecentlyPlayedOutput",
+  "$ref": "#/definitions/ShowEpisodesOutput",
   "definitions": {
-    "PlayerRecentlyPlayedOutput": {
+    "ShowEpisodesOutput": {
       "type": "object",
       "required": [],
       "properties": {
@@ -23,7 +23,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/PlayHistoryObject"
+            "$ref": "#/definitions/SimplifiedEpisodeObject"
           }
         },
         "cursors": {

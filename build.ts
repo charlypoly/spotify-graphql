@@ -36,7 +36,7 @@ const processOperationDefinition = (file): YamlConfig.JsonSchemaOperation => {
   }
 }
 
-glob('./schemas/operations/*.ts', (err, files) => {
+glob('./schemas/operations/**/*.ts', (err, files) => {
   if (err) {
     console.error(err)
     process.exit(-1)

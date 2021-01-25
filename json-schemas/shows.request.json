@@ -1,0 +1,19 @@
+{
+  "$ref": "#/definitions/ShowsInput",
+  "definitions": {
+    "ShowsInput": {
+      "type": "object",
+      "required": [
+        "ids"
+      ],
+      "properties": {
+        "ids": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

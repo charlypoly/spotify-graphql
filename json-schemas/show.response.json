@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/ShowOutput",
+  "definitions": {
+    "ShowOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "test": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

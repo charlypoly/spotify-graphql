@@ -27,3 +27,28 @@ sources:
             path: /search
             requestSchema: ./json-schemas/search.request.json
             responseSchema: ./json-schemas/search.response.json
+          - type: Query
+            field: show
+            description: >-
+              Get a Show: Get Spotify catalog information for a single show
+              identified by its unique Spotify ID.
+            path: /shows/{args.id}
+            requestSchema: ./json-schemas/show.request.json
+            responseSchema: ./json-schemas/show.response.json
+          - type: Query
+            field: showEpisodes
+            description: >-
+              Get a Show's Episodes: Get Spotify catalog information about an
+              show’s episodes. Optional parameters can be used to limit the
+              number of episodes returned.
+            path: /shows/{args.id}/episodes
+            requestSchema: ./json-schemas/showEpisodes.request.json
+            responseSchema: ./json-schemas/showEpisodes.response.json
+          - type: Query
+            field: shows
+            description: >-
+              Get Multiple Shows: Get Spotify catalog information for several
+              shows based on their Spotify IDs.
+            path: /shows
+            requestSchema: ./json-schemas/shows.request.json
+            responseSchema: ./json-schemas/shows.response.json

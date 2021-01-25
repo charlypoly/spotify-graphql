@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/ShowEpisodesInput",
+  "definitions": {
+    "ShowEpisodesInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
