@@ -3,14 +3,14 @@ import * as schema from 'functional-json-schema'
 
 const operation: YamlConfig.JsonSchemaOperation = {
   type: 'Query',
-  field: 'show',
+  field: 'artist',
   description:
-    'Get a Show: Get Spotify catalog information for a single show identified by its unique Spotify ID.',
-  path: '/shows/{args.id}',
-  requestSchema: schema.definition('ShowInput', {
+    'Get an Artist: Get Spotify catalog information for a single artist identified by their unique Spotify ID.',
+  path: '/artists/{args.id}',
+  requestSchema: schema.definition('ArtistInput', {
     market: schema.types.type('string'),
   }),
-  responseTypeName: 'ShowObject',
+  responseTypeName: 'ArtistObject',
 }
 
 export default operation

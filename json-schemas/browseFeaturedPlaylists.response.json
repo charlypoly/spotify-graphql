@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/BrowseFeaturedPlaylistsOutput",
+  "definitions": {
+    "BrowseFeaturedPlaylistsOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "playlists": {
+          "$ref": "#/definitions/BrowseFeaturedPlaylistsPlaylists"
+        }
+      }
+    }
+  }
+}

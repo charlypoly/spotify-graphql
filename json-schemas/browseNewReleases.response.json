@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/BrowseNewReleasesOutput",
+  "definitions": {
+    "BrowseNewReleasesOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "albums": {
+          "$ref": "#/definitions/BrowseNewReleasesAlbums"
+        }
+      }
+    }
+  }
+}

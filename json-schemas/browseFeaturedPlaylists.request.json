@@ -1,0 +1,29 @@
+{
+  "$ref": "#/definitions/BrowseFeaturedPlaylistsInput",
+  "definitions": {
+    "BrowseFeaturedPlaylistsInput": {
+      "type": "object",
+      "required": [
+        "country",
+        "timestamp"
+      ],
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

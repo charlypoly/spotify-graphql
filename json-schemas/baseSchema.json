@@ -1564,6 +1564,126 @@
           "type": "number"
         }
       }
+    },
+    "BrowseNewReleasesAlbums": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedAlbumObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    },
+    "BrowseFeaturedPlaylistsPlaylists": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedPlaylistObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    },
+    "BrowseCategoryPlaylistsPlaylists": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimplifiedPlaylistObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    },
+    "BrowseCategoriesCategories": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CategoryObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
     }
   }
 }

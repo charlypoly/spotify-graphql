@@ -1,7 +1,7 @@
 {
-  "$ref": "#/definitions/ShowEpisodesOutput",
+  "$ref": "#/definitions/AlbumTracksOutput",
   "definitions": {
-    "ShowEpisodesOutput": {
+    "AlbumTracksOutput": {
       "type": "object",
       "required": [],
       "properties": {
@@ -23,7 +23,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/SimplifiedEpisodeObject"
+            "$ref": "#/definitions/SimplifiedTrackObject"
           }
         },
         "offset": {

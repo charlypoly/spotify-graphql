@@ -1,0 +1,17 @@
+{
+  "$ref": "#/definitions/TracksAudioFeaturesOutput",
+  "definitions": {
+    "TracksAudioFeaturesOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "audio_features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AudioFeaturesObject"
+          }
+        }
+      }
+    }
+  }
+}

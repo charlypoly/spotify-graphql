@@ -1,0 +1,19 @@
+{
+  "$ref": "#/definitions/AlbumsInput",
+  "definitions": {
+    "AlbumsInput": {
+      "type": "object",
+      "required": [
+        "ids"
+      ],
+      "properties": {
+        "ids": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,17 @@
 {
-  "$ref": "#/definitions/ShowEpisodesInput",
+  "$ref": "#/definitions/ArtistAlbumsInput",
   "definitions": {
-    "ShowEpisodesInput": {
+    "ArtistAlbumsInput": {
       "type": "object",
-      "required": [],
+      "required": [
+        "market",
+        "include_groups"
+      ],
       "properties": {
         "market": {
+          "type": "string"
+        },
+        "include_groups": {
           "type": "string"
         },
         "limit": {

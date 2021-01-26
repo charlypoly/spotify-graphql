@@ -48,10 +48,6 @@ glob('./schemas/operations/**/*.ts', (err, files) => {
           name: 'Spotify',
           handler: {
             jsonSchema: {
-              operationHeaders: {
-                Authorization:
-                  'Bearer BQDJo99kYrXaXoMPKL1DBoYpvbbmaeylDKkMD-wlQulFp30H-v1pI92rsL16e1x37LUZrGpmtDYuvNYF_63SezN6S3MveVk9NewTD4bRFmubTxkejPw651Tis3MfnEz9lVYaHIoChVXqW7MSSBHmUI75v0pws15BHgBUfT6fX0Q5ZzFz_BnxlUypOAcWaKCbnbs4kjhFu8lTvP-XjSUEfuAwqSctZo7WL_mgjh_M5WJl7UymbmFfYjoMikH0ayGt4uMc1nwRSw55e5le',
-              },
               baseSchema: schemaToFilePath(baseSchema, 'baseSchema'),
               baseUrl: 'https://api.spotify.com/v1/',
               operations: operations as YamlConfig.JsonSchemaOperation[],

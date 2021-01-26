@@ -1,11 +1,13 @@
 {
-  "$ref": "#/definitions/ShowEpisodesInput",
+  "$ref": "#/definitions/BrowseNewReleasesInput",
   "definitions": {
-    "ShowEpisodesInput": {
+    "BrowseNewReleasesInput": {
       "type": "object",
-      "required": [],
+      "required": [
+        "country"
+      ],
       "properties": {
-        "market": {
+        "country": {
           "type": "string"
         },
         "limit": {

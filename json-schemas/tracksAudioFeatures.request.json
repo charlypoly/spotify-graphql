@@ -1,0 +1,19 @@
+{
+  "$ref": "#/definitions/TracksAudioFeaturesInput",
+  "definitions": {
+    "TracksAudioFeaturesInput": {
+      "type": "object",
+      "required": [
+        "ids"
+      ],
+      "properties": {
+        "ids": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

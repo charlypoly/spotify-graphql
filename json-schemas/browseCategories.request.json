@@ -1,11 +1,16 @@
 {
-  "$ref": "#/definitions/ShowEpisodesInput",
+  "$ref": "#/definitions/BrowseCategoriesInput",
   "definitions": {
-    "ShowEpisodesInput": {
+    "BrowseCategoriesInput": {
       "type": "object",
-      "required": [],
+      "required": [
+        "country"
+      ],
       "properties": {
-        "market": {
+        "country": {
+          "type": "string"
+        },
+        "locale": {
           "type": "string"
         },
         "limit": {

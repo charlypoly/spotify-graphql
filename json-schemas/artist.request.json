@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/ArtistInput",
+  "definitions": {
+    "ArtistInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

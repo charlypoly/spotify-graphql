@@ -1,7 +1,7 @@
 {
-  "$ref": "#/definitions/ShowEpisodesInput",
+  "$ref": "#/definitions/AlbumTracksInput",
   "definitions": {
-    "ShowEpisodesInput": {
+    "AlbumTracksInput": {
       "type": "object",
       "required": [],
       "properties": {

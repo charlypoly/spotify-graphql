@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/BrowseCategoryPlaylistsOutput",
+  "definitions": {
+    "BrowseCategoryPlaylistsOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "playlists": {
+          "$ref": "#/definitions/BrowseCategoryPlaylistsPlaylists"
+        }
+      }
+    }
+  }
+}

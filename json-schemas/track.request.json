@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/TrackInput",
+  "definitions": {
+    "TrackInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

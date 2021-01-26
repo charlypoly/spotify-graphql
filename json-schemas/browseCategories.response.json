@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/BrowseCategoriesOutput",
+  "definitions": {
+    "BrowseCategoriesOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "categories": {
+          "$ref": "#/definitions/BrowseCategoriesCategories"
+        }
+      }
+    }
+  }
+}

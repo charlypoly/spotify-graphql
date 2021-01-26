@@ -4,18 +4,18 @@ import { offsetPagingObjectOf } from '../../base'
 
 const operation: YamlConfig.JsonSchemaOperation = {
   type: 'Query',
-  field: 'showEpisodes',
+  field: 'albumTracks',
   description:
-    "Get a Show's Episodes: Get Spotify catalog information about an show’s episodes. Optional parameters can be used to limit the number of episodes returned.",
-  path: '/shows/{args.id}/episodes',
-  requestSchema: schema.definition('ShowEpisodesInput', {
+    'Get an Album: Get Spotify catalog information for a single album.',
+  path: '/albums/{args.id}/tracks',
+  requestSchema: schema.definition('AlbumTracksInput', {
     market: schema.types.type('string'),
     limit: schema.types.type('number'),
     offset: schema.types.type('number'),
   }),
   responseSchema: schema.definition(
-    'ShowEpisodesOutput',
-    offsetPagingObjectOf('SimplifiedEpisodeObject')
+    'AlbumTracksOutput',
+    offsetPagingObjectOf('SimplifiedTrackObject')
   ),
 }
 

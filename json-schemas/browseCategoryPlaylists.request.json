@@ -1,0 +1,19 @@
+{
+  "$ref": "#/definitions/BrowseCategoryPlaylistsInput",
+  "definitions": {
+    "BrowseCategoryPlaylistsInput": {
+      "type": "object",
+      "required": [
+        "country"
+      ],
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

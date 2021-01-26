@@ -1,0 +1,16 @@
+{
+  "$ref": "#/definitions/ArtistTopTracksInput",
+  "definitions": {
+    "ArtistTopTracksInput": {
+      "type": "object",
+      "required": [
+        "market"
+      ],
+      "properties": {
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -476,6 +476,14 @@ const base = schema.schema(
     SearchResultsShows: offsetPagingObjectOf('SimplifiedShowObject'),
     SearchResultsTracks: offsetPagingObjectOf('TrackObject'),
     SearchResultsEpisodes: offsetPagingObjectOf('SimplifiedEpisodeObject'),
+    BrowseNewReleasesAlbums: offsetPagingObjectOf('SimplifiedAlbumObject'),
+    BrowseFeaturedPlaylistsPlaylists: offsetPagingObjectOf(
+      'SimplifiedPlaylistObject'
+    ),
+    BrowseCategoryPlaylistsPlaylists: offsetPagingObjectOf(
+      'SimplifiedPlaylistObject'
+    ),
+    BrowseCategoriesCategories: offsetPagingObjectOf('CategoryObject'),
   }
 )
 
