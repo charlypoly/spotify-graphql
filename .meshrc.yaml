@@ -106,6 +106,22 @@ sources:
             requestSchema: ./json-schemas/browseNewReleases.request.json
             responseSchema: ./json-schemas/browseNewReleases.response.json
           - type: Query
+            field: episode
+            description: >-
+              Get an Episode: Get Spotify catalog information for a single
+              episode identified by its unique Spotify ID.
+            path: /episodes/{args.id}
+            requestSchema: ./json-schemas/episode.request.json
+            responseTypeName: EpisodeObject
+          - type: Query
+            field: episodes
+            description: >-
+              Get Multiple Episodes: Get Spotify catalog information for several
+              episodes based on their Spotify IDs.
+            path: /episodes
+            requestSchema: ./json-schemas/episodes.request.json
+            responseSchema: ./json-schemas/episodes.response.json
+          - type: Query
             field: playerRecentlyPlayed
             description: >-
               Get Current User's Recently Played Tracks: Get tracks from the
@@ -114,6 +130,83 @@ sources:
             path: /me/player/recently-played
             requestSchema: ./json-schemas/playerRecentlyPlayed.request.json
             responseSchema: ./json-schemas/playerRecentlyPlayed.response.json
+          - type: Mutation
+            field: createPlaylist
+            description: >-
+              Create a Playlist: Create a playlist for a Spotify user. (The
+              playlist will be empty until you add tracks.)
+            path: /users/{args.user_id}/playlists
+            requestSchema: ./json-schemas/createPlaylist.request.json
+            responseTypeName: PlaylistObject
+          - type: Query
+            field: mePlaylists
+            description: >-
+              Get a List of Current User's Playlists: Get a list of the
+              playlists owned or followed by the current Spotify user.
+            path: /me/playlists
+            requestSchema: ./json-schemas/mePlaylists.request.json
+            responseSchema: ./json-schemas/mePlaylists.response.json
+          - type: Query
+            field: playlist
+            description: 'Get a Playlist: Get a playlist owned by a Spotify user.'
+            path: /playlists/{args.id}
+            requestSchema: ./json-schemas/playlist.request.json
+            responseTypeName: PlaylistObject
+          - type: Mutation
+            field: playlistAddItem
+            description: >-
+              Add Items to a Playlist: Add one or more items to a user’s
+              playlist.
+            path: /playlists/{args.id}/tracks
+            requestSchema: ./json-schemas/playlistAddItem.request.json
+            responseSchema: ./json-schemas/playlistAddItem.response.json
+          - type: Query
+            field: playlistCoverImages
+            description: >-
+              Get a Playlist Cover Image: Get the current image associated with
+              a specific playlist.
+            path: /playlists/{args.id}/images
+            responseSchema: ./json-schemas/playlistCoverImages.response.json
+          - type: Mutation
+            field: playlistRemoveItems
+            method: DELETE
+            description: >-
+              Remove Items from a Playlist: Remove one or more items from a
+              user’s playlist.
+            path: /playlists/{args.id}/tracks
+            requestSchema: ./json-schemas/playlistRemoveItems.request.json
+            responseSchema: ./json-schemas/playlistRemoveItems.response.json
+          - type: Mutation
+            field: playlistReorderOrReplaceItems
+            method: PUT
+            description: Reorder or Replace a Playlist's Items
+            path: /playlists/{args.id}/tracks
+            requestSchema: ./json-schemas/playlistReorderOrReplaceItems.request.json
+            responseSchema: ./json-schemas/playlistReorderOrReplaceItems.response.json
+          - type: Query
+            field: playlistTracks
+            description: 'Get a Playlist: Get a playlist owned by a Spotify user.'
+            path: /playlists/{args.id}/tracks
+            requestSchema: ./json-schemas/playlistTracks.request.json
+            responseSchema: ./json-schemas/playlistTracks.response.json
+          - type: Mutation
+            field: updatePlaylist
+            method: PUT
+            description: >-
+              Change a Playlist's Details: Change a playlist’s name and
+              public/private state. (The user must, of course, own the
+              playlist.)
+            path: /playlists/{args.id}
+            requestSchema: ./json-schemas/updatePlaylist.request.json
+            responseTypeName: PlaylistObject
+          - type: Query
+            field: userPlaylists
+            description: >-
+              Get a List of a User's Playlists: Get a list of the playlists
+              owned or followed by a Spotify user.
+            path: /users/{args.user_id}/playlists
+            requestSchema: ./json-schemas/userPlaylists.request.json
+            responseSchema: ./json-schemas/userPlaylists.response.json
           - type: Query
             field: search
             description: >-
@@ -180,3 +273,17 @@ sources:
             path: /audio-features
             requestSchema: ./json-schemas/tracksAudioFeatures.request.json
             responseSchema: ./json-schemas/tracksAudioFeatures.response.json
+          - type: Query
+            field: me
+            description: >-
+              Get Current User's Profile: Get detailed profile information about
+              the current user (including the current user’s username).
+            path: /me
+            responseTypeName: PrivateUserObject
+          - type: Query
+            field: user
+            description: >-
+              Get a User's Profile: Get public profile information about a
+              Spotify user.
+            path: /users/{args.id}
+            responseTypeName: PublicUserObject

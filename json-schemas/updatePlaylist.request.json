@@ -1,0 +1,23 @@
+{
+  "$ref": "#/definitions/UpdatePlaylistInput",
+  "definitions": {
+    "UpdatePlaylistInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "collaborative": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

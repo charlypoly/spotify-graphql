@@ -1,0 +1,26 @@
+{
+  "$ref": "#/definitions/PlaylistAddItemInput",
+  "definitions": {
+    "PlaylistAddItemInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "uris": {
+          "type": "string"
+        },
+        "range_start": {
+          "type": "number"
+        },
+        "insert_before": {
+          "type": "number"
+        },
+        "range_length": {
+          "type": "number"
+        },
+        "snapshot_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

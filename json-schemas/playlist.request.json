@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/PlaylistInput",
+  "definitions": {
+    "PlaylistInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

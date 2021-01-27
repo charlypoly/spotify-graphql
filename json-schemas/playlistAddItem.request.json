@@ -1,0 +1,17 @@
+{
+  "$ref": "#/definitions/PlaylistAddItemInput",
+  "definitions": {
+    "PlaylistAddItemInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "position": {
+          "type": "number"
+        },
+        "uris": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$ref": "#/definitions/MePlaylistsInput",
+  "definitions": {
+    "MePlaylistsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "limit": {
+          "type": "number"
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

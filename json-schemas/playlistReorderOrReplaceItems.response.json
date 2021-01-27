@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/PlaylistAddItemOutput",
+  "definitions": {
+    "PlaylistAddItemOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "snapshot_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

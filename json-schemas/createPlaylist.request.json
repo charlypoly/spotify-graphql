@@ -1,0 +1,25 @@
+{
+  "$ref": "#/definitions/UserPlaylistsInput",
+  "definitions": {
+    "UserPlaylistsInput": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "collaborative": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

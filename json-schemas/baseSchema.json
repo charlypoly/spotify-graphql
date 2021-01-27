@@ -699,14 +699,7 @@
           "type": "boolean"
         },
         "track": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/TrackObject"
-            },
-            {
-              "$ref": "#/definitions/EpisodeObject"
-            }
-          ]
+          "$ref": "#/definitions/TrackObject"
         }
       }
     },

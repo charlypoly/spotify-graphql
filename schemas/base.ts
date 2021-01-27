@@ -216,10 +216,11 @@ export const objectTypes = {
     added_at: schema.types.type('string'), // timestamp date string
     added_by: schema.types.definition('PublicUserObject'),
     is_local: schema.types.type('boolean'),
-    track: schema.types.oneOf(
-      schema.types.definition('TrackObject'),
-      schema.types.definition('EpisodeObject')
-    ),
+    track: schema.types.definition('TrackObject'),
+    // track: schema.types.oneOf(
+    //   schema.types.definition('TrackObject'),
+    //   schema.types.definition('EpisodeObject')
+    // ),
   },
   PlaylistTracksRefObject: {
     href: schema.types.type('string'),
