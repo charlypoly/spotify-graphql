@@ -1,0 +1,20 @@
+{
+  "$ref": "#/definitions/MeShowsInput",
+  "definitions": {
+    "MeShowsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "market": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

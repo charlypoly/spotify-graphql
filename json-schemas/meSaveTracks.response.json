@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeSaveTracksOutput",
+  "definitions": {
+    "MeSaveTracksOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "empty_response": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

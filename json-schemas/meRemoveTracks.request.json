@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeRemoveTracksInput",
+  "definitions": {
+    "MeRemoveTracksInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

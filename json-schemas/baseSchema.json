@@ -309,14 +309,7 @@
           "type": "boolean"
         },
         "item": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/TrackObject"
-            },
-            {
-              "$ref": "#/definitions/EpisodeObject"
-            }
-          ]
+          "$ref": "#/definitions/TrackObject"
         },
         "progress_ms": {
           "type": "number"

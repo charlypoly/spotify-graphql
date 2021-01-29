@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/PlayerTransferOutput",
+  "definitions": {
+    "PlayerTransferOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "empty_response": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

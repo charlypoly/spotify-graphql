@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeShowsContainsInput",
+  "definitions": {
+    "MeShowsContainsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

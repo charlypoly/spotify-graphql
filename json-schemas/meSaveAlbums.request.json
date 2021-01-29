@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeSaveAlbumsInput",
+  "definitions": {
+    "MeSaveAlbumsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

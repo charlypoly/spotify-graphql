@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeRemoveAlbumsInput",
+  "definitions": {
+    "MeRemoveAlbumsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -122,6 +122,149 @@ sources:
             requestSchema: ./json-schemas/episodes.request.json
             responseSchema: ./json-schemas/episodes.response.json
           - type: Query
+            field: meAlbums
+            description: >-
+              Get User's Saved Albums: Get a list of the albums saved in the
+              current Spotify user’s ‘Your Music’ library.
+            path: /me/albums
+            requestSchema: ./json-schemas/meAlbums.request.json
+            responseSchema: ./json-schemas/meAlbums.response.json
+          - type: Query
+            field: meAlbumsContains
+            description: >-
+              Check User's Saved Albums: Check if one or more albums is already
+              saved in the current Spotify user’s ‘Your Music’ library.
+            path: /me/albums/contains
+            requestSchema: ./json-schemas/meAlbumsContains.request.json
+            responseSchema: ./json-schemas/meAlbumsContains.response.json
+          - type: Mutation
+            field: meRemoveAlbums
+            method: DELETE
+            description: >-
+              Remove Albums for Current User: Remove one or more albums from the
+              current user’s ‘Your Music’ library.
+            path: /me/albums
+            requestSchema: ./json-schemas/meRemoveAlbums.request.json
+            responseSchema: ./json-schemas/meRemoveAlbums.response.json
+          - type: Mutation
+            field: meRemoveShows
+            method: DELETE
+            description: >-
+              Remove Shows for Current User: Remove one or more Shows from the
+              current user’s ‘Your Music’ library.
+            path: /me/shows
+            requestSchema: ./json-schemas/meRemoveShows.request.json
+            responseSchema: ./json-schemas/meRemoveShows.response.json
+          - type: Mutation
+            field: meRemoveTracks
+            method: DELETE
+            description: >-
+              Remove Tracks for Current User: Remove one or more Tracks from the
+              current user’s ‘Your Music’ library.
+            path: /me/tracks
+            requestSchema: ./json-schemas/meRemoveTracks.request.json
+            responseSchema: ./json-schemas/meRemoveTracks.response.json
+          - type: Mutation
+            field: meSaveAlbums
+            method: PUT
+            description: >-
+              Save Albums for Current User: Save one or more albums to the
+              current user’s ‘Your Music’ library.
+            path: /me/albums
+            requestSchema: ./json-schemas/meSaveAlbums.request.json
+            responseSchema: ./json-schemas/meSaveAlbums.response.json
+          - type: Mutation
+            field: meSaveShows
+            method: PUT
+            description: >-
+              Save Shows for Current User: Save one or more shows to the current
+              user’s ‘Your Music’ library.
+            path: /me/shows
+            requestSchema: ./json-schemas/meSaveShows.request.json
+            responseSchema: ./json-schemas/meSaveShows.response.json
+          - type: Mutation
+            field: meSaveTracks
+            method: PUT
+            description: >-
+              Save Tracks for Current User: Save one or more tracks to the
+              current user’s ‘Your Music’ library.
+            path: /me/tracks
+            requestSchema: ./json-schemas/meSaveTracks.request.json
+            responseSchema: ./json-schemas/meSaveTracks.response.json
+          - type: Query
+            field: meShows
+            description: >-
+              Get User's Saved Shows: Get a list of shows saved in the current
+              Spotify user’s library. Optional parameters can be used to limit
+              the number of shows returned.
+            path: /me/shows
+            requestSchema: ./json-schemas/meShows.request.json
+            responseSchema: ./json-schemas/meShows.response.json
+          - type: Query
+            field: meShowsContains
+            description: >-
+              Check User's Saved Shows: Check if one or more shows is already
+              saved in the current Spotify user’s ‘Your Music’ library.
+            path: /me/shows/contains
+            requestSchema: ./json-schemas/meShowsContains.request.json
+            responseSchema: ./json-schemas/meShowsContains.response.json
+          - type: Query
+            field: meTracks
+            description: >-
+              Get User's Saved Tracks: Get a list of the songs saved in the
+              current Spotify user’s ‘Your Music’ library.
+            path: /me/tracks
+            requestSchema: ./json-schemas/meTracks.request.json
+            responseSchema: ./json-schemas/meTracks.response.json
+          - type: Query
+            field: meTracksContains
+            description: >-
+              Check User's Saved Tracks: Check if one or more tracks is already
+              saved in the current Spotify user’s ‘Your Music’ library.
+            path: /me/tracks/contains
+            requestSchema: ./json-schemas/meTracksContains.request.json
+            responseSchema: ./json-schemas/meTracksContains.response.json
+          - type: Query
+            field: meTopArtists
+            description: >-
+              Get Several Artists: Get Spotify catalog information for multiple
+              artists based on their Spotify IDs.
+            path: /me/top/artists
+            requestSchema: ./json-schemas/meTopArtists.request.json
+            responseSchema: ./json-schemas/meTopArtists.response.json
+          - type: Query
+            field: meTopTracks
+            description: >-
+              Get Several Tracks: Get Spotify catalog information for multiple
+              tracks based on their Spotify IDs.
+            path: /me/top/tracks
+            requestSchema: ./json-schemas/meTopTracks.request.json
+            responseSchema: ./json-schemas/meTopTracks.response.json
+          - type: Query
+            field: player
+            description: >-
+              Get Information About The User's Current Playback: Get information
+              about the user’s current playback state, including track or
+              episode, progress, and active device.
+            path: /me/player
+            requestSchema: ./json-schemas/player.request.json
+            responseTypeName: CurrentlyPlayingContextObject
+          - type: Query
+            field: playerCurrentlyPlaying
+            description: >-
+              Get the User's Currently Playing Track: Get the object currently
+              being played on the user’s Spotify account.
+            path: /me/player/currently-playing
+            requestSchema: ./json-schemas/playerCurrentlyPlaying.request.json
+            responseTypeName: CurrentlyPlayingContextObject
+          - type: Query
+            field: playerDevices
+            description: >-
+              Get a User's Available Devices: Get information about a user’s
+              available devices.
+            path: /me/player/devices
+            responseTypeName: DevicesObject
+          - type: Query
             field: playerRecentlyPlayed
             description: >-
               Get Current User's Recently Played Tracks: Get tracks from the
@@ -130,6 +273,15 @@ sources:
             path: /me/player/recently-played
             requestSchema: ./json-schemas/playerRecentlyPlayed.request.json
             responseSchema: ./json-schemas/playerRecentlyPlayed.response.json
+          - type: Mutation
+            field: playerTransfer
+            method: PUT
+            description: >-
+              Get a User's Available Devices: Get information about a user’s
+              available devices.
+            path: /me/player/devices
+            requestSchema: ./json-schemas/playerTransfer.request.json
+            responseSchema: ./json-schemas/playerTransfer.response.json
           - type: Mutation
             field: createPlaylist
             description: >-

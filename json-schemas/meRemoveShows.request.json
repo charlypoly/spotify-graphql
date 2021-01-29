@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeRemoveShowsInput",
+  "definitions": {
+    "MeRemoveShowsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

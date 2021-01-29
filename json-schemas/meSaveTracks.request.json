@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeSaveTracksInput",
+  "definitions": {
+    "MeSaveTracksInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

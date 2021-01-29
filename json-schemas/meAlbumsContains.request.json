@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeAlbumsContainsInput",
+  "definitions": {
+    "MeAlbumsContainsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

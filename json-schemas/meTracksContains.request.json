@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeTracksContainsInput",
+  "definitions": {
+    "MeTracksContainsInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

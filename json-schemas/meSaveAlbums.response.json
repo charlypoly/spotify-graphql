@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeSaveAlbumsOutput",
+  "definitions": {
+    "MeSaveAlbumsOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "empty_response": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

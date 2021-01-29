@@ -1,0 +1,35 @@
+{
+  "$ref": "#/definitions/MeShowsOutput",
+  "definitions": {
+    "MeShowsOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SavedShowObject"
+          }
+        },
+        "offset": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

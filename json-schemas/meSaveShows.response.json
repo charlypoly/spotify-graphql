@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeSaveShowsOutput",
+  "definitions": {
+    "MeSaveShowsOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "empty_response": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

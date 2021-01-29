@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeRemoveTracksOutput",
+  "definitions": {
+    "MeRemoveTracksOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "empty_response": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

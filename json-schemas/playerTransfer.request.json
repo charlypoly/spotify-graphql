@@ -1,0 +1,20 @@
+{
+  "$ref": "#/definitions/PlayerTransferInput",
+  "definitions": {
+    "PlayerTransferInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "device_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "play": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

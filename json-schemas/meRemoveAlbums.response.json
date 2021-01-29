@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeRemoveAlbumsOutput",
+  "definitions": {
+    "MeRemoveAlbumsOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "empty_response": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

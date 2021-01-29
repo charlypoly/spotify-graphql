@@ -90,10 +90,11 @@ export const objectTypes = {
     currently_playing_type: schema.types.type('string'),
     device: schema.types.definition('DeviceObject'),
     is_playing: schema.types.type('boolean'),
-    item: schema.types.oneOf(
-      schema.types.definition('TrackObject'),
-      schema.types.definition('EpisodeObject')
-    ),
+    item: schema.types.definition('TrackObject'),
+    // item: schema.types.oneOf(
+    //   schema.types.definition('TrackObject'),
+    //   schema.types.definition('EpisodeObject')
+    // ),
     progress_ms: schema.types.type('number'),
     repeat_state: schema.types.type('string'),
     shuffle_state: schema.types.type('string'),

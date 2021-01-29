@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/PlayerCurrentlyPlayingInput",
+  "definitions": {
+    "PlayerCurrentlyPlayingInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "market": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
