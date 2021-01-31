@@ -1,0 +1,23 @@
+{
+  "$ref": "#/definitions/PlayerPlayInput",
+  "definitions": {
+    "PlayerPlayInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "context_uri": {
+          "type": "string"
+        },
+        "uris": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "position_ms": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

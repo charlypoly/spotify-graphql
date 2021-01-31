@@ -13,9 +13,7 @@ const operation: YamlConfig.JsonSchemaOperation = {
       description: 'A comma-separated list of the Spotify IDs.',
     }),
   }),
-  responseSchema: schema.definition('MeRemoveTracksOutput', {
-    empty_response: schema.types.type('string'),
-  }),
+  responseTypeName: 'Void',
 }
 
 export default operation

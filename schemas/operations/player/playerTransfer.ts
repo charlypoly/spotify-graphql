@@ -15,9 +15,7 @@ const operation: YamlConfig.JsonSchemaOperation = {
     }),
     play: types.type('boolean'),
   }),
-  responseSchema: definition('PlayerTransferOutput', {
-    empty_response: types.type('string'),
-  }),
+  responseTypeName: 'Void',
 }
 
 export default operation
