@@ -10,6 +10,8 @@ sources:
             description: 'Get an Album: Get Spotify catalog information for a single album.'
             path: /albums/{args.id}
             requestSchema: ./json-schemas/album.request.json
+            argTypeMap:
+              id: String
             responseTypeName: AlbumObject
           - type: Query
             field: albums
@@ -24,6 +26,8 @@ sources:
             description: 'Get an Album: Get Spotify catalog information for a single album.'
             path: /albums/{args.id}/tracks
             requestSchema: ./json-schemas/albumTracks.request.json
+            argTypeMap:
+              id: String
             responseSchema: ./json-schemas/albumTracks.response.json
           - type: Query
             field: artist
@@ -32,6 +36,8 @@ sources:
               identified by their unique Spotify ID.
             path: /artists/{args.id}
             requestSchema: ./json-schemas/artist.request.json
+            argTypeMap:
+              id: String
             responseTypeName: ArtistObject
           - type: Query
             field: artistAlbums
@@ -40,6 +46,8 @@ sources:
               artist’s albums.
             path: /artists/{args.id}/albums
             requestSchema: ./json-schemas/artistAlbums.request.json
+            argTypeMap:
+              id: String
             responseSchema: ./json-schemas/artistAlbums.response.json
           - type: Query
             field: artistRelatedArtists
@@ -49,6 +57,8 @@ sources:
               analysis of the Spotify community’s listening history.
             path: /artists/{args.id}/related-artists
             responseSchema: ./json-schemas/artistRelatedArtists.response.json
+            argTypeMap:
+              id: String
           - type: Query
             field: artists
             description: >-
@@ -64,6 +74,8 @@ sources:
               an artist’s top tracks by country.
             path: /artists/{args.id}/top-tracks
             requestSchema: ./json-schemas/artistTopTracks.request.json
+            argTypeMap:
+              id: String
             responseSchema: ./json-schemas/artistTopTracks.response.json
           - type: Query
             field: browseCategories
@@ -80,6 +92,8 @@ sources:
               (on, for example, the Spotify player’s “Browse” tab).
             path: /browse/categories/{args.category_id}
             requestSchema: ./json-schemas/browseCategory.request.json
+            argTypeMap:
+              category_id: String
             responseTypeName: CategoryObject
           - type: Query
             field: browseCategoryPlaylists
@@ -88,6 +102,8 @@ sources:
               with a particular category.
             path: /browse/categories/{args.category_id}/playlists
             requestSchema: ./json-schemas/browseCategoryPlaylists.request.json
+            argTypeMap:
+              category_id: String
             responseSchema: ./json-schemas/browseCategoryPlaylists.response.json
           - type: Query
             field: browseFeaturedPlaylists
@@ -97,6 +113,13 @@ sources:
             path: /browse/featured-playlists
             requestSchema: ./json-schemas/browseFeaturedPlaylists.request.json
             responseSchema: ./json-schemas/browseFeaturedPlaylists.response.json
+          - type: Query
+            field: browseGenresSeed
+            description: >-
+              Get Recommendation Genres: Retrieve a list of available genres
+              seed parameter values for recommendations.
+            path: /recommendations/available-genre-seeds
+            responseSchema: ./json-schemas/browseGenresSeed.response.json
           - type: Query
             field: browseNewReleases
             description: >-
@@ -113,6 +136,8 @@ sources:
             path: /episodes/{args.id}
             requestSchema: ./json-schemas/episode.request.json
             responseTypeName: EpisodeObject
+            argTypeMap:
+              id: String
           - type: Query
             field: episodes
             description: >-
@@ -121,6 +146,75 @@ sources:
             path: /episodes
             requestSchema: ./json-schemas/episodes.request.json
             responseSchema: ./json-schemas/episodes.response.json
+          - type: Query
+            field: checkUsersFollowPlaylist
+            description: >-
+              Check if Users Follow a Playlist: Check to see if one or more
+              Spotify users are following a specified playlist.
+            path: /playlists/{args.playlist_id}/followers/contains?ids={args.ids}
+            responseTypeName: Void
+            argTypeMap:
+              ids: String
+          - type: Mutation
+            field: followArtists
+            method: PUT
+            path: /me/following?type=artist&ids={args.ids}
+            responseTypeName: Void
+            argTypeMap:
+              ids: String
+          - type: Mutation
+            field: followPlaylist
+            method: PUT
+            description: >-
+              Follow a Playlist: Add the current user as a follower of a
+              playlist.
+            path: /playlists/{args.playlist_id}/follower
+            requestSchema: ./json-schemas/followPlaylist.request.json
+            responseTypeName: Void
+          - type: Mutation
+            field: followUsers
+            method: PUT
+            path: /me/following?type=user&ids={args.ids}
+            responseTypeName: Void
+            argTypeMap:
+              ids: String
+          - type: Query
+            field: meFollowingArtists
+            description: >-
+              Get User's Followed Artists: Get the current user’s followed
+              artists.
+            path: /me/following?type=artist
+            requestSchema: ./json-schemas/meFollowingArtists.request.json
+            responseSchema: ./json-schemas/meFollowingArtists.response.json
+          - type: Query
+            field: meIsFollowing
+            path: /me/following/contains?type={args.type}&ids={args.ids}
+            argTypeMap:
+              ids: String
+              type: String
+            responseSchema: ./json-schemas/meIsFollowing.response.json
+          - type: Mutation
+            field: unfollowArtists
+            method: DELETE
+            path: /me/following?type=artist&ids={args.ids}
+            responseTypeName: Void
+            argTypeMap:
+              ids: String
+          - type: Mutation
+            field: unfollowPlaylist
+            method: DELETE
+            description: >-
+              Unfollow Playlist: Remove the current user as a follower of a
+              playlist.
+            path: /playlists/{args.playlist_id}/follower
+            responseTypeName: Void
+          - type: Mutation
+            field: unfollowUsers
+            method: DELETE
+            path: /me/following?type=user&ids={args.ids}
+            responseTypeName: Void
+            argTypeMap:
+              ids: String
           - type: Query
             field: meAlbums
             description: >-
@@ -447,6 +541,8 @@ sources:
               playlist will be empty until you add tracks.)
             path: /users/{args.user_id}/playlists
             requestSchema: ./json-schemas/createPlaylist.request.json
+            argTypeMap:
+              user_id: String
             responseTypeName: PlaylistObject
           - type: Query
             field: mePlaylists
@@ -461,6 +557,8 @@ sources:
             description: 'Get a Playlist: Get a playlist owned by a Spotify user.'
             path: /playlists/{args.id}
             requestSchema: ./json-schemas/playlist.request.json
+            argTypeMap:
+              id: String
             responseTypeName: PlaylistObject
           - type: Mutation
             field: playlistAddItem
@@ -469,6 +567,8 @@ sources:
               playlist.
             path: /playlists/{args.id}/tracks
             requestSchema: ./json-schemas/playlistAddItem.request.json
+            argTypeMap:
+              id: String
             responseSchema: ./json-schemas/playlistAddItem.response.json
           - type: Query
             field: playlistCoverImages
@@ -477,6 +577,8 @@ sources:
               a specific playlist.
             path: /playlists/{args.id}/images
             responseSchema: ./json-schemas/playlistCoverImages.response.json
+            argTypeMap:
+              id: String
           - type: Mutation
             field: playlistRemoveItems
             method: DELETE
@@ -485,6 +587,8 @@ sources:
               user’s playlist.
             path: /playlists/{args.id}/tracks
             requestSchema: ./json-schemas/playlistRemoveItems.request.json
+            argTypeMap:
+              id: String
             responseSchema: ./json-schemas/playlistRemoveItems.response.json
           - type: Mutation
             field: playlistReorderOrReplaceItems
@@ -493,12 +597,16 @@ sources:
             path: /playlists/{args.id}/tracks
             requestSchema: ./json-schemas/playlistReorderOrReplaceItems.request.json
             responseSchema: ./json-schemas/playlistReorderOrReplaceItems.response.json
+            argTypeMap:
+              id: String
           - type: Query
             field: playlistTracks
             description: 'Get a Playlist: Get a playlist owned by a Spotify user.'
             path: /playlists/{args.id}/tracks
             requestSchema: ./json-schemas/playlistTracks.request.json
             responseSchema: ./json-schemas/playlistTracks.response.json
+            argTypeMap:
+              id: String
           - type: Mutation
             field: updatePlaylist
             method: PUT
@@ -509,6 +617,8 @@ sources:
             path: /playlists/{args.id}
             requestSchema: ./json-schemas/updatePlaylist.request.json
             responseTypeName: PlaylistObject
+            argTypeMap:
+              id: String
           - type: Query
             field: userPlaylists
             description: >-
@@ -517,6 +627,8 @@ sources:
             path: /users/{args.user_id}/playlists
             requestSchema: ./json-schemas/userPlaylists.request.json
             responseSchema: ./json-schemas/userPlaylists.response.json
+            argTypeMap:
+              user_id: String
           - type: Query
             field: search
             description: >-
@@ -534,6 +646,8 @@ sources:
             path: /shows/{args.id}
             requestSchema: ./json-schemas/show.request.json
             responseTypeName: ShowObject
+            argTypeMap:
+              id: String
           - type: Query
             field: showEpisodes
             description: >-
@@ -543,6 +657,8 @@ sources:
             path: /shows/{args.id}/episodes
             requestSchema: ./json-schemas/showEpisodes.request.json
             responseSchema: ./json-schemas/showEpisodes.response.json
+            argTypeMap:
+              id: String
           - type: Query
             field: shows
             description: >-
@@ -559,6 +675,8 @@ sources:
             path: /tracks/{args.id}
             requestSchema: ./json-schemas/track.request.json
             responseTypeName: TrackObject
+            argTypeMap:
+              id: String
           - type: Query
             field: trackAudioFeatures
             description: >-
@@ -567,6 +685,8 @@ sources:
             path: /audio-features/{args.id}
             requestSchema: ./json-schemas/trackAudioFeatures.request.json
             responseTypeName: AudioFeaturesObject
+            argTypeMap:
+              id: String
           - type: Query
             field: tracks
             description: >-
@@ -597,3 +717,5 @@ sources:
               Spotify user.
             path: /users/{args.id}
             responseTypeName: PublicUserObject
+            argTypeMap:
+              id: String

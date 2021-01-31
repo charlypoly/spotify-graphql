@@ -13,6 +13,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     collaborative: schema.types.type('boolean'),
     description: schema.types.type('string'),
   }),
+  argTypeMap: {
+    user_id: 'String',
+  },
   responseTypeName: 'PlaylistObject',
 }
 

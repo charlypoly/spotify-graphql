@@ -17,6 +17,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     limit: schema.types.type('number'),
     offset: schema.types.type('number'),
   }),
+  argTypeMap: {
+    id: 'String',
+  },
   responseSchema: schema.definition(
     'ArtistAlbumsOutput',
     offsetPagingObjectOf('SimplifiedAlbumObject')

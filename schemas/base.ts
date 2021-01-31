@@ -456,7 +456,7 @@ export const cursorPagingObjectOf = (type: keyof typeof objectTypes) => ({
   limit: schema.types.type('number'),
   total: schema.types.type('number'),
   items: schema.types.arrayOf(schema.types.definition(type)),
-  cursors: schema.types.arrayOf(schema.types.definition('CursorObject')),
+  cursors: schema.types.definition('CursorObject'),
 })
 
 export const offsetPagingObjectOf = (type: keyof typeof objectTypes) => ({
@@ -486,6 +486,7 @@ const base = schema.schema(
       'SimplifiedPlaylistObject'
     ),
     BrowseCategoriesCategories: offsetPagingObjectOf('CategoryObject'),
+    MeFollowingArtistsOutputArtists: cursorPagingObjectOf('ArtistObject'),
   }
 )
 

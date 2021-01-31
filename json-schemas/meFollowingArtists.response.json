@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/MeFollowingArtistsOutput",
+  "definitions": {
+    "MeFollowingArtistsOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "artists": {
+          "$ref": "#/definitions/MeFollowingArtistsOutputArtists"
+        }
+      }
+    }
+  }
+}

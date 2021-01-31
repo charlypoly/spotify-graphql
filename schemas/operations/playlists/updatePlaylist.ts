@@ -15,6 +15,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     description: schema.types.type('string'),
   }),
   responseTypeName: 'PlaylistObject',
+  argTypeMap: {
+    id: 'String',
+  },
 }
 
 export default operation

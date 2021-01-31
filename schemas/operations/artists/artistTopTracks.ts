@@ -10,6 +10,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
   requestSchema: schema.definition('ArtistTopTracksInput', {
     market: schema.types.type('string', { required: true }),
   }),
+  argTypeMap: {
+    id: 'String',
+  },
   responseSchema: schema.definition('ArtistTopTracksOutput', {
     tracks: schema.types.arrayOf(schema.types.definition('TrackObject')),
   }),

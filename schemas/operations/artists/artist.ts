@@ -10,6 +10,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
   requestSchema: schema.definition('ArtistInput', {
     market: schema.types.type('string'),
   }),
+  argTypeMap: {
+    id: 'String',
+  },
   responseTypeName: 'ArtistObject',
 }
 

@@ -12,6 +12,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
       $ref: '#/definitions/ImageObject',
     },
   },
+  argTypeMap: {
+    id: 'String',
+  },
 }
 
 export default operation

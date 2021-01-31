@@ -14,6 +14,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     }),
     locale: schema.types.type('string'),
   }),
+  argTypeMap: {
+    category_id: 'String',
+  },
   responseSchema: schema.definition('BrowseCategoryPlaylistsOutput', {
     playlists: schema.types.definition('BrowseCategoryPlaylistsPlaylists'),
   }),

@@ -14,6 +14,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
         'A comma-separated list of Spotify URIs to add, can be track or episode URIs.',
     }),
   }),
+  argTypeMap: {
+    id: 'String',
+  },
   responseSchema: schema.definition('PlaylistAddItemOutput', {
     snapshot_id: schema.types.type('string'),
   }),

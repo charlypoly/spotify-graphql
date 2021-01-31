@@ -7,6 +7,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     "Get a User's Profile: Get public profile information about a Spotify user.",
   path: '/users/{args.id}',
   responseTypeName: 'PublicUserObject',
+  argTypeMap: {
+    id: 'String',
+  },
 }
 
 export default operation

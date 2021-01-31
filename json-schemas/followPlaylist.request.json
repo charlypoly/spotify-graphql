@@ -1,0 +1,14 @@
+{
+  "$ref": "#/definitions/FollowPlaylistInput",
+  "definitions": {
+    "FollowPlaylistInput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "public": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

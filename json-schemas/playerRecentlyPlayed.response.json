@@ -27,10 +27,7 @@
           }
         },
         "cursors": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CursorObject"
-          }
+          "$ref": "#/definitions/CursorObject"
         }
       }
     }

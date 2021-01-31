@@ -10,6 +10,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
   responseSchema: schema.definition('ArtistRelatedArtistsOutput', {
     artists: schema.types.arrayOf(schema.types.definition('ArtistObject')),
   }),
+  argTypeMap: {
+    id: 'String',
+  },
 }
 
 export default operation

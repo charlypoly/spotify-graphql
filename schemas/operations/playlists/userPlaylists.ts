@@ -16,6 +16,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     'UserPlaylistsOutput',
     offsetPagingObjectOf('SimplifiedPlaylistObject')
   ),
+  argTypeMap: {
+    user_id: 'String',
+  },
 }
 
 export default operation

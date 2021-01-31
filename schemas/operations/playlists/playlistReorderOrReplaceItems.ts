@@ -20,6 +20,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
   responseSchema: schema.definition('PlaylistAddItemOutput', {
     snapshot_id: schema.types.type('string'),
   }),
+  argTypeMap: {
+    id: 'String',
+  },
 }
 
 export default operation

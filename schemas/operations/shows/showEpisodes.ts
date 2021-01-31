@@ -17,6 +17,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     'ShowEpisodesOutput',
     offsetPagingObjectOf('SimplifiedEpisodeObject')
   ),
+  argTypeMap: {
+    id: 'String',
+  },
 }
 
 export default operation

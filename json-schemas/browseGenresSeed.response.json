@@ -1,0 +1,17 @@
+{
+  "$ref": "#/definitions/BrowseGenresSeedOutput",
+  "definitions": {
+    "BrowseGenresSeedOutput": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

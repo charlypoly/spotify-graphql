@@ -32,6 +32,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
       ...requestSchema.definitions,
     },
   },
+  argTypeMap: {
+    id: 'String',
+  },
   responseSchema: schema.definition('PlaylistRemoveItemsOutput', {
     snapshot_id: schema.types.type('string'),
   }),

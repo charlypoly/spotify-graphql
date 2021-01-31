@@ -11,6 +11,9 @@ const operation: YamlConfig.JsonSchemaOperation = {
     market: schema.types.type('string'),
   }),
   responseTypeName: 'TrackObject',
+  argTypeMap: {
+    id: 'String',
+  },
 }
 
 export default operation
