@@ -11,7 +11,7 @@ See [spotify-graphql-examples](https://github.com/wittydeveloper/spotify-graphql
 
 ```typescript
 
-import SpotifyGraphQLClient from '../src/spotify-graphql';
+import SpotifyGraphQLClient from 'spotify-graphql';
 import config from './config';
 
 SpotifyGraphQLClient(config).query(`
