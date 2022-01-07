@@ -1,4 +1,5 @@
 import * as schema from 'functional-json-schema'
+import { JSONSchema6, JSONSchema6TypeName } from 'json-schema'
 
 export const objectTypes = {
   AlbumObject: {
@@ -490,4 +491,17 @@ const base = schema.schema(
   }
 )
 
-export default base
+export default {
+  ...base,
+  definitions: {
+    ...base.definitions,
+    ArrayOfBooleans: {
+      type: 'array' as JSONSchema6TypeName,
+      items: { type: 'boolean' as JSONSchema6TypeName }
+    },
+    ArrayOfImageObjects: {
+      type: 'array' as JSONSchema6TypeName,
+      items: { $ref: '#/definitions/ImageObject' }
+    },
+  }
+}

@@ -8,7 +8,7 @@ const requestSchema = schema.definition('PlaylistRemoveItemsInput', {
   snapshot_id: schema.types.type('string'),
 })
 
-const operation: YamlConfig.JsonSchemaOperation = {
+const operation: YamlConfig.JsonSchemaHTTPOperation = {
   type: 'Mutation',
   field: 'playlistRemoveItems',
   method: 'DELETE',

@@ -1,6 +1,6 @@
 import { YamlConfig } from '@graphql-mesh/types'
 
-const operation: YamlConfig.JsonSchemaOperation = {
+const operation: YamlConfig.JsonSchemaHTTPOperation = {
   type: 'Mutation',
   field: 'playerShuffleForDevice',
   method: 'PUT',

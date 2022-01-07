@@ -28,8 +28,10 @@
   "author": "Charly POLY <hello@charlypoly.com>",
   "license": "MIT",
   "dependencies": {
-    "@graphql-mesh/cli": "^0.15.6",
-    "@graphql-mesh/json-schema": "^0.9.5",
-    "functional-json-schema": "1.0.0"
+    "@graphql-mesh/cli": "latest",
+    "@graphql-mesh/json-schema": "latest",
+    "@graphql-mesh/transform-filter-schema": "latest",
+    "functional-json-schema": "1.0.0",
+    "graphql": "^15.0.0"
   }
 }

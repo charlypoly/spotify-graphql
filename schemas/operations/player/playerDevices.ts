@@ -1,6 +1,6 @@
 import { YamlConfig } from '@graphql-mesh/types'
 
-const operation: YamlConfig.JsonSchemaOperation = {
+const operation: YamlConfig.JsonSchemaHTTPOperation = {
   type: 'Query',
   field: 'playerDevices',
   description:

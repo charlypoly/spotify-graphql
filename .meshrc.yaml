@@ -1,54 +1,57 @@
 sources:
   - name: Spotify
     handler:
-      jsonSchema:
-        baseSchema: ./json-schemas/baseSchema.json
+      JsonSchema:
         baseUrl: https://api.spotify.com/v1/
+        operationHeaders:
+          Authorization: >-
+            Bearer
+            BQA1ToLcc9aW-4QnZtPbbuBA593UlLH9Bmibl7mTLbJKFyNNp0IvmM3vvFC6Ks-5c3j3e_1a7RkSMQQfSSX-dkPSBinsNdL2Gad_QKmMaXPCfj8L-WS9VLWZhA23ygpP74O0IoP6Kyw6CQX8VTm0Staj4s3yZsO_6J00i7wB8lKOrDLv4wQJ4gqPHlsjSLjO3FcGpKeA7BRMtyS1a9IT-AvQlFX72sjqro_vRoIFzllmuel-kGExHXlia1Cp8ykRSEj0_QbcwzL1cj2Ic3IOXg
         operations:
           - type: Query
             field: album
             description: 'Get an Album: Get Spotify catalog information for a single album.'
             path: /albums/{args.id}
-            requestSchema: ./json-schemas/album.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/AlbumInput
             argTypeMap:
               id: String
-            responseTypeName: AlbumObject
+            responseSchema: ./json-schemas/base.json#/definitions/AlbumObject
           - type: Query
             field: albums
             description: >-
               Get Multiple Albums: Get Spotify catalog information for multiple
               albums identified by their Spotify IDs.
             path: /albums
-            requestSchema: ./json-schemas/albums.request.json
-            responseSchema: ./json-schemas/albums.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/AlbumsInput
+            responseSchema: ./json-schemas/base.json#/definitions/AlbumsOutput
           - type: Query
             field: albumTracks
             description: 'Get an Album: Get Spotify catalog information for a single album.'
             path: /albums/{args.id}/tracks
-            requestSchema: ./json-schemas/albumTracks.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/AlbumTracksInput
             argTypeMap:
               id: String
-            responseSchema: ./json-schemas/albumTracks.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/AlbumTracksOutput
           - type: Query
             field: artist
             description: >-
               Get an Artist: Get Spotify catalog information for a single artist
               identified by their unique Spotify ID.
             path: /artists/{args.id}
-            requestSchema: ./json-schemas/artist.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/ArtistInput
             argTypeMap:
               id: String
-            responseTypeName: ArtistObject
+            responseSchema: ./json-schemas/base.json#/definitions/ArtistObject
           - type: Query
             field: artistAlbums
             description: >-
               Get an Artist's Albums: Get Spotify catalog information about an
               artist’s albums.
             path: /artists/{args.id}/albums
-            requestSchema: ./json-schemas/artistAlbums.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/ArtistAlbumsInput
             argTypeMap:
               id: String
-            responseSchema: ./json-schemas/artistAlbums.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/ArtistAlbumsOutput
           - type: Query
             field: artistRelatedArtists
             description: >-
@@ -56,7 +59,7 @@ sources:
               about artists similar to a given artist. Similarity is based on
               analysis of the Spotify community’s listening history.
             path: /artists/{args.id}/related-artists
-            responseSchema: ./json-schemas/artistRelatedArtists.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/ArtistRelatedArtistsOutput
             argTypeMap:
               id: String
           - type: Query
@@ -65,87 +68,89 @@ sources:
               Get Multiple Artists: Get Spotify catalog information for several
               artists based on their Spotify IDs.
             path: /artists
-            requestSchema: ./json-schemas/artists.request.json
-            responseSchema: ./json-schemas/artists.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/ArtistsInput
+            responseSchema: ./json-schemas/base.json#/definitions/ArtistsOutput
           - type: Query
             field: artistTopTracks
             description: >-
               Get an Artist's Top Tracks: Get Spotify catalog information about
               an artist’s top tracks by country.
             path: /artists/{args.id}/top-tracks
-            requestSchema: ./json-schemas/artistTopTracks.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/ArtistTopTracksInput
             argTypeMap:
               id: String
-            responseSchema: ./json-schemas/artistTopTracks.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/ArtistTopTracksOutput
           - type: Query
             field: browseCategories
             description: >-
               Get All Categories: Get a list of categories used to tag items in
               Spotify (on, for example, the Spotify player’s “Browse” tab).
             path: /browse/categories
-            requestSchema: ./json-schemas/browseCategories.request.json
-            responseSchema: ./json-schemas/browseCategories.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/BrowseCategoriesInput
+            responseSchema: ./json-schemas/base.json#/definitions/BrowseCategoriesOutput
           - type: Query
             field: browseCategory
             description: >-
               Get a Category: Get a single category used to tag items in Spotify
               (on, for example, the Spotify player’s “Browse” tab).
             path: /browse/categories/{args.category_id}
-            requestSchema: ./json-schemas/browseCategory.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/BrowseCategoriesInput
             argTypeMap:
               category_id: String
-            responseTypeName: CategoryObject
+            responseSchema: ./json-schemas/base.json#/definitions/CategoryObject
           - type: Query
             field: browseCategoryPlaylists
             description: >-
               Get a Category's Playlists: Get a list of Spotify playlists tagged
               with a particular category.
             path: /browse/categories/{args.category_id}/playlists
-            requestSchema: ./json-schemas/browseCategoryPlaylists.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/BrowseCategoryPlaylistsInput
             argTypeMap:
               category_id: String
-            responseSchema: ./json-schemas/browseCategoryPlaylists.response.json
+            responseSchema: >-
+              ./json-schemas/base.json#/definitions/BrowseCategoryPlaylistsOutput
           - type: Query
             field: browseFeaturedPlaylists
             description: >-
               Get All New Releases: Get a list of new album releases featured in
               Spotify (shown, for example, on a Spotify player’s “Browse” tab).
             path: /browse/featured-playlists
-            requestSchema: ./json-schemas/browseFeaturedPlaylists.request.json
-            responseSchema: ./json-schemas/browseFeaturedPlaylists.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/BrowseFeaturedPlaylistsInput
+            responseSchema: >-
+              ./json-schemas/base.json#/definitions/BrowseFeaturedPlaylistsOutput
           - type: Query
             field: browseGenresSeed
             description: >-
               Get Recommendation Genres: Retrieve a list of available genres
               seed parameter values for recommendations.
             path: /recommendations/available-genre-seeds
-            responseSchema: ./json-schemas/browseGenresSeed.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/BrowseGenresSeedOutput
           - type: Query
             field: browseNewReleases
             description: >-
               Get All New Releases: Get a list of new album releases featured in
               Spotify (shown, for example, on a Spotify player’s “Browse” tab).
             path: /browse/new-releases
-            requestSchema: ./json-schemas/browseNewReleases.request.json
-            responseSchema: ./json-schemas/browseNewReleases.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/BrowseNewReleasesInput
+            responseSchema: ./json-schemas/base.json#/definitions/BrowseNewReleasesOutput
           - type: Query
             field: episode
             description: >-
               Get an Episode: Get Spotify catalog information for a single
               episode identified by its unique Spotify ID.
             path: /episodes/{args.id}
-            requestSchema: ./json-schemas/episode.request.json
-            responseTypeName: EpisodeObject
+            requestSchema: ./json-schemas/base.json#/definitions/EpisodeInput
             argTypeMap:
               id: String
+            responseSchema: ./json-schemas/base.json#/definitions/EpisodeObject
           - type: Query
             field: episodes
             description: >-
               Get Multiple Episodes: Get Spotify catalog information for several
               episodes based on their Spotify IDs.
             path: /episodes
-            requestSchema: ./json-schemas/episodes.request.json
-            responseSchema: ./json-schemas/episodes.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/EpisodesInput
+            responseSchema: ./json-schemas/base.json#/definitions/EpisodesOutput
           - type: Query
             field: checkUsersFollowPlaylist
             description: >-
@@ -169,7 +174,7 @@ sources:
               Follow a Playlist: Add the current user as a follower of a
               playlist.
             path: /playlists/{args.playlist_id}/follower
-            requestSchema: ./json-schemas/followPlaylist.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/FollowPlaylistInput
             responseTypeName: Void
           - type: Mutation
             field: followUsers
@@ -184,15 +189,15 @@ sources:
               Get User's Followed Artists: Get the current user’s followed
               artists.
             path: /me/following?type=artist
-            requestSchema: ./json-schemas/meFollowingArtists.request.json
-            responseSchema: ./json-schemas/meFollowingArtists.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeFollowingArtistsInput
+            responseSchema: ./json-schemas/base.json#/definitions/MeFollowingArtistsOutput
           - type: Query
             field: meIsFollowing
             path: /me/following/contains?type={args.type}&ids={args.ids}
             argTypeMap:
               ids: String
               type: String
-            responseSchema: ./json-schemas/meIsFollowing.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/ArrayOfBooleans
           - type: Mutation
             field: unfollowArtists
             method: DELETE
@@ -221,16 +226,16 @@ sources:
               Get User's Saved Albums: Get a list of the albums saved in the
               current Spotify user’s ‘Your Music’ library.
             path: /me/albums
-            requestSchema: ./json-schemas/meAlbums.request.json
-            responseSchema: ./json-schemas/meAlbums.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeAlbumsInput
+            responseSchema: ./json-schemas/base.json#/definitions/MeAlbumsOutput
           - type: Query
             field: meAlbumsContains
             description: >-
               Check User's Saved Albums: Check if one or more albums is already
               saved in the current Spotify user’s ‘Your Music’ library.
             path: /me/albums/contains
-            requestSchema: ./json-schemas/meAlbumsContains.request.json
-            responseSchema: ./json-schemas/meAlbumsContains.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeAlbumsContainsInput
+            responseSchema: ./json-schemas/base.json#/definitions/ArrayOfBooleans
           - type: Mutation
             field: meRemoveAlbums
             method: DELETE
@@ -238,7 +243,7 @@ sources:
               Remove Albums for Current User: Remove one or more albums from the
               current user’s ‘Your Music’ library.
             path: /me/albums
-            requestSchema: ./json-schemas/meRemoveAlbums.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeRemoveAlbumsInput
             responseTypeName: Void
           - type: Mutation
             field: meRemoveShows
@@ -247,7 +252,7 @@ sources:
               Remove Shows for Current User: Remove one or more Shows from the
               current user’s ‘Your Music’ library.
             path: /me/shows
-            requestSchema: ./json-schemas/meRemoveShows.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeRemoveShowsInput
             responseTypeName: Void
           - type: Mutation
             field: meRemoveTracks
@@ -256,7 +261,7 @@ sources:
               Remove Tracks for Current User: Remove one or more Tracks from the
               current user’s ‘Your Music’ library.
             path: /me/tracks
-            requestSchema: ./json-schemas/meRemoveTracks.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeRemoveTracksInput
             responseTypeName: Void
           - type: Mutation
             field: meSaveAlbums
@@ -265,7 +270,7 @@ sources:
               Save Albums for Current User: Save one or more albums to the
               current user’s ‘Your Music’ library.
             path: /me/albums
-            requestSchema: ./json-schemas/meSaveAlbums.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeSaveAlbumsInput
             responseTypeName: Void
           - type: Mutation
             field: meSaveShows
@@ -274,7 +279,7 @@ sources:
               Save Shows for Current User: Save one or more shows to the current
               user’s ‘Your Music’ library.
             path: /me/shows
-            requestSchema: ./json-schemas/meSaveShows.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeSaveShowsInput
             responseTypeName: Void
           - type: Mutation
             field: meSaveTracks
@@ -283,7 +288,7 @@ sources:
               Save Tracks for Current User: Save one or more tracks to the
               current user’s ‘Your Music’ library.
             path: /me/tracks
-            requestSchema: ./json-schemas/meSaveTracks.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeSaveTracksInput
             responseTypeName: Void
           - type: Query
             field: meShows
@@ -292,48 +297,44 @@ sources:
               Spotify user’s library. Optional parameters can be used to limit
               the number of shows returned.
             path: /me/shows
-            requestSchema: ./json-schemas/meShows.request.json
-            responseSchema: ./json-schemas/meShows.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeShowsInput
+            responseSchema: ./json-schemas/base.json#/definitions/MeShowsOutput
           - type: Query
             field: meShowsContains
             description: >-
               Check User's Saved Shows: Check if one or more shows is already
               saved in the current Spotify user’s ‘Your Music’ library.
             path: /me/shows/contains
-            requestSchema: ./json-schemas/meShowsContains.request.json
-            responseSchema: ./json-schemas/meShowsContains.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeShowsContainsInput
+            responseSchema: ./json-schemas/base.json#/definitions/ArrayOfBooleans
           - type: Query
             field: meTracks
             description: >-
               Get User's Saved Tracks: Get a list of the songs saved in the
               current Spotify user’s ‘Your Music’ library.
             path: /me/tracks
-            requestSchema: ./json-schemas/meTracks.request.json
-            responseSchema: ./json-schemas/meTracks.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeTracksInput
+            responseSchema: ./json-schemas/base.json#/definitions/MeTracksOutput
           - type: Query
             field: meTracksContains
             description: >-
               Check User's Saved Tracks: Check if one or more tracks is already
               saved in the current Spotify user’s ‘Your Music’ library.
             path: /me/tracks/contains
-            requestSchema: ./json-schemas/meTracksContains.request.json
-            responseSchema: ./json-schemas/meTracksContains.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeTracksContainsInput
+            responseSchema: ./json-schemas/base.json#/definitions/ArrayOfBooleans
           - type: Query
             field: meTopArtists
-            description: >-
-              Get Several Artists: Get Spotify catalog information for multiple
-              artists based on their Spotify IDs.
+            description: Get Current User top artists
             path: /me/top/artists
-            requestSchema: ./json-schemas/meTopArtists.request.json
-            responseSchema: ./json-schemas/meTopArtists.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeTopArtistsInput
+            responseSchema: ./json-schemas/base.json#/definitions/MeTopArtistsOutput
           - type: Query
             field: meTopTracks
-            description: >-
-              Get Several Tracks: Get Spotify catalog information for multiple
-              tracks based on their Spotify IDs.
+            description: Get Current User top tracks
             path: /me/top/tracks
-            requestSchema: ./json-schemas/meTopTracks.request.json
-            responseSchema: ./json-schemas/meTopTracks.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MeTopTracksInput
+            responseSchema: ./json-schemas/base.json#/definitions/MeTopTracksOutput
           - type: Query
             field: player
             description: >-
@@ -341,23 +342,25 @@ sources:
               about the user’s current playback state, including track or
               episode, progress, and active device.
             path: /me/player
-            requestSchema: ./json-schemas/player.request.json
-            responseTypeName: CurrentlyPlayingContextObject
+            requestSchema: ./json-schemas/base.json#/definitions/PlayerInput
+            responseSchema: >-
+              ./json-schemas/base.json#/definitions/CurrentlyPlayingContextObject
           - type: Query
             field: playerCurrentlyPlaying
             description: >-
               Get the User's Currently Playing Track: Get the object currently
               being played on the user’s Spotify account.
             path: /me/player/currently-playing
-            requestSchema: ./json-schemas/playerCurrentlyPlaying.request.json
-            responseTypeName: CurrentlyPlayingContextObject
+            requestSchema: ./json-schemas/base.json#/definitions/PlayerCurrentlyPlayingInput
+            responseSchema: >-
+              ./json-schemas/base.json#/definitions/CurrentlyPlayingContextObject
           - type: Query
             field: playerDevices
             description: >-
               Get a User's Available Devices: Get information about a user’s
               available devices.
             path: /me/player/devices
-            responseTypeName: DevicesObject
+            responseSchema: ./json-schemas/base.json#/definitions/DevicesObject
           - type: Mutation
             field: playerPause
             method: PUT
@@ -393,7 +396,7 @@ sources:
               Start/Resume a User's Playback: Start a new context or resume
               current playback on the user’s active device.
             path: /me/player/play
-            requestSchema: ./json-schemas/playerPlay.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlayerPlayInput
             responseTypeName: Void
           - type: Mutation
             field: playerPlayForDevice
@@ -402,7 +405,7 @@ sources:
               Start/Resume a User's Playback: Start a new context or resume
               current playback on the user’s active device.
             path: /me/player/play?device_id={args.device_id}
-            requestSchema: ./json-schemas/playerPlayForDevice.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlayerPlayInput
             responseTypeName: Void
           - type: Mutation
             field: playerPrevious
@@ -443,8 +446,8 @@ sources:
               current user’s recently played tracks. Note: Currently doesn’t
               support podcast episodes.
             path: /me/player/recently-played
-            requestSchema: ./json-schemas/playerRecentlyPlayed.request.json
-            responseSchema: ./json-schemas/playerRecentlyPlayed.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlayerRecentlyPlayedInput
+            responseSchema: ./json-schemas/base.json#/definitions/PlayerRecentlyPlayedOutput
           - type: Mutation
             field: playerRepeat
             method: PUT
@@ -511,7 +514,7 @@ sources:
               Get a User's Available Devices: Get information about a user’s
               available devices.
             path: /me/player/devices
-            requestSchema: ./json-schemas/playerTransfer.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlayerTransferInput
             responseTypeName: Void
           - type: Mutation
             field: playerVolume
@@ -540,43 +543,43 @@ sources:
               Create a Playlist: Create a playlist for a Spotify user. (The
               playlist will be empty until you add tracks.)
             path: /users/{args.user_id}/playlists
-            requestSchema: ./json-schemas/createPlaylist.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/UserPlaylistsInput
             argTypeMap:
               user_id: String
-            responseTypeName: PlaylistObject
+            responseSchema: ./json-schemas/base.json#/definitions/PlaylistObject
           - type: Query
             field: mePlaylists
             description: >-
               Get a List of Current User's Playlists: Get a list of the
               playlists owned or followed by the current Spotify user.
             path: /me/playlists
-            requestSchema: ./json-schemas/mePlaylists.request.json
-            responseSchema: ./json-schemas/mePlaylists.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/MePlaylistsInput
+            responseSchema: ./json-schemas/base.json#/definitions/MePlaylistsOutput
           - type: Query
             field: playlist
             description: 'Get a Playlist: Get a playlist owned by a Spotify user.'
             path: /playlists/{args.id}
-            requestSchema: ./json-schemas/playlist.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlaylistInput
             argTypeMap:
               id: String
-            responseTypeName: PlaylistObject
+            responseSchema: ./json-schemas/base.json#/definitions/PlaylistObject
           - type: Mutation
             field: playlistAddItem
             description: >-
               Add Items to a Playlist: Add one or more items to a user’s
               playlist.
             path: /playlists/{args.id}/tracks
-            requestSchema: ./json-schemas/playlistAddItem.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlaylistAddItemInput
             argTypeMap:
               id: String
-            responseSchema: ./json-schemas/playlistAddItem.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/PlaylistAddItemOutput
           - type: Query
             field: playlistCoverImages
             description: >-
               Get a Playlist Cover Image: Get the current image associated with
               a specific playlist.
             path: /playlists/{args.id}/images
-            responseSchema: ./json-schemas/playlistCoverImages.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/ArrayOfImageObjects
             argTypeMap:
               id: String
           - type: Mutation
@@ -586,25 +589,25 @@ sources:
               Remove Items from a Playlist: Remove one or more items from a
               user’s playlist.
             path: /playlists/{args.id}/tracks
-            requestSchema: ./json-schemas/playlistRemoveItems.request.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlaylistRemoveItemsInput
             argTypeMap:
               id: String
-            responseSchema: ./json-schemas/playlistRemoveItems.response.json
+            responseSchema: ./json-schemas/base.json#/definitions/PlaylistRemoveItemsOutput
           - type: Mutation
             field: playlistReorderOrReplaceItems
             method: PUT
             description: Reorder or Replace a Playlist's Items
             path: /playlists/{args.id}/tracks
-            requestSchema: ./json-schemas/playlistReorderOrReplaceItems.request.json
-            responseSchema: ./json-schemas/playlistReorderOrReplaceItems.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlaylistAddItemInput
+            responseSchema: ./json-schemas/base.json#/definitions/PlaylistAddItemOutput
             argTypeMap:
               id: String
           - type: Query
             field: playlistTracks
             description: 'Get a Playlist: Get a playlist owned by a Spotify user.'
             path: /playlists/{args.id}/tracks
-            requestSchema: ./json-schemas/playlistTracks.request.json
-            responseSchema: ./json-schemas/playlistTracks.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/PlaylistTracksInput
+            responseSchema: ./json-schemas/base.json#/definitions/PlaylistTracksOutput
             argTypeMap:
               id: String
           - type: Mutation
@@ -615,18 +618,18 @@ sources:
               public/private state. (The user must, of course, own the
               playlist.)
             path: /playlists/{args.id}
-            requestSchema: ./json-schemas/updatePlaylist.request.json
-            responseTypeName: PlaylistObject
+            requestSchema: ./json-schemas/base.json#/definitions/UpdatePlaylistInput
             argTypeMap:
               id: String
+            responseSchema: ./json-schemas/base.json#/definitions/PlaylistObject
           - type: Query
             field: userPlaylists
             description: >-
               Get a List of a User's Playlists: Get a list of the playlists
               owned or followed by a Spotify user.
             path: /users/{args.user_id}/playlists
-            requestSchema: ./json-schemas/userPlaylists.request.json
-            responseSchema: ./json-schemas/userPlaylists.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/UserPlaylistsInput
+            responseSchema: ./json-schemas/base.json#/definitions/UserPlaylistsOutput
             argTypeMap:
               user_id: String
           - type: Query
@@ -636,18 +639,18 @@ sources:
               artists, playlists, tracks, shows or episodes that match a keyword
               string.
             path: /search
-            requestSchema: ./json-schemas/search.request.json
-            responseSchema: ./json-schemas/search.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/Search
+            responseSchema: ./json-schemas/base.json#/definitions/SearchResults
           - type: Query
             field: show
             description: >-
               Get a Show: Get Spotify catalog information for a single show
               identified by its unique Spotify ID.
             path: /shows/{args.id}
-            requestSchema: ./json-schemas/show.request.json
-            responseTypeName: ShowObject
+            requestSchema: ./json-schemas/base.json#/definitions/ShowInput
             argTypeMap:
               id: String
+            responseSchema: ./json-schemas/base.json#/definitions/ShowObject
           - type: Query
             field: showEpisodes
             description: >-
@@ -655,8 +658,8 @@ sources:
               show’s episodes. Optional parameters can be used to limit the
               number of episodes returned.
             path: /shows/{args.id}/episodes
-            requestSchema: ./json-schemas/showEpisodes.request.json
-            responseSchema: ./json-schemas/showEpisodes.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/ShowEpisodesInput
+            responseSchema: ./json-schemas/base.json#/definitions/ShowEpisodesOutput
             argTypeMap:
               id: String
           - type: Query
@@ -665,57 +668,103 @@ sources:
               Get Multiple Shows: Get Spotify catalog information for several
               shows based on their Spotify IDs.
             path: /shows
-            requestSchema: ./json-schemas/shows.request.json
-            responseSchema: ./json-schemas/shows.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/ShowsInput
+            responseSchema: ./json-schemas/base.json#/definitions/ShowsOutput
           - type: Query
             field: track
             description: >-
               Get a Track: Get Spotify catalog information for a single track
               identified by its unique Spotify ID.
             path: /tracks/{args.id}
-            requestSchema: ./json-schemas/track.request.json
-            responseTypeName: TrackObject
+            requestSchema: ./json-schemas/base.json#/definitions/TrackInput
             argTypeMap:
               id: String
+            responseSchema: ./json-schemas/base.json#/definitions/TrackObject
           - type: Query
             field: trackAudioFeatures
             description: >-
               Get Audio Features for a Track: Get audio feature information for
               a single track identified by its unique Spotify ID.
             path: /audio-features/{args.id}
-            requestSchema: ./json-schemas/trackAudioFeatures.request.json
-            responseTypeName: AudioFeaturesObject
+            requestSchema: ./json-schemas/base.json#/definitions/TrackAudioFeaturesInput
             argTypeMap:
               id: String
+            responseSchema: ./json-schemas/base.json#/definitions/AudioFeaturesObject
           - type: Query
             field: tracks
             description: >-
               Get Several Tracks: Get Spotify catalog information for multiple
               tracks based on their Spotify IDs.
             path: /tracks
-            requestSchema: ./json-schemas/tracks.request.json
-            responseSchema: ./json-schemas/tracks.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/TracksInput
+            responseSchema: ./json-schemas/base.json#/definitions/TracksOutput
           - type: Query
             field: tracksAudioFeatures
             description: >-
               Get Audio Features for Several Tracks: Get audio features for
               multiple tracks based on their Spotify IDs.
             path: /audio-features
-            requestSchema: ./json-schemas/tracksAudioFeatures.request.json
-            responseSchema: ./json-schemas/tracksAudioFeatures.response.json
+            requestSchema: ./json-schemas/base.json#/definitions/TracksAudioFeaturesInput
+            responseSchema: ./json-schemas/base.json#/definitions/TracksAudioFeaturesOutput
           - type: Query
             field: me
             description: >-
               Get Current User's Profile: Get detailed profile information about
               the current user (including the current user’s username).
             path: /me
-            responseTypeName: PrivateUserObject
+            responseSchema: ./json-schemas/base.json#/definitions/PrivateUserObject
           - type: Query
             field: user
             description: >-
               Get a User's Profile: Get public profile information about a
               Spotify user.
             path: /users/{args.id}
-            responseTypeName: PublicUserObject
             argTypeMap:
               id: String
+            responseSchema: ./json-schemas/base.json#/definitions/PublicUserObject
+additionalTypeDefs:
+  - |2-
+
+            extend type PrivateUserObject {
+              playlists: BrowseFeaturedPlaylistsPlaylists!
+              player: CurrentlyPlayingContextObject!
+              albums: MeAlbumsOutput!
+              tracks: MeTracksOutput!
+              topTracks: MeTopTracksOutput!
+              topArtists: MeTopArtistsOutput!
+            }
+            
+additionalResolvers:
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: mePlaylists
+    targetTypeName: PrivateUserObject
+    targetFieldName: playlists
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: player
+    targetTypeName: PrivateUserObject
+    targetFieldName: player
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meAlbums
+    targetTypeName: PrivateUserObject
+    targetFieldName: albums
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meTracks
+    targetTypeName: PrivateUserObject
+    targetFieldName: tracks
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meTopTracks
+    targetTypeName: PrivateUserObject
+    targetFieldName: topTracks
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meTopArtists
+    targetTypeName: PrivateUserObject
+    targetFieldName: topArtists
+transforms:
+  - filterSchema:
+      filters: []

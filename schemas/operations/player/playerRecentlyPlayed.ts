@@ -3,7 +3,7 @@ import * as schema from 'functional-json-schema'
 
 import { cursorPagingObjectOf } from '../../base'
 
-const operation: YamlConfig.JsonSchemaOperation = {
+const operation: YamlConfig.JsonSchemaHTTPOperation = {
   type: 'Query',
   field: 'playerRecentlyPlayed',
   description:

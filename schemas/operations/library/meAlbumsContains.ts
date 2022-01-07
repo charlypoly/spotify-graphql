@@ -1,7 +1,7 @@
 import { YamlConfig } from '@graphql-mesh/types'
 import * as schema from 'functional-json-schema'
 
-const operation: YamlConfig.JsonSchemaOperation = {
+const operation: YamlConfig.JsonSchemaHTTPOperation = {
   type: 'Query',
   field: 'meAlbumsContains',
   description:
@@ -12,12 +12,7 @@ const operation: YamlConfig.JsonSchemaOperation = {
       description: 'A comma-separated list of the Spotify IDs.',
     }),
   }),
-  responseSchema: {
-    type: 'array',
-    items: {
-      type: 'boolean',
-    },
-  },
+  responseSchema: './json-schemas/base.json#/definitions/ArrayOfBooleans',
 }
 
 export default operation

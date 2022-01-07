@@ -1,0 +1,912 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  "Get an Album: Get Spotify catalog information for a single album."
+  album(input: AlbumInput_Input, id: String): AlbumObject
+  "Get Multiple Albums: Get Spotify catalog information for multiple albums identified by their Spotify IDs."
+  albums(input: AlbumsInput_Input): AlbumsOutput
+  "Get an Album: Get Spotify catalog information for a single album."
+  albumTracks(input: AlbumTracksInput_Input, id: String): AlbumTracksOutput
+  "Get an Artist: Get Spotify catalog information for a single artist identified by their unique Spotify ID."
+  artist(input: AlbumInput_Input, id: String): ArtistObject
+  "Get an Artist's Albums: Get Spotify catalog information about an artist’s albums."
+  artistAlbums(input: ArtistAlbumsInput_Input, id: String): SearchResultsAlbums
+  "Get an Artist's Related Artists: Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community’s listening history."
+  artistRelatedArtists(id: String): ArtistRelatedArtistsOutput
+  "Get Multiple Artists: Get Spotify catalog information for several artists based on their Spotify IDs."
+  artists(input: AlbumsInput_Input): ArtistRelatedArtistsOutput
+  "Get an Artist's Top Tracks: Get Spotify catalog information about an artist’s top tracks by country."
+  artistTopTracks(input: ArtistTopTracksInput_Input, id: String): ArtistTopTracksOutput
+  "Get All Categories: Get a list of categories used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab)."
+  browseCategories(input: BrowseCategoriesInput_Input): BrowseCategoriesOutput
+  "Get a Category: Get a single category used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab)."
+  browseCategory(input: BrowseCategoriesInput_Input, category_id: String): CategoryObject
+  "Get a Category's Playlists: Get a list of Spotify playlists tagged with a particular category."
+  browseCategoryPlaylists(input: BrowseCategoriesInput_Input, category_id: String): BrowseCategoryPlaylistsOutput
+  "Get All New Releases: Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s “Browse” tab)."
+  browseFeaturedPlaylists(input: BrowseFeaturedPlaylistsInput_Input): BrowseCategoryPlaylistsOutput
+  "Get Recommendation Genres: Retrieve a list of available genres seed parameter values for recommendations."
+  browseGenresSeed: BrowseGenresSeedOutput
+  "Get All New Releases: Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s “Browse” tab)."
+  browseNewReleases(input: BrowseNewReleasesInput_Input): BrowseNewReleasesOutput
+  "Get an Episode: Get Spotify catalog information for a single episode identified by its unique Spotify ID."
+  episode(input: AlbumInput_Input, id: String): EpisodeObject
+  "Get Multiple Episodes: Get Spotify catalog information for several episodes based on their Spotify IDs."
+  episodes(input: AlbumsInput_Input): EpisodesOutput
+  "Check if Users Follow a Playlist: Check to see if one or more Spotify users are following a specified playlist."
+  checkUsersFollowPlaylist(playlist_id: ID, ids: String): Void
+  "Get User's Followed Artists: Get the current user’s followed artists."
+  meFollowingArtists(input: MeFollowingArtistsInput_Input): MeFollowingArtistsOutput
+  "undefined /me/following/contains?type={args.type}&ids={args.ids}"
+  meIsFollowing(type: String, ids: String): [Boolean]
+  "Get User's Saved Albums: Get a list of the albums saved in the current Spotify user’s ‘Your Music’ library."
+  meAlbums(input: AlbumTracksInput_Input): MeAlbumsOutput
+  "Check User's Saved Albums: Check if one or more albums is already saved in the current Spotify user’s ‘Your Music’ library."
+  meAlbumsContains(input: MeAlbumsContainsInput_Input): [Boolean]
+  "Get User's Saved Shows: Get a list of shows saved in the current Spotify user’s library. Optional parameters can be used to limit the number of shows returned."
+  meShows(input: AlbumTracksInput_Input): MeShowsOutput
+  "Check User's Saved Shows: Check if one or more shows is already saved in the current Spotify user’s ‘Your Music’ library."
+  meShowsContains(input: MeAlbumsContainsInput_Input): [Boolean]
+  "Get User's Saved Tracks: Get a list of the songs saved in the current Spotify user’s ‘Your Music’ library."
+  meTracks(input: AlbumTracksInput_Input): MeTracksOutput
+  "Check User's Saved Tracks: Check if one or more tracks is already saved in the current Spotify user’s ‘Your Music’ library."
+  meTracksContains(input: MeAlbumsContainsInput_Input): [Boolean]
+  "Get Current User top artists"
+  meTopArtists(input: MeTopArtistsInput_Input): SearchResultsArtists
+  "Get Current User top tracks"
+  meTopTracks(input: MeTopArtistsInput_Input): SearchResultsTracks
+  "Get Information About The User's Current Playback: Get information about the user’s current playback state, including track or episode, progress, and active device."
+  player(input: AlbumInput_Input): CurrentlyPlayingContextObject
+  "Get the User's Currently Playing Track: Get the object currently being played on the user’s Spotify account."
+  playerCurrentlyPlaying(input: AlbumInput_Input): CurrentlyPlayingContextObject
+  "Get a User's Available Devices: Get information about a user’s available devices."
+  playerDevices: DevicesObject
+  "Get Current User's Recently Played Tracks: Get tracks from the current user’s recently played tracks. Note: Currently doesn’t support podcast episodes."
+  playerRecentlyPlayed(input: PlayerRecentlyPlayedInput_Input): PlayerRecentlyPlayedOutput
+  "Get a List of Current User's Playlists: Get a list of the playlists owned or followed by the current Spotify user."
+  mePlaylists(input: UserPlaylistsInput_Input): BrowseFeaturedPlaylistsPlaylists
+  "Get a Playlist: Get a playlist owned by a Spotify user."
+  playlist(input: AlbumInput_Input, id: String): PlaylistObject
+  "Get a Playlist Cover Image: Get the current image associated with a specific playlist."
+  playlistCoverImages(id: String): [ImageObject]
+  "Get a Playlist: Get a playlist owned by a Spotify user."
+  playlistTracks(input: AlbumTracksInput_Input, id: String): PlaylistTracksOutput
+  "Get a List of a User's Playlists: Get a list of the playlists owned or followed by a Spotify user."
+  userPlaylists(input: UserPlaylistsInput_Input, user_id: String): BrowseFeaturedPlaylistsPlaylists
+  "Search for an Item: Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes that match a keyword string."
+  search(input: Search_Input): SearchResults
+  "Get a Show: Get Spotify catalog information for a single show identified by its unique Spotify ID."
+  show(input: AlbumInput_Input, id: String): ShowObject
+  "Get a Show's Episodes: Get Spotify catalog information about an show’s episodes. Optional parameters can be used to limit the number of episodes returned."
+  showEpisodes(input: AlbumTracksInput_Input, id: String): SearchResultsEpisodes
+  "Get Multiple Shows: Get Spotify catalog information for several shows based on their Spotify IDs."
+  shows(input: AlbumsInput_Input): ShowsOutput
+  "Get a Track: Get Spotify catalog information for a single track identified by its unique Spotify ID."
+  track(input: AlbumInput_Input, id: String): TrackObject
+  "Get Audio Features for a Track: Get audio feature information for a single track identified by its unique Spotify ID."
+  trackAudioFeatures(input: AlbumInput_Input, id: String): AudioFeaturesObject
+  "Get Several Tracks: Get Spotify catalog information for multiple tracks based on their Spotify IDs."
+  tracks(input: AlbumsInput_Input): ArtistTopTracksOutput
+  "Get Audio Features for Several Tracks: Get audio features for multiple tracks based on their Spotify IDs."
+  tracksAudioFeatures(input: AlbumsInput_Input): TracksAudioFeaturesOutput
+  "Get Current User's Profile: Get detailed profile information about the current user (including the current user’s username)."
+  me: PrivateUserObject
+  "Get a User's Profile: Get public profile information about a Spotify user."
+  user(id: String): PublicUserObject
+}
+
+type AlbumObject {
+  album_type: AlbumObject_album_type
+  artists: [ArtistObject]
+  available_markets: [String]
+  copyrights: [CopyrightObject]
+  external_urls: ExternalUrlObject
+  external_ids: ExternalIdObject
+  genres: [String]
+  href: String
+  id: String
+  images: [ImageObject]
+  label: String
+  name: String
+  popularity: Float
+  release_date: String
+  release_date_precision: AlbumObject_release_date_precision
+  restrictions: AlbumRestrictionObject
+  tracks: [SimplifiedTrackObject]
+  uri: String
+  type: String
+}
+
+enum AlbumObject_album_type {
+  album
+  single
+  compilation
+}
+
+type ArtistObject {
+  external_urls: ExternalUrlObject
+  followers: [FollowersObject]
+  genres: [String]
+  href: String
+  id: String
+  images: [ImageObject]
+  type: String
+  uri: String
+  popularity: Float
+  name: String
+}
+
+type ExternalUrlObject {
+  spotify: String
+}
+
+type FollowersObject {
+  href: String
+  total: Float
+}
+
+type ImageObject {
+  url: String
+  height: Float
+  width: Float
+}
+
+type CopyrightObject {
+  text: String
+  type: CopyrightObject_type
+}
+
+enum CopyrightObject_type {
+  C
+  P
+}
+
+type ExternalIdObject {
+  ean: String
+  isrc: String
+  upc: String
+}
+
+enum AlbumObject_release_date_precision {
+  year
+  month
+  day
+}
+
+type AlbumRestrictionObject {
+  reason: AlbumRestrictionObject_reason
+}
+
+enum AlbumRestrictionObject_reason {
+  market
+  product
+  explicit
+}
+
+type SimplifiedTrackObject {
+  artists: [SimplifiedArtistObject]
+  available_markets: [String]
+  disc_number: Float
+  duration_ms: Float
+  explicit: Boolean
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  is_local: Boolean
+  is_playable: Boolean
+  name: String
+  preview_url: String
+  restrictions: AlbumRestrictionObject
+  track_number: Float
+  type: String
+  uri: String
+}
+
+type SimplifiedArtistObject {
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  type: String
+  uri: String
+  name: String
+}
+
+input AlbumInput_Input {
+  market: String
+}
+
+type AlbumsOutput {
+  albums: [AlbumObject]
+}
+
+input AlbumsInput_Input {
+  ids: String!
+  market: String
+}
+
+type AlbumTracksOutput {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SimplifiedTrackObject]
+  offset: Float
+}
+
+input AlbumTracksInput_Input {
+  market: String
+  limit: Float
+  offset: Float
+}
+
+type SearchResultsAlbums {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SimplifiedAlbumObject]
+  offset: Float
+}
+
+type SimplifiedAlbumObject {
+  album_group: String
+  album_type: String
+  artists: [SimplifiedArtistObject]
+  available_markets: [String]
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  images: [ImageObject]
+  name: String
+  release_date: String
+  release_date_precision: AlbumObject_release_date_precision
+  restrictions: AlbumRestrictionObject
+  type: String
+  uri: String
+}
+
+input ArtistAlbumsInput_Input {
+  market: String!
+  include_groups: String!
+  limit: Float
+  offset: Float
+}
+
+type ArtistRelatedArtistsOutput {
+  artists: [ArtistObject]
+}
+
+type ArtistTopTracksOutput {
+  tracks: [TrackObject]
+}
+
+type TrackObject {
+  album: SimplifiedAlbumObject
+  artists: [ArtistObject]
+  available_markets: [String]
+  disc_number: Float
+  duration_ms: Float
+  explicit: Boolean
+  external_ids: ExternalIdObject
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  is_playable: Boolean
+  name: String
+  popularity: Float
+  preview_url: String
+  restrictions: AlbumRestrictionObject
+  track_number: Float
+  type: String
+  uri: String
+}
+
+input ArtistTopTracksInput_Input {
+  market: String!
+}
+
+type BrowseCategoriesOutput {
+  categories: BrowseCategoriesCategories
+}
+
+type BrowseCategoriesCategories {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [CategoryObject]
+  offset: Float
+}
+
+type CategoryObject {
+  href: String
+  icons: [ImageObject]
+  id: String
+  name: String
+}
+
+input BrowseCategoriesInput_Input {
+  country: String!
+  locale: String
+}
+
+type BrowseCategoryPlaylistsOutput {
+  playlists: BrowseFeaturedPlaylistsPlaylists
+}
+
+type BrowseFeaturedPlaylistsPlaylists {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SimplifiedPlaylistObject]
+  offset: Float
+}
+
+type SimplifiedPlaylistObject {
+  collaborative: Boolean
+  description: String
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  images: [ImageObject]
+  name: String
+  owner: PublicUserObject
+  public: Boolean
+  snapshot_id: String
+  tracks: FollowersObject
+  type: String
+  uri: String
+}
+
+type PublicUserObject {
+  display_name: String
+  external_urls: ExternalUrlObject
+  followers: [FollowersObject]
+  href: String
+  id: String
+  images: [ImageObject]
+  type: String
+  uri: String
+}
+
+input BrowseFeaturedPlaylistsInput_Input {
+  country: String!
+  timestamp: String!
+  locale: String
+  limit: Float
+  offset: Float
+}
+
+type BrowseGenresSeedOutput {
+  genres: [String]
+}
+
+type BrowseNewReleasesOutput {
+  albums: SearchResultsAlbums
+}
+
+input BrowseNewReleasesInput_Input {
+  country: String!
+  limit: Float
+  offset: Float
+}
+
+type EpisodeObject {
+  audio_preview_url: String
+  description: String
+  duration_ms: Float
+  explicit: Boolean
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  images: [ImageObject]
+  is_externally_hosted: Boolean
+  is_playable: Boolean
+  language: String
+  languages: [String]
+  name: String
+  release_date: String
+  release_date_precision: AlbumObject_release_date_precision
+  resume_point: ResumePointObject
+  show: SimplifiedShowObject
+  type: String
+  uri: String
+}
+
+type ResumePointObject {
+  fully_played: Boolean
+  resume_position_ms: Float
+}
+
+type SimplifiedShowObject {
+  available_markets: [String]
+  copyrights: [CopyrightObject]
+  description: String
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  images: [ImageObject]
+  is_externally_hosted: Boolean
+  languages: [String]
+  media_type: String
+  name: String
+  publisher: String
+  type: String
+  uri: String
+}
+
+type EpisodesOutput {
+  episodes: [EpisodeObject]
+}
+
+scalar Void
+
+type MeFollowingArtistsOutput {
+  artists: MeFollowingArtistsOutputArtists
+}
+
+type MeFollowingArtistsOutputArtists {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [ArtistObject]
+  cursors: CursorObject
+}
+
+type CursorObject {
+  after: String
+  before: String
+}
+
+input MeFollowingArtistsInput_Input {
+  limit: Float
+  after: String
+}
+
+type MeAlbumsOutput {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SavedAlbumObject]
+  offset: Float
+}
+
+type SavedAlbumObject {
+  added_at: String
+  album: AlbumObject
+}
+
+input MeAlbumsContainsInput_Input {
+  ids: String
+}
+
+type MeShowsOutput {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SavedShowObject]
+  offset: Float
+}
+
+type SavedShowObject {
+  added_at: String
+  album: SimplifiedShowObject
+}
+
+type MeTracksOutput {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SavedTrackObject]
+  offset: Float
+}
+
+type SavedTrackObject {
+  added_at: String
+  album: TrackObject
+}
+
+type SearchResultsArtists {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [ArtistObject]
+  offset: Float
+}
+
+input MeTopArtistsInput_Input {
+  time_range: MeTopArtistsInput_time_range
+  limit: Float
+  offset: Float
+}
+
+enum MeTopArtistsInput_time_range {
+  long_term
+  short_term
+}
+
+type SearchResultsTracks {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [TrackObject]
+  offset: Float
+}
+
+type CurrentlyPlayingContextObject {
+  actions: DisallowsObject
+  context: ContextObject
+  currently_playing_type: String
+  device: DeviceObject
+  is_playing: Boolean
+  item: TrackObject
+  progress_ms: Float
+  repeat_state: String
+  shuffle_state: String
+  timestamp: Float
+}
+
+type DisallowsObject {
+  interrupting_playback: Boolean
+  pausing: Boolean
+  resuming: Boolean
+  seeking: Boolean
+  skipping_next: Boolean
+  skipping_prev: Boolean
+  toggling_repeat_context: Boolean
+  toggling_repeat_track: Boolean
+  toggling_shuffle: Boolean
+  transferring_playback: Boolean
+}
+
+type ContextObject {
+  external_urls: ExternalUrlObject
+  href: String
+  type: ContextObject_type
+  url: String
+}
+
+enum ContextObject_type {
+  artist
+  playlist
+  album
+  show
+}
+
+type DeviceObject {
+  id: String
+  is_active: Boolean
+  is_private_session: Boolean
+  is_restricted: Boolean
+  name: String
+  type: String
+  volume_percent: Float
+}
+
+type DevicesObject {
+  devices: [DeviceObject]
+}
+
+type PlayerRecentlyPlayedOutput {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [PlayHistoryObject]
+  cursors: CursorObject
+}
+
+type PlayHistoryObject {
+  played_at: String
+  context: ContextObject
+  track: SimplifiedTrackObject
+}
+
+input PlayerRecentlyPlayedInput_Input {
+  limit: Float
+  after: Float
+  before: Float
+}
+
+input UserPlaylistsInput_Input {
+  limit: Float
+  offset: Float
+}
+
+type PlaylistObject {
+  collaborative: Boolean
+  description: String
+  external_urls: ExternalUrlObject
+  followers: [FollowersObject]
+  href: String
+  id: String
+  images: [ImageObject]
+  name: String
+  owner: PublicUserObject
+  public: Boolean
+  snapshot_id: String
+  tracks: [PlaylistTrackObject]
+  type: String
+  uri: String
+}
+
+type PlaylistTrackObject {
+  added_at: String
+  added_by: PublicUserObject
+  is_local: Boolean
+  track: TrackObject
+}
+
+type PlaylistTracksOutput {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [PlaylistTrackObject]
+  offset: Float
+}
+
+type SearchResults {
+  artists: SearchResultsArtists
+  albums: SearchResultsAlbums
+  shows: SearchResultsShows
+  tracks: SearchResultsTracks
+  episodes: SearchResultsEpisodes
+}
+
+type SearchResultsShows {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SimplifiedShowObject]
+  offset: Float
+}
+
+type SearchResultsEpisodes {
+  href: String
+  next: String
+  previous: String
+  limit: Float
+  total: Float
+  items: [SimplifiedEpisodeObject]
+  offset: Float
+}
+
+type SimplifiedEpisodeObject {
+  audio_preview_url: String
+  description: String
+  duration_ms: Float
+  explicit: Boolean
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  images: [ImageObject]
+  is_externally_hosted: Boolean
+  is_playable: Boolean
+  language: String
+  languages: [String]
+  name: String
+  release_date: String
+  release_date_precision: AlbumObject_release_date_precision
+  resume_point: ResumePointObject
+  type: String
+  uri: String
+}
+
+input Search_Input {
+  q: String!
+  type: String!
+  market: String
+  limit: Float
+  include_external: Search_include_external
+}
+
+enum Search_include_external {
+  audio
+}
+
+type ShowObject {
+  available_markets: [String]
+  copyrights: [CopyrightObject]
+  description: String
+  episodes: [SimplifiedEpisodeObject]
+  explicit: Boolean
+  external_urls: ExternalUrlObject
+  href: String
+  id: String
+  images: [ImageObject]
+  is_externally_hosted: Boolean
+  languages: [String]
+  media_type: String
+  name: String
+  publisher: String
+  type: String
+  uri: String
+}
+
+type ShowsOutput {
+  shows: [SimplifiedShowObject]
+}
+
+type AudioFeaturesObject {
+  id: String
+  acousticness: Float
+  analysis_url: String
+  danceability: Float
+  duration_ms: Float
+  energy: Float
+  instrumentalness: Float
+  key: Float
+  liveness: Float
+  loudness: Float
+  mode: Float
+  speechiness: Float
+  tempo: Float
+  time_signature: Float
+  track_href: String
+  type: String
+  uri: String
+  valence: Float
+}
+
+type TracksAudioFeaturesOutput {
+  audio_features: [AudioFeaturesObject]
+}
+
+type PrivateUserObject {
+  country: String
+  display_name: String
+  email: String
+  explicit_content: ExplicitContentSettingsObject
+  external_urls: ExternalUrlObject
+  followers: [FollowersObject]
+  href: String
+  id: String
+  images: [ImageObject]
+  product: String
+  type: String
+  uri: String
+}
+
+type ExplicitContentSettingsObject {
+  filter_enabled: Boolean
+  filter_locker: Boolean
+}
+
+type Mutation {
+  "PUT /me/following?type=artist&ids={args.ids}"
+  followArtists(ids: String): Void
+  "Follow a Playlist: Add the current user as a follower of a playlist."
+  followPlaylist(input: FollowPlaylistInput_Input, playlist_id: ID): Void
+  "PUT /me/following?type=user&ids={args.ids}"
+  followUsers(ids: String): Void
+  "DELETE /me/following?type=artist&ids={args.ids}"
+  unfollowArtists(ids: String): Void
+  "Unfollow Playlist: Remove the current user as a follower of a playlist."
+  unfollowPlaylist(playlist_id: ID): Void
+  "DELETE /me/following?type=user&ids={args.ids}"
+  unfollowUsers(ids: String): Void
+  "Remove Albums for Current User: Remove one or more albums from the current user’s ‘Your Music’ library."
+  meRemoveAlbums(input: MeAlbumsContainsInput_Input): Void
+  "Remove Shows for Current User: Remove one or more Shows from the current user’s ‘Your Music’ library."
+  meRemoveShows(input: MeAlbumsContainsInput_Input): Void
+  "Remove Tracks for Current User: Remove one or more Tracks from the current user’s ‘Your Music’ library."
+  meRemoveTracks(input: MeAlbumsContainsInput_Input): Void
+  "Save Albums for Current User: Save one or more albums to the current user’s ‘Your Music’ library."
+  meSaveAlbums(input: MeAlbumsContainsInput_Input): Void
+  "Save Shows for Current User: Save one or more shows to the current user’s ‘Your Music’ library."
+  meSaveShows(input: MeAlbumsContainsInput_Input): Void
+  "Save Tracks for Current User: Save one or more tracks to the current user’s ‘Your Music’ library."
+  meSaveTracks(input: MeAlbumsContainsInput_Input): Void
+  "Pause a User's Playback: Pause playback on the user’s account."
+  playerPause(device_id: ID): Void
+  "Pause a User's Playback: Pause playback on the user’s account."
+  playerPauseForDevice(device_id: ID): Void
+  "Start/Resume a User's Playback: Start a new context or resume current playback on the user’s active device."
+  playerPlay(input: PlayerPlayInput_Input): Void
+  "Start/Resume a User's Playback: Start a new context or resume current playback on the user’s active device."
+  playerPlayForDevice(input: PlayerPlayInput_Input, device_id: ID): Void
+  "Skip User’s Playback To Previous Track: Skips to previous track in the user’s queue."
+  playerPrevious: Void
+  "Skip User’s Playback To Previous Track: Skips to previous track in the user’s queue."
+  playerPreviousForDevice(device_id: ID): Void
+  "Add an item to queue: Add an item to the end of the user’s current playback queue."
+  playerQueue(uri: ID): Void
+  "Add an item to queue: Add an item to the end of the user’s current playback queue."
+  playerQueueForDevice(device_id: ID, uri: ID): Void
+  "Set Repeat Mode On User’s Playback: Set the repeat mode for the user’s playback. Options are repeat-track, repeat-context, and off."
+  playerRepeat(state: ID): Void
+  "Set Repeat Mode On User’s Playback: Set the repeat mode for the user’s playback. Options are repeat-track, repeat-context, and off."
+  playerRepeatForDevice(device_id: ID, state: ID): Void
+  "Seek To Position In Currently Playing Track: Seeks to the given position in the user’s currently playing track."
+  playerSeek(position_ms: Int): Void
+  "Seek To Position In Currently Playing Track: Seeks to the given position in the user’s currently playing track."
+  playerSeekForDevice(device_id: ID, position_ms: Int): Void
+  "Toggle Shuffle For User’s Playback: Toggle shuffle on or off for user’s playback."
+  playerShuffle(state: Boolean): Void
+  "Toggle Shuffle For User’s Playback: Toggle shuffle on or off for user’s playback."
+  playerShuffleForDevice(device_id: ID, state: Boolean): Void
+  "Get a User's Available Devices: Get information about a user’s available devices."
+  playerTransfer(input: PlayerTransferInput_Input): Void
+  "Set Volume For User's Playback: Set the volume for the user’s current playback device."
+  playerVolume(state: ID): Void
+  "Set Volume For User's Playback: Set the volume for the user’s current playback device."
+  playerVolumeForDevice(device_id: ID, state: ID): Void
+  "Create a Playlist: Create a playlist for a Spotify user. (The playlist will be empty until you add tracks.)"
+  createPlaylist(input: UserPlaylistsInput_Input, user_id: String): PlaylistObject
+  "Add Items to a Playlist: Add one or more items to a user’s playlist."
+  playlistAddItem(input: PlaylistAddItemInput_Input, id: String): PlaylistAddItemOutput
+  "Remove Items from a Playlist: Remove one or more items from a user’s playlist."
+  playlistRemoveItems(input: PlaylistRemoveItemsInput_Input, id: String): PlaylistAddItemOutput
+  "Reorder or Replace a Playlist's Items"
+  playlistReorderOrReplaceItems(input: PlaylistAddItemInput_Input, id: String): PlaylistAddItemOutput
+  "Change a Playlist's Details: Change a playlist’s name and public/private state. (The user must, of course, own the playlist.)"
+  updatePlaylist(input: UpdatePlaylistInput_Input, id: String): PlaylistObject
+}
+
+input FollowPlaylistInput_Input {
+  public: Boolean
+}
+
+input PlayerPlayInput_Input {
+  context_uri: String
+  uris: [String]
+  position_ms: Float
+}
+
+input PlayerTransferInput_Input {
+  device_ids: [String]
+  play: Boolean
+}
+
+type PlaylistAddItemOutput {
+  snapshot_id: String
+}
+
+input PlaylistAddItemInput_Input {
+  uris: String
+  range_start: Float
+  insert_before: Float
+  range_length: Float
+  snapshot_id: String
+}
+
+input PlaylistRemoveItemsInput_Input {
+  tracks: [PlaylistRemoveItemsInputTracks_Input]
+  snapshot_id: String
+}
+
+input PlaylistRemoveItemsInputTracks_Input {
+  uri: String
+}
+
+input UpdatePlaylistInput_Input {
+  name: String
+  public: Boolean
+  collaborative: Boolean
+  description: String
+}

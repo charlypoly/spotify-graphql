@@ -2,7 +2,7 @@ import { YamlConfig } from '@graphql-mesh/types'
 import * as schema from 'functional-json-schema'
 import { offsetPagingObjectOf } from '../../base'
 
-const operation: YamlConfig.JsonSchemaOperation = {
+const operation: YamlConfig.JsonSchemaHTTPOperation = {
   type: 'Query',
   field: 'meShows',
   description:
