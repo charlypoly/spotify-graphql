@@ -4,9 +4,7 @@ sources:
       JsonSchema:
         baseUrl: https://api.spotify.com/v1/
         operationHeaders:
-          Authorization: >-
-            Bearer
-            BQA1ToLcc9aW-4QnZtPbbuBA593UlLH9Bmibl7mTLbJKFyNNp0IvmM3vvFC6Ks-5c3j3e_1a7RkSMQQfSSX-dkPSBinsNdL2Gad_QKmMaXPCfj8L-WS9VLWZhA23ygpP74O0IoP6Kyw6CQX8VTm0Staj4s3yZsO_6J00i7wB8lKOrDLv4wQJ4gqPHlsjSLjO3FcGpKeA7BRMtyS1a9IT-AvQlFX72sjqro_vRoIFzllmuel-kGExHXlia1Cp8ykRSEj0_QbcwzL1cj2Ic3IOXg
+          Authorization: Bearer {env.TOKEN}
         operations:
           - type: Query
             field: album
@@ -767,4 +765,5 @@ additionalResolvers:
     targetFieldName: topArtists
 transforms:
   - filterSchema:
-      filters: []
+      filters:
+        - Query.!{mePlaylists, meAlbums, meTracks, meTopArtists}
