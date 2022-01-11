@@ -6,7 +6,7 @@ const operation: YamlConfig.JsonSchemaHTTPOperation = {
   field: 'meTracksContains',
   description:
     "Check User's Saved Tracks: Check if one or more tracks is already saved in the current Spotify user’s ‘Your Music’ library.",
-  path: '/me/tracks/contains',
+  path: '/me/tracks/contains?ids={args.ids}',
   requestSchema: schema.definition('MeTracksContainsInput', {
     ids: schema.types.type('string', {
       description: 'A comma-separated list of the Spotify IDs.',

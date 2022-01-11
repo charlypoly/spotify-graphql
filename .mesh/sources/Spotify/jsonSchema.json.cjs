@@ -453,7 +453,8 @@ module.exports = {
       },
       "title": "SearchResultsAlbums_items"
     },
-    "SearchResultsAlbums": {
+    "ArtistAlbumsOutput": {
+      "title": "ArtistAlbumsOutput",
       "type": "object",
       "required": [],
       "properties": {
@@ -478,8 +479,7 @@ module.exports = {
         "offset": {
           "$ref": "#/definitions/AlbumObject_popularity"
         }
-      },
-      "title": "SearchResultsAlbums"
+      }
     },
     "ArtistRelatedArtistsOutput": {
       "type": "object",
@@ -764,6 +764,34 @@ module.exports = {
         }
       },
       "title": "BrowseGenresSeedOutput"
+    },
+    "SearchResultsAlbums": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "next": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "previous": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "limit": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "total": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "items": {
+          "$ref": "#/definitions/SearchResultsAlbums_items"
+        },
+        "offset": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        }
+      },
+      "title": "SearchResultsAlbums"
     },
     "BrowseNewReleasesOutput": {
       "type": "object",
@@ -1154,7 +1182,8 @@ module.exports = {
       },
       "title": "MeTracksOutput"
     },
-    "SearchResultsArtists": {
+    "MeTopArtistsOutput": {
+      "title": "MeTopArtistsOutput",
       "type": "object",
       "required": [],
       "properties": {
@@ -1179,10 +1208,10 @@ module.exports = {
         "offset": {
           "$ref": "#/definitions/AlbumObject_popularity"
         }
-      },
-      "title": "SearchResultsArtists"
+      }
     },
-    "SearchResultsTracks": {
+    "MeTopTracksOutput": {
+      "title": "MeTopTracksOutput",
       "type": "object",
       "required": [],
       "properties": {
@@ -1207,8 +1236,7 @@ module.exports = {
         "offset": {
           "$ref": "#/definitions/AlbumObject_popularity"
         }
-      },
-      "title": "SearchResultsTracks"
+      }
     },
     "DisallowsObject": {
       "type": "object",
@@ -1511,6 +1539,62 @@ module.exports = {
       },
       "title": "PlaylistTracksOutput"
     },
+    "UserPlaylistsOutput": {
+      "title": "UserPlaylistsOutput",
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "next": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "previous": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "limit": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "total": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "items": {
+          "$ref": "#/definitions/BrowseFeaturedPlaylistsPlaylists_items"
+        },
+        "offset": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        }
+      }
+    },
+    "SearchResultsArtists": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "next": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "previous": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "limit": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "total": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "items": {
+          "$ref": "#/definitions/AlbumObject_artists"
+        },
+        "offset": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        }
+      },
+      "title": "SearchResultsArtists"
+    },
     "SearchResultsShows_items": {
       "type": "array",
       "items": {
@@ -1545,6 +1629,34 @@ module.exports = {
         }
       },
       "title": "SearchResultsShows"
+    },
+    "SearchResultsTracks": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "next": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "previous": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "limit": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "total": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "items": {
+          "$ref": "#/definitions/SearchResultsTracks_items"
+        },
+        "offset": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        }
+      },
+      "title": "SearchResultsTracks"
     },
     "SimplifiedEpisodeObject": {
       "type": "object",
@@ -1719,6 +1831,34 @@ module.exports = {
       },
       "title": "ShowObject"
     },
+    "ShowEpisodesOutput": {
+      "title": "ShowEpisodesOutput",
+      "type": "object",
+      "required": [],
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "next": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "previous": {
+          "$ref": "#/definitions/AlbumObject_available_markets_items"
+        },
+        "limit": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "total": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        },
+        "items": {
+          "$ref": "#/definitions/ShowObject_episodes"
+        },
+        "offset": {
+          "$ref": "#/definitions/AlbumObject_popularity"
+        }
+      }
+    },
     "ShowsOutput": {
       "type": "object",
       "required": [],
@@ -1880,7 +2020,7 @@ module.exports = {
           "$ref": "#/definitions/ArtistObject"
         },
         "artistAlbums": {
-          "$ref": "#/definitions/SearchResultsAlbums"
+          "$ref": "#/definitions/ArtistAlbumsOutput"
         },
         "artistRelatedArtists": {
           "$ref": "#/definitions/ArtistRelatedArtistsOutput"
@@ -1943,10 +2083,10 @@ module.exports = {
           "$ref": "#/definitions/ArrayOfBooleans"
         },
         "meTopArtists": {
-          "$ref": "#/definitions/SearchResultsArtists"
+          "$ref": "#/definitions/MeTopArtistsOutput"
         },
         "meTopTracks": {
-          "$ref": "#/definitions/SearchResultsTracks"
+          "$ref": "#/definitions/MeTopTracksOutput"
         },
         "player": {
           "$ref": "#/definitions/CurrentlyPlayingContextObject"
@@ -1973,7 +2113,7 @@ module.exports = {
           "$ref": "#/definitions/PlaylistTracksOutput"
         },
         "userPlaylists": {
-          "$ref": "#/definitions/BrowseFeaturedPlaylistsPlaylists"
+          "$ref": "#/definitions/UserPlaylistsOutput"
         },
         "search": {
           "$ref": "#/definitions/SearchResults"
@@ -1982,7 +2122,7 @@ module.exports = {
           "$ref": "#/definitions/ShowObject"
         },
         "showEpisodes": {
-          "$ref": "#/definitions/SearchResultsEpisodes"
+          "$ref": "#/definitions/ShowEpisodesOutput"
         },
         "shows": {
           "$ref": "#/definitions/ShowsOutput"

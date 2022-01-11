@@ -2696,6 +2696,7 @@
       }
     },
     "UserPlaylistsOutput": {
+      "title": "UserPlaylistsOutput",
       "type": "object",
       "required": [],
       "properties": {

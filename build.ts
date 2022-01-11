@@ -63,20 +63,39 @@ const processOperationDefinition = (file): YamlConfig.JsonSchemaHTTPOperation =>
 }
 
 //  "PrivateUserObject.playlists -> Query.mePlaylists"
-//  "PlaylistObject{ id }.tracks -> Query.tracks(ids: [id])"
+//  "AlbumObject{ id }.tracks -> Query.albumTracks(id: id)"
 const processAdditionalResolvers = (sourceName, additionalResolvers: string[]) => additionalResolvers.map(additionalResolver => {
   if (additionalResolver[0] === '.' || additionalResolver[0] === '/') {
     // path
     return additionalResolver
   } else {
     const [[targetTypeName, targetFieldName], [sourceTypeName, sourceFieldName]] = additionalResolver.split('->').map(s => s.trim().split('.'))
-    return {
+    let configuration: any = {
       sourceName,
       sourceTypeName,
       sourceFieldName,
       targetTypeName,
       targetFieldName,
     }
+    // TODO: parsing error handling
+    if (targetTypeName.includes('{') && sourceFieldName.includes('(')) {
+      const [targetTypeNameWithoutSelection, requiredSelectionSet] = targetTypeName.split('{')
+      configuration.requiredSelectionSet = `{${requiredSelectionSet}`
+      configuration.targetTypeName = targetTypeNameWithoutSelection.trim()
+
+      let sourceArgs = {}
+      sourceFieldName.match(/\((.*)\)/)[1].split(',').forEach(keyTuple => {
+        const [argKey, sourceKey] = keyTuple.split(':')
+        sourceArgs[argKey.trim()] = `{root.${sourceKey.trim()}}`
+      })
+
+      configuration.sourceFieldName = sourceFieldName.match(/(.*)\(.*\)/)[1]
+
+      if (sourceArgs) {
+        configuration.sourceArgs = sourceArgs
+      }
+    }
+    return configuration
   }
 })
 
@@ -112,6 +131,32 @@ glob('./schemas/operations/**/*.ts', (err, files) => {
           tracks: MeTracksOutput!
           topTracks: MeTopTracksOutput!
           topArtists: MeTopArtistsOutput!
+          followingArtists: MeFollowingArtistsOutput!
+          shows: MeShowsOutput!
+          albumsContains(ids: String!): [Boolean!]!
+          showsContains(ids: String!): [Boolean!]!
+          tracksContains(ids: String!): [Boolean!]!
+        }
+        extend type AlbumObject {
+          tracksFull: AlbumTracksOutput!
+        }
+        extend type ArtistObject {
+          albums: ArtistAlbumsOutput!
+          topTracks(market: String!): ArtistTopTracksOutput!
+          relatedArtists: ArtistRelatedArtistsOutput!
+        }
+        extend type CurrentlyPlayingContextObject {
+          recentlyPlayed: PlayerRecentlyPlayedOutput!
+          devices: DevicesObject!
+        }
+        extend type ShowObject {
+          episodesFull: ShowEpisodesOutput!
+        }
+        extend type PublicUserObject {
+          playlists: UserPlaylistsOutput!
+        }
+        extend type TrackObject {
+          audioFeatures: AudioFeaturesObject!
         }
         `
       ],
@@ -123,12 +168,34 @@ glob('./schemas/operations/**/*.ts', (err, files) => {
         "PrivateUserObject.tracks -> Query.meTracks",
         "PrivateUserObject.topTracks -> Query.meTopTracks",
         "PrivateUserObject.topArtists -> Query.meTopArtists",
+        "AlbumObject { id }.tracksFull -> Query.albumTracks(id: id)",
+        "ArtistObject { id }.albums -> Query.artistAlbums(id: id)",
+        "ArtistObject { id }.topTracks -> Query.artistTopTracks(id: id)",
+        "ArtistObject { id }.relatedArtists -> Query.artistRelatedArtists(id: id)",
+        "CurrentlyPlayingContextObject.recentlyPlayed -> Query.playerRecentlyPlayed",
+        "CurrentlyPlayingContextObject.devices -> Query.playerDevices",
+        "PrivateUserObject.albumsContains -> Query.meAlbumsContains",
+        "PrivateUserObject.followingArtists -> Query.meFollowingArtists",
+        "PrivateUserObject.shows -> Query.meShows",
+        "PrivateUserObject.showsContains -> Query.meShowsContains",
+        "PrivateUserObject.tracksContains -> Query.meTracksContains",
+        "ShowObject { id }.episodesFull -> Query.showEpisodes(id: id)",
+        "TrackObject { id }.audioFeatures -> Query.trackAudioFeatures(id: id)",
+        "PublicUserObject { id }.playlists -> Query.userPlaylists(user_id: id)"
       ]),
       transforms: [
         {
           filterSchema: {
             filters: [
               'Query.!{mePlaylists, meAlbums, meTracks, meTopArtists}',
+              'Query.!albumTracks',
+              'Query.!artistAlbums',
+              'Query.!{meAlbumsContains, meFollowingArtists, meShows, meShowsContains, meTracksContains}',
+              'Query.!{playerCurrentlyPlaying, playerRecentlyPlayed, playerDevices}',
+              'Query.!{playlistCoverImages, playlistTracks}',
+              'Query.!showEpisodes',
+              'Query.!trackAudioFeatures',
+              'Query.!userPlaylists'
             ]
           }
         }

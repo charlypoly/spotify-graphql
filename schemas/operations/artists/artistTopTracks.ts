@@ -6,7 +6,7 @@ const operation: YamlConfig.JsonSchemaHTTPOperation = {
   field: 'artistTopTracks',
   description:
     "Get an Artist's Top Tracks: Get Spotify catalog information about an artist’s top tracks by country.",
-  path: '/artists/{args.id}/top-tracks',
+  path: '/artists/{args.id}/top-tracks?market={args.market}',
   requestSchema: schema.definition('ArtistTopTracksInput', {
     market: schema.types.type('string', { required: true }),
   }),

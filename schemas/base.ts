@@ -1,5 +1,5 @@
 import * as schema from 'functional-json-schema'
-import { JSONSchema6, JSONSchema6TypeName } from 'json-schema'
+import { JSONSchema6TypeName } from 'json-schema'
 
 export const objectTypes = {
   AlbumObject: {

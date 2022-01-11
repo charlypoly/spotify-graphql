@@ -14,7 +14,8 @@ const operation: YamlConfig.JsonSchemaHTTPOperation = {
   }),
   responseSchema: schema.definition(
     'UserPlaylistsOutput',
-    offsetPagingObjectOf('SimplifiedPlaylistObject')
+    offsetPagingObjectOf('SimplifiedPlaylistObject'),
+    { title: 'UserPlaylistsOutput' }
   ),
   argTypeMap: {
     user_id: 'String',

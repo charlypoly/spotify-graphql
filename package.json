@@ -32,6 +32,6 @@
     "@graphql-mesh/json-schema": "latest",
     "@graphql-mesh/transform-filter-schema": "latest",
     "functional-json-schema": "1.0.0",
-    "graphql": "^15.0.0"
+    "graphql": "^16.0.0"
   }
 }

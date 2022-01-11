@@ -73,7 +73,7 @@ sources:
             description: >-
               Get an Artist's Top Tracks: Get Spotify catalog information about
               an artist’s top tracks by country.
-            path: /artists/{args.id}/top-tracks
+            path: /artists/{args.id}/top-tracks?market={args.market}
             requestSchema: ./json-schemas/base.json#/definitions/ArtistTopTracksInput
             argTypeMap:
               id: String
@@ -231,7 +231,7 @@ sources:
             description: >-
               Check User's Saved Albums: Check if one or more albums is already
               saved in the current Spotify user’s ‘Your Music’ library.
-            path: /me/albums/contains
+            path: /me/albums/contains?ids={args.ids}
             requestSchema: ./json-schemas/base.json#/definitions/MeAlbumsContainsInput
             responseSchema: ./json-schemas/base.json#/definitions/ArrayOfBooleans
           - type: Mutation
@@ -302,7 +302,7 @@ sources:
             description: >-
               Check User's Saved Shows: Check if one or more shows is already
               saved in the current Spotify user’s ‘Your Music’ library.
-            path: /me/shows/contains
+            path: /me/shows/contains?ids={args.ids}
             requestSchema: ./json-schemas/base.json#/definitions/MeShowsContainsInput
             responseSchema: ./json-schemas/base.json#/definitions/ArrayOfBooleans
           - type: Query
@@ -318,7 +318,7 @@ sources:
             description: >-
               Check User's Saved Tracks: Check if one or more tracks is already
               saved in the current Spotify user’s ‘Your Music’ library.
-            path: /me/tracks/contains
+            path: /me/tracks/contains?ids={args.ids}
             requestSchema: ./json-schemas/base.json#/definitions/MeTracksContainsInput
             responseSchema: ./json-schemas/base.json#/definitions/ArrayOfBooleans
           - type: Query
@@ -730,6 +730,32 @@ additionalTypeDefs:
               tracks: MeTracksOutput!
               topTracks: MeTopTracksOutput!
               topArtists: MeTopArtistsOutput!
+              followingArtists: MeFollowingArtistsOutput!
+              shows: MeShowsOutput!
+              albumsContains(ids: String!): [Boolean!]!
+              showsContains(ids: String!): [Boolean!]!
+              tracksContains(ids: String!): [Boolean!]!
+            }
+            extend type AlbumObject {
+              tracksFull: AlbumTracksOutput!
+            }
+            extend type ArtistObject {
+              albums: ArtistAlbumsOutput!
+              topTracks(market: String!): ArtistTopTracksOutput!
+              relatedArtists: ArtistRelatedArtistsOutput!
+            }
+            extend type CurrentlyPlayingContextObject {
+              recentlyPlayed: PlayerRecentlyPlayedOutput!
+              devices: DevicesObject!
+            }
+            extend type ShowObject {
+              episodesFull: ShowEpisodesOutput!
+            }
+            extend type PublicUserObject {
+              playlists: UserPlaylistsOutput!
+            }
+            extend type TrackObject {
+              audioFeatures: AudioFeaturesObject!
             }
             
 additionalResolvers:
@@ -763,7 +789,108 @@ additionalResolvers:
     sourceFieldName: meTopArtists
     targetTypeName: PrivateUserObject
     targetFieldName: topArtists
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: albumTracks
+    targetTypeName: AlbumObject
+    targetFieldName: tracksFull
+    requiredSelectionSet: '{ id }'
+    sourceArgs:
+      id: '{root.id}'
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: artistAlbums
+    targetTypeName: ArtistObject
+    targetFieldName: albums
+    requiredSelectionSet: '{ id }'
+    sourceArgs:
+      id: '{root.id}'
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: artistTopTracks
+    targetTypeName: ArtistObject
+    targetFieldName: topTracks
+    requiredSelectionSet: '{ id }'
+    sourceArgs:
+      id: '{root.id}'
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: artistRelatedArtists
+    targetTypeName: ArtistObject
+    targetFieldName: relatedArtists
+    requiredSelectionSet: '{ id }'
+    sourceArgs:
+      id: '{root.id}'
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: playerRecentlyPlayed
+    targetTypeName: CurrentlyPlayingContextObject
+    targetFieldName: recentlyPlayed
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: playerDevices
+    targetTypeName: CurrentlyPlayingContextObject
+    targetFieldName: devices
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meAlbumsContains
+    targetTypeName: PrivateUserObject
+    targetFieldName: albumsContains
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meFollowingArtists
+    targetTypeName: PrivateUserObject
+    targetFieldName: followingArtists
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meShows
+    targetTypeName: PrivateUserObject
+    targetFieldName: shows
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meShowsContains
+    targetTypeName: PrivateUserObject
+    targetFieldName: showsContains
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: meTracksContains
+    targetTypeName: PrivateUserObject
+    targetFieldName: tracksContains
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: showEpisodes
+    targetTypeName: ShowObject
+    targetFieldName: episodesFull
+    requiredSelectionSet: '{ id }'
+    sourceArgs:
+      id: '{root.id}'
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: trackAudioFeatures
+    targetTypeName: TrackObject
+    targetFieldName: audioFeatures
+    requiredSelectionSet: '{ id }'
+    sourceArgs:
+      id: '{root.id}'
+  - sourceName: Spotify
+    sourceTypeName: Query
+    sourceFieldName: userPlaylists
+    targetTypeName: PublicUserObject
+    targetFieldName: playlists
+    requiredSelectionSet: '{ id }'
+    sourceArgs:
+      user_id: '{root.id}'
 transforms:
   - filterSchema:
       filters:
         - Query.!{mePlaylists, meAlbums, meTracks, meTopArtists}
+        - Query.!albumTracks
+        - Query.!artistAlbums
+        - >-
+          Query.!{meAlbumsContains, meFollowingArtists, meShows,
+          meShowsContains, meTracksContains}
+        - Query.!{playerCurrentlyPlaying, playerRecentlyPlayed, playerDevices}
+        - Query.!{playlistCoverImages, playlistTracks}
+        - Query.!showEpisodes
+        - Query.!trackAudioFeatures
+        - Query.!userPlaylists
